@@ -61,3 +61,4 @@ crashlytics-build.properties
 # /ProjectSettings/ProjectVersion.txt
 /.idea
 /node_modules
+/Assets/EGamePlay/.idea/.idea.EGamePlay.dir/.idea

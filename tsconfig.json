@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "es2015",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "typeRoots": [
+      "../../../package/Typing",
+      "../Assets/Gen/Typing",
+      "./node_modules/@types"
+    ],
+    "outDir": "./output",
+  },
+ 
+  "exclude": []
+}
