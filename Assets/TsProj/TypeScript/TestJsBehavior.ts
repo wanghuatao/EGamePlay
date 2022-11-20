@@ -10,13 +10,11 @@ export default class TestJsBehavior extends JsBehaviour<JsMonoBehaviour> {
         console.log(" ddd TestJsB.Start");
         // this._mb.gameObject.GetComponent(puerts.$typeof(Hero))
         // let hero = this._mb.gameObject.GetComponent(puerts.$typeof(CS.PuertsTest.TestHero)) as CS.PuertsTest.TestHero
-
         // console.log('hero',hero);
-        
-        
        let hero = this._mb.gameObject.GetComponent(puerts.$typeof(CS.Hero)) as CS.Hero
 
-        console.log('hero ',hero);
+        
+        console.log('hero',hero);
         let xx = from([1, 2, 3, 4])
         xx.subscribe((x: any) => console.log(x))
 

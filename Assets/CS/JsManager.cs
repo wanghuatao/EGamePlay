@@ -13,7 +13,8 @@ public class JsManager : MonoBehaviour
     private JsLoader loader;
     private string scriptsDir = Path.Combine(Application.streamingAssetsPath, "Scripts");
     public string nextScene;
-    
+    public bool delayLoadNextScene;
+
     private void Start()
     {
         if (jsEnv == null)
@@ -26,12 +27,19 @@ public class JsManager : MonoBehaviour
                 Debug.Log("JsMonoBehaviour start");
                 // jsEnv = Puerts.WebGL.GetBrowserEnv();
                 jsEnv = Puerts.WebGL.GetBrowserEnv(loader, -1);
-                Application.LoadLevel(nextScene);
-                // StartCoroutine(loadScene());
-                
+
+
+                if (delayLoadNextScene)
+                {
+                    StartCoroutine(loadScene());
+                }
+                else
+                {
+                    Application.LoadLevel(nextScene);
+                }
             });
         }
-        
+
         DontDestroyOnLoad(gameObject);
     }
 
@@ -39,9 +47,8 @@ public class JsManager : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         Application.LoadLevel(nextScene);
-
     }
-    
+
     public static JsEnv GetJsEnv()
     {
         return jsEnv;

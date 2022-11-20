@@ -3615,6 +3615,10 @@
             public AddEvent ($evt: UnityEngine.AnimationEvent) : void
             public constructor ()
         }
+        interface IAnimationClipSource
+        {
+            GetAnimationClips ($results: System.Collections.Generic.List$1<UnityEngine.AnimationClip>) : void
+        }
         /** AndroidJavaRunnable is the Unity representation of a java.lang.Runnable object.
         */
         interface AndroidJavaRunnable
@@ -5048,10 +5052,6 @@
             /** Returns the HumanDescription used to create this Avatar.
             */
             public get humanDescription(): UnityEngine.HumanDescription;
-        }
-        interface IAnimationClipSource
-        {
-            GetAnimationClips ($results: System.Collections.Generic.List$1<UnityEngine.AnimationClip>) : void
         }
         /** SharedBetweenAnimatorsAttribute is an attribute that specify that this StateMachineBehaviour should be instantiate only once and shared among all Animator instance. This attribute reduce the memory footprint for each controller instance.
         */
@@ -28914,6 +28914,7 @@
         {
             protected [__keep_incompatibility]: never;
             public nextScene : string
+            public delayLoadNextScene : boolean
             public static GetJsEnv () : Puerts.JsEnv
             public LoadJs ($filename: string, $loadOk: System.Action) : void
             public LoadJs ($fileName: string, $url: string, $loadOk: System.Action) : void
@@ -30236,31 +30237,189 @@
             public GetTeammate ($seat: number) : EGamePlay.Combat.CombatEntity
             public constructor ()
         }
-        class MotionComponent extends EGamePlay.Component
+        class HealthPoint extends EGamePlay.Entity
         {
             protected [__keep_incompatibility]: never;
-            public get DefaultEnable(): boolean;
-            public set DefaultEnable(value: boolean);
-            public get Position(): UnityEngine.Vector3;
-            public set Position(value: UnityEngine.Vector3);
-            public get Rotation(): UnityEngine.Quaternion;
-            public set Rotation(value: UnityEngine.Quaternion);
-            public get CanMove(): boolean;
-            public set CanMove(value: boolean);
-            public get IdleTimer(): GameUtils.GameTimer;
-            public set IdleTimer(value: GameUtils.GameTimer);
-            public get MoveTimer(): GameUtils.GameTimer;
-            public set MoveTimer(value: GameUtils.GameTimer);
-            public get MoveVector(): UnityEngine.Vector3;
-            public set MoveVector(value: UnityEngine.Vector3);
-            public RunAI () : void
+            public HealthPointNumeric : EGamePlay.Combat.FloatNumeric
+            public HealthPointMaxNumeric : EGamePlay.Combat.FloatNumeric
+            public get Value(): number;
+            public get MaxValue(): number;
+            public Reset () : void
+            public SetMaxValue ($value: number) : void
+            public Minus ($value: number) : void
+            public Add ($value: number) : void
+            public Percent () : number
+            public PercentHealth ($pct: number) : number
+            public IsFull () : boolean
             public constructor ()
         }
-        class FloatModifier extends System.Object
+        class EffectAssignAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
         {
             protected [__keep_incompatibility]: never;
-            public Value : number
+            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
+            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
+            public get Enable(): boolean;
+            public set Enable(value: boolean);
+            public TryMakeAction ($action: $Ref<EGamePlay.Combat.EffectAssignAction>) : boolean
             public constructor ()
+        }
+        interface IActionAbility
+        {
+            OwnerEntity : EGamePlay.Combat.CombatEntity
+            Enable : boolean
+        }
+        class SpellActionAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
+        {
+            protected [__keep_incompatibility]: never;
+            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
+            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
+            public get Enable(): boolean;
+            public set Enable(value: boolean);
+            public TryMakeAction ($action: $Ref<EGamePlay.Combat.SpellAction>) : boolean
+            public constructor ()
+        }
+        class MotionActionAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
+        {
+            protected [__keep_incompatibility]: never;
+            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
+            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
+            public get Enable(): boolean;
+            public set Enable(value: boolean);
+            public TryMakeAction ($action: $Ref<EGamePlay.Combat.MotionAction>) : boolean
+            public constructor ()
+        }
+        class DamageActionAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
+        {
+            protected [__keep_incompatibility]: never;
+            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
+            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
+            public get Enable(): boolean;
+            public set Enable(value: boolean);
+            public TryMakeAction ($action: $Ref<EGamePlay.Combat.DamageAction>) : boolean
+            public constructor ()
+        }
+        class CureActionAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
+        {
+            protected [__keep_incompatibility]: never;
+            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
+            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
+            public get Enable(): boolean;
+            public set Enable(value: boolean);
+            public TryMakeAction ($action: $Ref<EGamePlay.Combat.CureAction>) : boolean
+            public constructor ()
+        }
+        class AddStatusActionAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
+        {
+            protected [__keep_incompatibility]: never;
+            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
+            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
+            public get Enable(): boolean;
+            public set Enable(value: boolean);
+            public TryMakeAction ($action: $Ref<EGamePlay.Combat.AddStatusAction>) : boolean
+            public constructor ()
+        }
+        class AttackActionAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
+        {
+            protected [__keep_incompatibility]: never;
+            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
+            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
+            public get Enable(): boolean;
+            public set Enable(value: boolean);
+            public TryMakeAction ($action: $Ref<EGamePlay.Combat.AttackAction>) : boolean
+            public constructor ()
+        }
+        class RoundActionAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
+        {
+            protected [__keep_incompatibility]: never;
+            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
+            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
+            public get Enable(): boolean;
+            public set Enable(value: boolean);
+            public TryMakeAction ($action: $Ref<EGamePlay.Combat.RoundAction>) : boolean
+            public constructor ()
+        }
+        class JumpToActionAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
+        {
+            protected [__keep_incompatibility]: never;
+            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
+            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
+            public get Enable(): boolean;
+            public set Enable(value: boolean);
+            public TryMakeAction ($action: $Ref<EGamePlay.Combat.JumpToAction>) : boolean
+            public constructor ()
+        }
+        class AttackAbility extends EGamePlay.Entity implements EGamePlay.Combat.IAbilityEntity
+        {
+            protected [__keep_incompatibility]: never;
+            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
+            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
+            public get ParentEntity(): EGamePlay.Combat.CombatEntity;
+            public get Enable(): boolean;
+            public set Enable(value: boolean);
+            public DeactivateAbility () : void
+            public EndAbility () : void
+            public TryActivateAbility () : void
+            public ActivateAbility () : void
+            public CreateExecution () : EGamePlay.Entity
+            public constructor ()
+        }
+        interface IAbilityEntity
+        {
+            OwnerEntity : EGamePlay.Combat.CombatEntity
+            ParentEntity : EGamePlay.Combat.CombatEntity
+            Enable : boolean
+            TryActivateAbility () : void
+            ActivateAbility () : void
+            DeactivateAbility () : void
+            EndAbility () : void
+            CreateExecution () : EGamePlay.Entity
+        }
+        class AttackBlockActionAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
+        {
+            protected [__keep_incompatibility]: never;
+            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
+            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
+            public get Enable(): boolean;
+            public set Enable(value: boolean);
+            public TryMakeAction ($action: $Ref<EGamePlay.Combat.AttackBlockAction>) : boolean
+            public TryBlock ($action: EGamePlay.Entity) : void
+            public constructor ()
+        }
+        class SkillExecution extends EGamePlay.Entity implements EGamePlay.Combat.IAbilityExecution
+        {
+            protected [__keep_incompatibility]: never;
+            public get AbilityEntity(): EGamePlay.Entity;
+            public set AbilityEntity(value: EGamePlay.Entity);
+            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
+            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
+            public get SkillAbility(): EGamePlay.Combat.SkillAbility;
+            public get ExecutionObject(): EGamePlay.Combat.ExecutionObject;
+            public set ExecutionObject(value: EGamePlay.Combat.ExecutionObject);
+            public get SkillTargets(): System.Collections.Generic.List$1<EGamePlay.Combat.CombatEntity>;
+            public set SkillTargets(value: System.Collections.Generic.List$1<EGamePlay.Combat.CombatEntity>);
+            public get InputTarget(): EGamePlay.Combat.CombatEntity;
+            public set InputTarget(value: EGamePlay.Combat.CombatEntity);
+            public get InputPoint(): UnityEngine.Vector3;
+            public set InputPoint(value: UnityEngine.Vector3);
+            public get InputDirection(): number;
+            public set InputDirection(value: number);
+            public get OriginTime(): bigint;
+            public set OriginTime(value: bigint);
+            public get ActionOccupy(): boolean;
+            public set ActionOccupy(value: boolean);
+            public LoadExecutionEffects () : void
+            public BeginExecute () : void
+            public EndExecute () : void
+            public SpawnCollisionItem ($clipData: EGamePlay.ExecuteClipData) : void
+            public CreateAbilityItemProxyObj ($abilityItem: EGamePlay.Combat.AbilityItem) : UnityEngine.GameObject
+            public constructor ()
+        }
+        interface IAbilityExecution
+        {
+            AbilityEntity : EGamePlay.Entity
+            OwnerEntity : EGamePlay.Combat.CombatEntity
+            BeginExecute () : void
+            EndExecute () : void
         }
         class SkillAbility extends EGamePlay.Entity implements EGamePlay.Combat.IAbilityEntity
         {
@@ -30288,16 +30447,76 @@
             public CreateExecution () : EGamePlay.Entity
             public constructor ()
         }
-        interface IAbilityEntity
+        class StatusAbility extends EGamePlay.Entity implements EGamePlay.Combat.IAbilityEntity
         {
-            OwnerEntity : EGamePlay.Combat.CombatEntity
-            ParentEntity : EGamePlay.Combat.CombatEntity
-            Enable : boolean
-            TryActivateAbility () : void
-            ActivateAbility () : void
-            DeactivateAbility () : void
-            EndAbility () : void
-            CreateExecution () : EGamePlay.Entity
+            protected [__keep_incompatibility]: never;
+            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
+            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
+            public get ParentEntity(): EGamePlay.Combat.CombatEntity;
+            public get Enable(): boolean;
+            public set Enable(value: boolean);
+            public get StatusConfig(): EGamePlay.Combat.StatusConfigObject;
+            public set StatusConfig(value: EGamePlay.Combat.StatusConfigObject);
+            public get ActionControlType(): EGamePlay.Combat.ActionControlType;
+            public set ActionControlType(value: EGamePlay.Combat.ActionControlType);
+            public get AddModifiers(): System.Collections.Generic.Dictionary$2<string, EGamePlay.Combat.FloatModifier>;
+            public set AddModifiers(value: System.Collections.Generic.Dictionary$2<string, EGamePlay.Combat.FloatModifier>);
+            public get PctAddModifiers(): System.Collections.Generic.Dictionary$2<string, EGamePlay.Combat.FloatModifier>;
+            public set PctAddModifiers(value: System.Collections.Generic.Dictionary$2<string, EGamePlay.Combat.FloatModifier>);
+            public get IsChildStatus(): boolean;
+            public set IsChildStatus(value: boolean);
+            public get Duration(): number;
+            public set Duration(value: number);
+            public get ChildStatusData(): EGamePlay.Combat.ChildStatus;
+            public set ChildStatusData(value: EGamePlay.Combat.ChildStatus);
+            public ActivateAbility () : void
+            public EndAbility () : void
+            public GetDuration () : number
+            public CreateExecution () : EGamePlay.Entity
+            public TryActivateAbility () : void
+            public DeactivateAbility () : void
+            public ProcessInputKVParams ($Params: System.Collections.Generic.Dictionary$2<string, string>) : void
+            public constructor ()
+        }
+        enum ActionControlType
+        { None = 0, MoveForbid = 2, SkillForbid = 4, AttackForbid = 8, MoveControl = 16, AttackControl = 32 }
+        enum ActionPointType
+        { None = 0, PreCauseDamage = 2, PreReceiveDamage = 4, PostCauseDamage = 8, PostReceiveDamage = 16, PostGiveCure = 32, PostReceiveCure = 64, AssignEffect = 128, ReceiveEffect = 256, PostGiveStatus = 512, PostReceiveStatus = 1024, PreGiveAttack = 2048, PostGiveAttack = 4096, PreReceiveAttack = 8192, PostReceiveAttack = 16384, PreJumpTo = 32768, PostJumpTo = 65536, PreSpell = 131072, PostSpell = 262144, PreGiveAttackEffect = 524288, PostGiveAttackEffect = 1048576, PreReceiveAttackEffect = 2097152, PostReceiveAttackEffect = 4194304, Max = 4194305 }
+        enum ConditionType
+        { CustomCondition = 0, WhenHPLower = 1, WhenHPPctLower = 2, WhenInTimeNoDamage = 3 }
+        interface IActionExecution
+        {
+            ActionAbility : EGamePlay.Entity
+            SourceAssignAction : EGamePlay.Combat.EffectAssignAction
+            Creator : EGamePlay.Combat.CombatEntity
+            Target : EGamePlay.Combat.CombatEntity
+            FinishAction () : void
+        }
+        class MotionComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public get DefaultEnable(): boolean;
+            public set DefaultEnable(value: boolean);
+            public get Position(): UnityEngine.Vector3;
+            public set Position(value: UnityEngine.Vector3);
+            public get Rotation(): UnityEngine.Quaternion;
+            public set Rotation(value: UnityEngine.Quaternion);
+            public get CanMove(): boolean;
+            public set CanMove(value: boolean);
+            public get IdleTimer(): GameUtils.GameTimer;
+            public set IdleTimer(value: GameUtils.GameTimer);
+            public get MoveTimer(): GameUtils.GameTimer;
+            public set MoveTimer(value: GameUtils.GameTimer);
+            public get MoveVector(): UnityEngine.Vector3;
+            public set MoveVector(value: UnityEngine.Vector3);
+            public RunAI () : void
+            public constructor ()
+        }
+        class FloatModifier extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public Value : number
+            public constructor ()
         }
         class ExecutionObject extends UnityEngine.ScriptableObject
         {
@@ -30380,13 +30599,6 @@
             public set Level(value: number);
             public constructor ()
         }
-        interface IAbilityExecution
-        {
-            AbilityEntity : EGamePlay.Entity
-            OwnerEntity : EGamePlay.Combat.CombatEntity
-            BeginExecute () : void
-            EndExecute () : void
-        }
         class ApplyEffectEvent extends System.Object
         {
             protected [__keep_incompatibility]: never;
@@ -30437,14 +30649,6 @@
             public get HideTriggerType(): boolean;
             public get Label(): string;
             public EffectTypeSelect () : System.Collections.Generic.IEnumerable$1<string>
-        }
-        interface IActionExecution
-        {
-            ActionAbility : EGamePlay.Entity
-            SourceAssignAction : EGamePlay.Combat.EffectAssignAction
-            Creator : EGamePlay.Combat.CombatEntity
-            Target : EGamePlay.Combat.CombatEntity
-            FinishAction () : void
         }
         class EffectAssignAction extends EGamePlay.Entity implements EGamePlay.Combat.IActionExecution
         {
@@ -30505,8 +30709,6 @@
             public get Label(): string;
             public constructor ()
         }
-        enum ActionControlType
-        { None = 0, MoveForbid = 2, SkillForbid = 4, AttackForbid = 8, MoveControl = 16, AttackControl = 32 }
         class EffectAddStatusComponent extends EGamePlay.Component
         {
             protected [__keep_incompatibility]: never;
@@ -30730,35 +30932,6 @@
             public EndEffect () : void
             public constructor ()
         }
-        class SkillExecution extends EGamePlay.Entity implements EGamePlay.Combat.IAbilityExecution
-        {
-            protected [__keep_incompatibility]: never;
-            public get AbilityEntity(): EGamePlay.Entity;
-            public set AbilityEntity(value: EGamePlay.Entity);
-            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
-            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
-            public get SkillAbility(): EGamePlay.Combat.SkillAbility;
-            public get ExecutionObject(): EGamePlay.Combat.ExecutionObject;
-            public set ExecutionObject(value: EGamePlay.Combat.ExecutionObject);
-            public get SkillTargets(): System.Collections.Generic.List$1<EGamePlay.Combat.CombatEntity>;
-            public set SkillTargets(value: System.Collections.Generic.List$1<EGamePlay.Combat.CombatEntity>);
-            public get InputTarget(): EGamePlay.Combat.CombatEntity;
-            public set InputTarget(value: EGamePlay.Combat.CombatEntity);
-            public get InputPoint(): UnityEngine.Vector3;
-            public set InputPoint(value: UnityEngine.Vector3);
-            public get InputDirection(): number;
-            public set InputDirection(value: number);
-            public get OriginTime(): bigint;
-            public set OriginTime(value: bigint);
-            public get ActionOccupy(): boolean;
-            public set ActionOccupy(value: boolean);
-            public LoadExecutionEffects () : void
-            public BeginExecute () : void
-            public EndExecute () : void
-            public SpawnCollisionItem ($clipData: EGamePlay.ExecuteClipData) : void
-            public CreateAbilityItemProxyObj ($abilityItem: EGamePlay.Combat.AbilityItem) : UnityEngine.GameObject
-            public constructor ()
-        }
         class ExecutionEffectComponent extends EGamePlay.Component
         {
             protected [__keep_incompatibility]: never;
@@ -30800,21 +30973,6 @@
             public set TargetCounter(value: number);
             public constructor ()
         }
-        class AddStatusActionAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
-        {
-            protected [__keep_incompatibility]: never;
-            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
-            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
-            public get Enable(): boolean;
-            public set Enable(value: boolean);
-            public TryMakeAction ($action: $Ref<EGamePlay.Combat.AddStatusAction>) : boolean
-            public constructor ()
-        }
-        interface IActionAbility
-        {
-            OwnerEntity : EGamePlay.Combat.CombatEntity
-            Enable : boolean
-        }
         class AddStatusAction extends EGamePlay.Entity implements EGamePlay.Combat.IActionExecution
         {
             protected [__keep_incompatibility]: never;
@@ -30833,47 +30991,6 @@
             public set Target(value: EGamePlay.Combat.CombatEntity);
             public FinishAction () : void
             public ApplyAddStatus () : void
-            public constructor ()
-        }
-        class StatusAbility extends EGamePlay.Entity implements EGamePlay.Combat.IAbilityEntity
-        {
-            protected [__keep_incompatibility]: never;
-            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
-            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
-            public get ParentEntity(): EGamePlay.Combat.CombatEntity;
-            public get Enable(): boolean;
-            public set Enable(value: boolean);
-            public get StatusConfig(): EGamePlay.Combat.StatusConfigObject;
-            public set StatusConfig(value: EGamePlay.Combat.StatusConfigObject);
-            public get ActionControlType(): EGamePlay.Combat.ActionControlType;
-            public set ActionControlType(value: EGamePlay.Combat.ActionControlType);
-            public get AddModifiers(): System.Collections.Generic.Dictionary$2<string, EGamePlay.Combat.FloatModifier>;
-            public set AddModifiers(value: System.Collections.Generic.Dictionary$2<string, EGamePlay.Combat.FloatModifier>);
-            public get PctAddModifiers(): System.Collections.Generic.Dictionary$2<string, EGamePlay.Combat.FloatModifier>;
-            public set PctAddModifiers(value: System.Collections.Generic.Dictionary$2<string, EGamePlay.Combat.FloatModifier>);
-            public get IsChildStatus(): boolean;
-            public set IsChildStatus(value: boolean);
-            public get Duration(): number;
-            public set Duration(value: number);
-            public get ChildStatusData(): EGamePlay.Combat.ChildStatus;
-            public set ChildStatusData(value: EGamePlay.Combat.ChildStatus);
-            public ActivateAbility () : void
-            public EndAbility () : void
-            public GetDuration () : number
-            public CreateExecution () : EGamePlay.Entity
-            public TryActivateAbility () : void
-            public DeactivateAbility () : void
-            public ProcessInputKVParams ($Params: System.Collections.Generic.Dictionary$2<string, string>) : void
-            public constructor ()
-        }
-        class AttackActionAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
-        {
-            protected [__keep_incompatibility]: never;
-            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
-            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
-            public get Enable(): boolean;
-            public set Enable(value: boolean);
-            public TryMakeAction ($action: $Ref<EGamePlay.Combat.AttackAction>) : boolean
             public constructor ()
         }
         class AttackAction extends EGamePlay.Entity implements EGamePlay.Combat.IActionExecution
@@ -30908,17 +31025,6 @@
             public EndExecute () : void
             public constructor ()
         }
-        class AttackBlockActionAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
-        {
-            protected [__keep_incompatibility]: never;
-            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
-            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
-            public get Enable(): boolean;
-            public set Enable(value: boolean);
-            public TryMakeAction ($action: $Ref<EGamePlay.Combat.AttackBlockAction>) : boolean
-            public TryBlock ($action: EGamePlay.Entity) : void
-            public constructor ()
-        }
         class AttackBlockAction extends EGamePlay.Entity implements EGamePlay.Combat.IActionExecution
         {
             protected [__keep_incompatibility]: never;
@@ -30948,16 +31054,6 @@
             protected [__keep_incompatibility]: never;
             public constructor ()
         }
-        class CureActionAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
-        {
-            protected [__keep_incompatibility]: never;
-            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
-            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
-            public get Enable(): boolean;
-            public set Enable(value: boolean);
-            public TryMakeAction ($action: $Ref<EGamePlay.Combat.CureAction>) : boolean
-            public constructor ()
-        }
         class CureAction extends EGamePlay.Entity implements EGamePlay.Combat.IActionExecution
         {
             protected [__keep_incompatibility]: never;
@@ -30979,16 +31075,6 @@
         class DamageBloodSuckComponent extends EGamePlay.Component
         {
             protected [__keep_incompatibility]: never;
-            public constructor ()
-        }
-        class DamageActionAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
-        {
-            protected [__keep_incompatibility]: never;
-            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
-            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
-            public get Enable(): boolean;
-            public set Enable(value: boolean);
-            public TryMakeAction ($action: $Ref<EGamePlay.Combat.DamageAction>) : boolean
             public constructor ()
         }
         class DamageAction extends EGamePlay.Entity implements EGamePlay.Combat.IActionExecution
@@ -31020,26 +31106,6 @@
         }
         enum DamageSource
         { Attack = 0, Skill = 1, Buff = 2 }
-        class EffectAssignAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
-        {
-            protected [__keep_incompatibility]: never;
-            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
-            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
-            public get Enable(): boolean;
-            public set Enable(value: boolean);
-            public TryMakeAction ($action: $Ref<EGamePlay.Combat.EffectAssignAction>) : boolean
-            public constructor ()
-        }
-        class MotionActionAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
-        {
-            protected [__keep_incompatibility]: never;
-            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
-            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
-            public get Enable(): boolean;
-            public set Enable(value: boolean);
-            public TryMakeAction ($action: $Ref<EGamePlay.Combat.MotionAction>) : boolean
-            public constructor ()
-        }
         class MotionAction extends EGamePlay.Entity implements EGamePlay.Combat.IActionExecution
         {
             protected [__keep_incompatibility]: never;
@@ -31055,16 +31121,6 @@
             public set Target(value: EGamePlay.Combat.CombatEntity);
             public FinishAction () : void
             public ApplyMotion () : void
-            public constructor ()
-        }
-        class SpellActionAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
-        {
-            protected [__keep_incompatibility]: never;
-            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
-            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
-            public get Enable(): boolean;
-            public set Enable(value: boolean);
-            public TryMakeAction ($action: $Ref<EGamePlay.Combat.SpellAction>) : boolean
             public constructor ()
         }
         class SpellAction extends EGamePlay.Entity implements EGamePlay.Combat.IActionExecution
@@ -31096,16 +31152,6 @@
         }
         enum ActionType
         { SpellSkill = 0, CauseDamage = 1, GiveCure = 2, AssignEffect = 3 }
-        class JumpToActionAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
-        {
-            protected [__keep_incompatibility]: never;
-            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
-            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
-            public get Enable(): boolean;
-            public set Enable(value: boolean);
-            public TryMakeAction ($action: $Ref<EGamePlay.Combat.JumpToAction>) : boolean
-            public constructor ()
-        }
         class JumpToAction extends EGamePlay.Entity implements EGamePlay.Combat.IActionExecution
         {
             protected [__keep_incompatibility]: never;
@@ -31119,16 +31165,6 @@
             public set Target(value: EGamePlay.Combat.CombatEntity);
             public FinishAction () : void
             public ApplyJumpTo () : ET.ETTask
-            public constructor ()
-        }
-        class RoundActionAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
-        {
-            protected [__keep_incompatibility]: never;
-            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
-            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
-            public get Enable(): boolean;
-            public set Enable(value: boolean);
-            public TryMakeAction ($action: $Ref<EGamePlay.Combat.RoundAction>) : boolean
             public constructor ()
         }
         class RoundAction extends EGamePlay.Entity implements EGamePlay.Combat.IActionExecution
@@ -31178,22 +31214,6 @@
             public RemoveFinalAddModifier ($modifier: EGamePlay.Combat.FloatModifier) : void
             public RemoveFinalPctAddModifier ($modifier: EGamePlay.Combat.FloatModifier) : void
             public Update () : void
-            public constructor ()
-        }
-        class HealthPoint extends EGamePlay.Entity
-        {
-            protected [__keep_incompatibility]: never;
-            public HealthPointNumeric : EGamePlay.Combat.FloatNumeric
-            public HealthPointMaxNumeric : EGamePlay.Combat.FloatNumeric
-            public get Value(): number;
-            public get MaxValue(): number;
-            public Reset () : void
-            public SetMaxValue ($value: number) : void
-            public Minus ($value: number) : void
-            public Add ($value: number) : void
-            public Percent () : number
-            public PercentHealth ($pct: number) : number
-            public IsFull () : boolean
             public constructor ()
         }
         class CombatActionManageComponent extends EGamePlay.Component
@@ -31334,10 +31354,6 @@
         { SkillTarget = 0, Self = 1, Other = 2 }
         enum EffectTriggerType
         { None = 0, Instant = 1, Condition = 2, Action = 3, Interval = 4, ActionCondition = 5 }
-        enum ConditionType
-        { CustomCondition = 0, WhenHPLower = 1, WhenHPPctLower = 2, WhenInTimeNoDamage = 3 }
-        enum ActionPointType
-        { None = 0, PreCauseDamage = 2, PreReceiveDamage = 4, PostCauseDamage = 8, PostReceiveDamage = 16, PostGiveCure = 32, PostReceiveCure = 64, AssignEffect = 128, ReceiveEffect = 256, PostGiveStatus = 512, PostReceiveStatus = 1024, PreGiveAttack = 2048, PostGiveAttack = 4096, PreReceiveAttack = 8192, PostReceiveAttack = 16384, PreJumpTo = 32768, PostJumpTo = 65536, PreSpell = 131072, PostSpell = 262144, PreGiveAttackEffect = 524288, PostGiveAttackEffect = 1048576, PreReceiveAttackEffect = 2097152, PostReceiveAttackEffect = 4194304, Max = 4194305 }
         class RemoveStatusEffect extends EGamePlay.Combat.Effect
         {
             protected [__keep_incompatibility]: never;
@@ -31431,21 +31447,6 @@
         { Power = 0 }
         enum StatusType
         { Buff = 0, Debuff = 1, Other = 2 }
-        class AttackAbility extends EGamePlay.Entity implements EGamePlay.Combat.IAbilityEntity
-        {
-            protected [__keep_incompatibility]: never;
-            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
-            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
-            public get ParentEntity(): EGamePlay.Combat.CombatEntity;
-            public get Enable(): boolean;
-            public set Enable(value: boolean);
-            public DeactivateAbility () : void
-            public EndAbility () : void
-            public TryActivateAbility () : void
-            public ActivateAbility () : void
-            public CreateExecution () : EGamePlay.Entity
-            public constructor ()
-        }
         class SkillExecutionData extends System.Object
         {
             protected [__keep_incompatibility]: never;
@@ -33169,6 +33170,37 @@
             public HealthBarImage : UnityEngine.UI.Image
             public CanvasTrm : UnityEngine.Transform
             public constructor ()
+        }
+    }
+    namespace Animancer {
+        class AnimancerComponent extends UnityEngine.MonoBehaviour implements UnityEngine.IAnimationClipSource, Animancer.IAnimancerComponent, Animancer.IAnimationClipCollection, System.Collections.Generic.IEnumerable$1<Animancer.AnimancerState>, System.Collections.IEnumerable, System.Collections.IEnumerator
+        {
+            protected [__keep_incompatibility]: never;
+            public GetAnimationClips ($results: System.Collections.Generic.List$1<UnityEngine.AnimationClip>) : void
+        }
+        interface IAnimancerComponent
+        {
+        }
+        interface IAnimationClipCollection
+        {
+        }
+        class Key extends System.Object implements Animancer.IKeyedListItem
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        interface IKeyedListItem
+        {
+        }
+        class AnimancerNode extends Animancer.Key implements Animancer.IKeyedListItem, System.Collections.Generic.IEnumerable$1<Animancer.AnimancerState>, System.Collections.IEnumerable, System.Collections.IEnumerator, Animancer.IPlayableWrapper
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        interface IPlayableWrapper
+        {
+        }
+        class AnimancerState extends Animancer.AnimancerNode implements Animancer.IKeyedListItem, System.Collections.Generic.IEnumerable$1<Animancer.AnimancerState>, Animancer.IAnimationClipCollection, System.Collections.IEnumerable, System.Collections.IEnumerator, Animancer.IPlayableWrapper
+        {
+            protected [__keep_incompatibility]: never;
         }
     }
     namespace UnityEngine.Playables {
@@ -35191,37 +35223,6 @@
     namespace Sirenix.Serialization {
         interface ISupportsPrefabSerialization
         {
-        }
-    }
-    namespace Animancer {
-        class AnimancerComponent extends UnityEngine.MonoBehaviour implements UnityEngine.IAnimationClipSource, Animancer.IAnimancerComponent, Animancer.IAnimationClipCollection, System.Collections.Generic.IEnumerable$1<Animancer.AnimancerState>, System.Collections.IEnumerable, System.Collections.IEnumerator
-        {
-            protected [__keep_incompatibility]: never;
-            public GetAnimationClips ($results: System.Collections.Generic.List$1<UnityEngine.AnimationClip>) : void
-        }
-        interface IAnimancerComponent
-        {
-        }
-        interface IAnimationClipCollection
-        {
-        }
-        class Key extends System.Object implements Animancer.IKeyedListItem
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        interface IKeyedListItem
-        {
-        }
-        class AnimancerNode extends Animancer.Key implements Animancer.IKeyedListItem, System.Collections.Generic.IEnumerable$1<Animancer.AnimancerState>, System.Collections.IEnumerable, System.Collections.IEnumerator, Animancer.IPlayableWrapper
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        interface IPlayableWrapper
-        {
-        }
-        class AnimancerState extends Animancer.AnimancerNode implements Animancer.IKeyedListItem, System.Collections.Generic.IEnumerable$1<Animancer.AnimancerState>, Animancer.IAnimationClipCollection, System.Collections.IEnumerable, System.Collections.IEnumerator, Animancer.IPlayableWrapper
-        {
-            protected [__keep_incompatibility]: never;
         }
     }
     namespace DG.Tweening {

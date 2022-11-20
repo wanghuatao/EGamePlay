@@ -119,7 +119,7 @@ namespace EGamePlay
 				if (SkillTimeImage.fillAmount >= 1)
 				{
 					IsPlaying = false;
-					PlayButton.GetComponentInChildren<Text>().text = "²¥·Å";
+					PlayButton.GetComponentInChildren<Text>().text = "æ’­æ”¾";
 				}
 			}
 
@@ -241,7 +241,7 @@ namespace EGamePlay
 			self.TotalTime = CurrentExecutionObject.TotalTime;
 
 			//self.SkillNameText.text = $"{cast.Id}_{cast.Name}";
-			//self.SkillTimeImage.GetComponentInChildren<Text>().text = $"{self.TotalTime}Ãë";
+			//self.SkillTimeImage.GetComponentInChildren<Text>().text = $"{self.TotalTime}ç§’";
 
 			foreach (var item in CurrentExecutionObject.ExecuteClips)
             {

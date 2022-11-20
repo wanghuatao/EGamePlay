@@ -63,3 +63,4 @@ crashlytics-build.properties
 /node_modules
 /Assets/EGamePlay/.idea/.idea.EGamePlay.dir/.idea
 /Assets/TsProj/node_modules/
+/Assets/StreamingAssets/Scripts/behaviours.mjs

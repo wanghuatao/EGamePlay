@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextScene: EGPsExamples/RpgExample/RpgExample Scene
+  delayLoadNextScene: 1
 --- !u!4 &929054365
 Transform:
   m_ObjectHideFlags: 0

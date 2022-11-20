@@ -18,7 +18,8 @@ module.exports = {
     output: {
         filename: 'behaviours.mjs',
         // path: __dirname + '/Assets/Resources',
-        path: __dirname + 'StreamingAssets/Scripts',
+        // path: __dirname + '../StreamingAssets/Scripts',
+        path: path.resolve(__dirname,"../StreamingAssets/Scripts"),
         environment: { module: true },
         libraryTarget: 'module'
     },
