@@ -5,11 +5,12 @@
     "sourceMap": true,
     "noImplicitAny": true,
     "typeRoots": [
-      "../../../package/Typing",
-      "../Assets/Gen/Typing",
+      "../../Library/PackageCache/com.tencent.puerts.core@c68b007c17/Typing",
+      "../Gen/Typing",
       "./node_modules/@types"
     ],
     "outDir": "./output",
+    "moduleResolution": "node"
   },
  
   "exclude": []

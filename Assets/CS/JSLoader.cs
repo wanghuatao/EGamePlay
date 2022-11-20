@@ -60,12 +60,12 @@ public class JsLoader : ILoader
 
 
         var jscache = ResourcesManager.jscache;
-        string jsName = filepath.Replace("puerts/", "");
-        string jsName1 = jsName.Replace(".mjs", ".mjs");
+        // string jsName = filepath.Replace("puerts/", "");
+        string jsName1 = filepath.Replace(".mjs", ".mjs");
 
         string txt;
         jscache.TryGetValue(jsName1, out txt);
-        Debug.Log("filepath:" + filepath+" ,jsname: "+jsName+"  "+jsName1);
+        Debug.Log("filepath:" + filepath+" ,jsname: "+"  "+jsName1);
 
         if (txt == null) txt = "";
         return txt;

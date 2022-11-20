@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Collections.Generic;
+using PuertsTest;
 
 /// <summary>
 /// 如果你全ts/js编程，可以参考这份自动化配置
@@ -35,6 +36,8 @@ public class PuertsConfig2
                 typeof(UnityEngine.Collider),
                 typeof(UnityEngine.Debug),
                 typeof(GameManager),
+                typeof(Hero),
+                typeof(TestHero)
             };
         }
     }

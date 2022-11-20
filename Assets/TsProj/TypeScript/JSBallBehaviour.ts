@@ -5,7 +5,6 @@ import { JSGameManager } from './JSGameManager';
 class JSBallBehaviour extends JsBehaviour<JsMonoBehaviour>{
 
     Start(): void {
-        
         console.log('sstart')
     }
 

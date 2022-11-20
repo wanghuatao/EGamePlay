@@ -47,7 +47,6 @@ public class JsMonoBehaviour : MonoBehaviour
 
     private void OnEnable()
     {
-    
     }
 
 
@@ -61,11 +60,12 @@ public class JsMonoBehaviour : MonoBehaviour
             if (JsManager.GetJsEnv() != null)
             {
                 isStart = true;
-                
-                Action<JsMonoBehaviour> init = JsManager.GetJsEnv().ExecuteModule<Action<JsMonoBehaviour>>("behaviours.mjs", JSClassName);
+
+                Action<JsMonoBehaviour> init = JsManager.GetJsEnv()
+                    .ExecuteModule<Action<JsMonoBehaviour>>("behaviours.mjs", JSClassName);
                 init(this);
-                
                 if (JsStart != null) JsStart();
+
             }
         }
 
@@ -79,5 +79,4 @@ public class JsMonoBehaviour : MonoBehaviour
     {
         if (JsOnTriggerEnter != null) JsOnTriggerEnter(other);
     }
-    
 }

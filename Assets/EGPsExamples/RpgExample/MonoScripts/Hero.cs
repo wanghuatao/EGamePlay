@@ -11,7 +11,7 @@ using GameUtils;
 using Sirenix.Utilities.Editor.Expressions;
 //using System.Drawing;
 
-public sealed class Hero : MonoBehaviour
+public  class Hero : MonoBehaviour
 {
     public CombatEntity CombatEntity;
     public AnimationComponent AnimationComponent;

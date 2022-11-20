@@ -2715,6 +2715,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86967feb5140137458d7b6e7a44fb44f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1127498806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127498799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39e40df5bca488d8f62180f97d4f6ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  JSClassName: TestJsBehavior
 --- !u!1 &1130065338
 GameObject:
   m_ObjectHideFlags: 0
@@ -3713,6 +3726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit

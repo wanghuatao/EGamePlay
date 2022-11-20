@@ -4,6 +4,7 @@ using System.IO;
 using Puerts;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 public class JsManager : MonoBehaviour
 {
@@ -11,7 +12,8 @@ public class JsManager : MonoBehaviour
 
     private JsLoader loader;
     private string scriptsDir = Path.Combine(Application.streamingAssetsPath, "Scripts");
-
+    public string nextScene;
+    
     private void Start()
     {
         if (jsEnv == null)
@@ -24,10 +26,22 @@ public class JsManager : MonoBehaviour
                 Debug.Log("JsMonoBehaviour start");
                 // jsEnv = Puerts.WebGL.GetBrowserEnv();
                 jsEnv = Puerts.WebGL.GetBrowserEnv(loader, -1);
+                Application.LoadLevel(nextScene);
+                // StartCoroutine(loadScene());
+                
             });
         }
+        
+        DontDestroyOnLoad(gameObject);
     }
 
+    IEnumerator loadScene()
+    {
+        yield return new WaitForSeconds(3);
+        Application.LoadLevel(nextScene);
+
+    }
+    
     public static JsEnv GetJsEnv()
     {
         return jsEnv;

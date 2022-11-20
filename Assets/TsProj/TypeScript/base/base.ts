@@ -12,6 +12,8 @@ class JsBehaviour<T extends JsMonoBehaviour> {
     constructor(mb: T) {
         // mono.Js
         this._mb = mb;
+        console.log('mb',mb)
+        
         if (this.Start != JsBehaviour.prototype.Start) {
             mb.JsStart = this.Start.bind(this);
         }
