@@ -13,6 +13,7 @@ export default class TestJsBehavior extends JsBehaviour<JsMonoBehaviour> {
 
         // console.log('hero',hero);
         
+        
        let hero = this._mb.gameObject.GetComponent(puerts.$typeof(CS.Hero)) as CS.Hero
 
         console.log('hero ',hero);
