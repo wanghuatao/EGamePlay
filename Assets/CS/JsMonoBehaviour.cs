@@ -17,32 +17,13 @@ public class JsMonoBehaviour : MonoBehaviour
 
     void Start()
     {
-        // if (jsEnv == null)
-        // {
-        //     // yield return loadJs("behaviours.mjs", scriptsDir + "/" + "behaviours.mjs");
-        //     loader = new JsLoader(scriptsDir);
-        //     Debug.Log("JsMonoBehaviour start");
-        //
-        //     jsEnv = Puerts.WebGL.GetBrowserEnv();
-        //     // jsEnv = Puerts.WebGL.GetBrowserEnv(loader, -1);
-        // }
-        // Action<JsMonoBehaviour> init = env.Eval<Action<JsMonoBehaviour>>(@"
+        // Action<JsMonoBehaviour> init1 = JsManager.GetJsEnv().Eval<Action<JsMonoBehaviour>>(@"
         //     global.CS = require('csharp');
-
-        //     var jsCls = require('behaviours.cjs')." + JSClassName + @";
-        //     (function init(mono) {
-        //         return new jsCls(mono)
-        //     });
         // ");
+        //
+        // init1(this);
 
 
-        // Action<JsMonoBehaviour> init = jsEnv.ExecuteModule<Action<JsMonoBehaviour>>("behaviours.mjs", JSClassName);
-        // init(this);
-
-        // yield return reload();
-
-
-        // if (JsStart != null) JsStart();
     }
 
     private void OnEnable()
@@ -61,15 +42,11 @@ public class JsMonoBehaviour : MonoBehaviour
             {
                 isStart = true;
 
-                Action<JsMonoBehaviour> init = JsManager.GetJsEnv()
-                    .ExecuteModule<Action<JsMonoBehaviour>>("behaviours.mjs", JSClassName);
+                Action<JsMonoBehaviour> init = JsManager.GetJsEnv().ExecuteModule<Action<JsMonoBehaviour>>("behaviours.mjs", JSClassName);
                 init(this);
                 if (JsStart != null) JsStart();
-
             }
         }
-
-
         if (JsUpdate != null) JsUpdate();
     }
 

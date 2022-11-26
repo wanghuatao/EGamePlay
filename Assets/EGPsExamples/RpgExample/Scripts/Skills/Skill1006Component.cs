@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using Sirenix.OdinInspector;
 using EGamePlay.Combat;
 using EGamePlay;
-using Sirenix.Utilities.Editor;
 using GameUtils;
 
 public class Skill1006Component : EGamePlay.Component

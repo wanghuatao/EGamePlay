@@ -16,10 +16,10 @@ module.exports = {
     //     poll:1000
     // },
     output: {
-        filename: 'behaviours.mjs',
+        filename: 'behaviours.bytes',
         // path: __dirname + '/Assets/Resources',
         // path: __dirname + '../StreamingAssets/Scripts',
-        path: path.resolve(__dirname,"../StreamingAssets/Scripts"),
+        path: path.resolve(__dirname,"../mjs"),
         environment: { module: true },
         libraryTarget: 'module'
     },

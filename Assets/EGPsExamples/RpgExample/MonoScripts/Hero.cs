@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using EGamePlay;
 using EGamePlay.Combat;
@@ -8,8 +6,6 @@ using UnityEngine.UIElements;
 using DG.Tweening;
 using ET;
 using GameUtils;
-using Sirenix.Utilities.Editor.Expressions;
-//using System.Drawing;
 
 public  class Hero : MonoBehaviour
 {

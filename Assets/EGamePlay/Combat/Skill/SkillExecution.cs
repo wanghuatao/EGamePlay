@@ -1,11 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Timeline;
-using EGamePlay.Combat;
-using ET;
-using Log = EGamePlay.Log;
 
 namespace EGamePlay.Combat
 {

@@ -8,7 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Demo/BattleScene.unity
     guid: 2d7fb8217589037458a047cd029b4b65
-  - enabled: 1
-    path: Assets/EGPsExamples/RpgExample/RpgExample Scene.unity
-    guid: 24ce72af458909446a2e47d992c74785
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: d043f3ca0ddb50b44be45c7d9757e0a4,
+      type: 2}

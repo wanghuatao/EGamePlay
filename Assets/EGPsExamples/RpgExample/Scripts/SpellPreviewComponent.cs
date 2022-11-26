@@ -26,12 +26,14 @@ public class SpellPreviewComponent : EGamePlay.Component
             PreviewingSkill = OwnerEntity.InputSkills[KeyCode.Q];
             EnterPreview();
         }
+
         if (Input.GetKeyDown(KeyCode.W))
         {
             Cursor.visible = false;
             PreviewingSkill = OwnerEntity.InputSkills[KeyCode.W];
             EnterPreview();
         }
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             Cursor.visible = false;
@@ -45,18 +47,21 @@ public class SpellPreviewComponent : EGamePlay.Component
             PreviewingSkill = OwnerEntity.InputSkills[KeyCode.R];
             EnterPreview();
         }
+
         if (Input.GetKeyDown(KeyCode.T))
         {
             Cursor.visible = false;
             PreviewingSkill = OwnerEntity.InputSkills[KeyCode.T];
             EnterPreview();
         }
+
         if (Input.GetKeyDown(KeyCode.Y))
         {
             PreviewingSkill = OwnerEntity.InputSkills[KeyCode.Y];
             //SpellComp.SpellWithTarget(PreviewingSkill, PreviewingSkill.OwnerEntity);
             EnterPreview();
         }
+
         if (Input.GetKeyDown(KeyCode.A))
         {
             Cursor.visible = false;
@@ -64,10 +69,11 @@ public class SpellPreviewComponent : EGamePlay.Component
             EnterPreview();
         }
 #endif
-        if (Input.GetMouseButtonDown((int)UnityEngine.UIElements.MouseButton.RightMouse))
+        if (Input.GetMouseButtonDown((int) UnityEngine.UIElements.MouseButton.RightMouse))
         {
             CancelPreview();
         }
+
         if (Previewing)
         {
         }
@@ -90,9 +96,11 @@ public class SpellPreviewComponent : EGamePlay.Component
         if (targetSelectType == SkillTargetSelectType.PlayerSelect)
         {
             TargetSelectManager.Instance.TargetLimitType = TargetLimitType.EnemyTeam;
-            if (affectTargetType == SkillAffectTargetType.SelfTeam) TargetSelectManager.Instance.TargetLimitType = TargetLimitType.SelfTeam;
+            if (affectTargetType == SkillAffectTargetType.SelfTeam)
+                TargetSelectManager.Instance.TargetLimitType = TargetLimitType.SelfTeam;
             TargetSelectManager.Instance.Show(OnSelectedTarget);
         }
+
         if (targetSelectType == SkillTargetSelectType.CollisionSelect)
         {
             if (skillId == 1004) DirectRectSelectManager.Instance.Show(OnInputDirect);
@@ -100,6 +108,7 @@ public class SpellPreviewComponent : EGamePlay.Component
             else if (skillId == 1008) DirectRectSelectManager.Instance.Show(OnInputDirect);
             else PointSelectManager.Instance.Show(OnInputPoint);
         }
+
         if (targetSelectType == SkillTargetSelectType.ConditionSelect)
         {
             if (skillId == 1006)
@@ -121,13 +130,22 @@ public class SpellPreviewComponent : EGamePlay.Component
     {
         CancelPreview();
         CombatEntity combatEntity = null;
-        if (selectObject.GetComponent<Monster>() != null) combatEntity = selectObject.GetComponent<Monster>().CombatEntity;
-        if (selectObject.GetComponent<Hero>() != null) combatEntity = selectObject.GetComponent<Hero>().CombatEntity;
+
+        if (CombatContext.Instance.Object2Entities[selectObject] != null)
+        {
+            combatEntity = CombatContext.Instance.Object2Entities[selectObject];
+        }
+
+        if (selectObject.GetComponent<Hero>() != null)
+        {
+            combatEntity = selectObject.GetComponent<Hero>().CombatEntity;
+        }
+
         //OwnerEntity.ModelTrans.LookAt(selectObject.transform);
         //Hero.Instance.DisableMove();
         SpellComponent.SpellWithTarget(PreviewingSkill, combatEntity);
     }
-    
+
     private void OnInputPoint(Vector3 point)
     {
         //OwnerEntity.ModelTrans.localRotation = Quaternion.LookRotation(point - OwnerEntity.ModelTrans.position);
@@ -149,7 +167,14 @@ public class SpellPreviewComponent : EGamePlay.Component
             {
                 if (Vector3.Distance(item.position, Hero.Instance.transform.position) < distance)
                 {
-                    action.SkillTargets.Add(item.GetComponent<Monster>().CombatEntity);
+                    // if (item.GetComponent<Monster>() != null)
+                    // {
+                    //     action.SkillTargets.Add(item.GetComponent<Monster>().CombatEntity);
+                    //     
+                    // }
+
+                    var entity = CombatContext.Instance.Object2Entities[item.gameObject];
+                    action.SkillTargets.Add(entity);
                 }
             }
 

@@ -1,12 +1,8 @@
 using DG.Tweening;
-using Sirenix.OdinInspector;
-using System;
+
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
-using static UnityEngine.GraphicsBuffer;
+
 
 namespace EGamePlay
 {
@@ -174,7 +170,7 @@ namespace EGamePlay
             }
             return Vector3.zero;
         }
-
+        #if  UNITY_EDITOR
         private void OnDrawGizmos()
         {
             BezierComponent bezierComponent = this;
@@ -193,12 +189,13 @@ namespace EGamePlay
                 //从第二个控制点开始画Bezier线段
                 if (i > 0)
                 {
-                    Handles.DrawBezier(lastPosition, position, lastOutTangent, inTangentPoint, Color.green, null, 2f);
+                   UnityEditor.Handles.DrawBezier(lastPosition, position, lastOutTangent, inTangentPoint, Color.green, null, 2f);
                 }
                 //所以每次先暂存下控制点位置和OutTangent，留给下一个控制点画线用
                 lastPosition = position;
                 lastOutTangent = outTangentPoint;
             }
         }
+        #endif
     }
 }

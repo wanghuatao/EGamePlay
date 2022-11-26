@@ -1,13 +1,6 @@
 using Sirenix.OdinInspector;
-using Sirenix.Serialization;
-using Sirenix.Utilities.Editor;
-using System;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 namespace EGamePlay.Combat
 {
@@ -50,8 +43,8 @@ namespace EGamePlay.Combat
         //[Button("Save Clips")]
         private void SaveClips()
         {
-            EditorUtility.SetDirty(this);
-            AssetDatabase.SaveAssetIfDirty(this);
+           UnityEditor. EditorUtility.SetDirty(this);
+           UnityEditor. AssetDatabase.SaveAssetIfDirty(this);
             //Log.Debug("SaveObject");
         }
 
@@ -63,7 +56,7 @@ namespace EGamePlay.Combat
                 SaveClips();
             }
             GUILayout.Space(10);
-            SirenixEditorGUI.DrawThickHorizontalSeparator();
+             Sirenix.Utilities.Editor.SirenixEditorGUI.DrawThickHorizontalSeparator();
             GUILayout.Space(10);
         }
 

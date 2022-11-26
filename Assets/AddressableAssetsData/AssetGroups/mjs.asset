@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: mjs
+  m_EditorClassIdentifier: 
+  m_GroupName: mjs
+  m_Data:
+    m_SerializedData: []
+  m_GUID: b9c98227724f98a49a7657a5089e5c84
+  m_SerializeEntries:
+  - m_GUID: 5bb25160011ac2c41b834c717fc0c4aa
+    m_Address: Assets/mjs/behaviours.bytes
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 52b064a1915f69c428d19927200c900a, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: dd3dfc8be1bbccb4299ac354a30c268c, type: 2}
+    - {fileID: 11400000, guid: d11b3c8beda0519499592cb12def9b77, type: 2}

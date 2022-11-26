@@ -1,0 +1,1 @@
+﻿1.在ts端调用MonoBehaviour里面的static方法可能报 csharp not defined 错误

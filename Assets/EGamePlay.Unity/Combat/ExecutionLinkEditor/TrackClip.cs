@@ -1,6 +1,6 @@
-using ET;
+#if  UNITY_EDITOR
+
 using System;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -296,3 +296,4 @@ namespace EGamePlay
         }
     }
 }
+#endif

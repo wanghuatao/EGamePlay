@@ -88,13 +88,13 @@
         Invoke?: () => void;
         }
         var Action: { new (func: () => void): Action; }
-        interface IAsyncResult
-        {
-        }
         interface Action$1<T>
         { 
         (obj: T) : void; 
         Invoke?: (obj: T) => void;
+        }
+        interface IAsyncResult
+        {
         }
         class Type extends System.Reflection.MemberInfo implements System.Runtime.InteropServices._MemberInfo, System.Runtime.InteropServices._Type, System.Reflection.ICustomAttributeProvider, System.Reflection.IReflect
         {
@@ -322,6 +322,10 @@
         {
             protected [__keep_incompatibility]: never;
         }
+        class Int64 extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<bigint>, System.IConvertible, System.IEquatable$1<bigint>
+        {
+            protected [__keep_incompatibility]: never;
+        }
         interface AsyncCallback
         { 
         (ar: System.IAsyncResult) : void; 
@@ -337,10 +341,6 @@
             protected [__keep_incompatibility]: never;
         }
         class Int16 extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible, System.IEquatable$1<number>
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class Int64 extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<bigint>, System.IConvertible, System.IEquatable$1<bigint>
         {
             protected [__keep_incompatibility]: never;
         }
@@ -865,6 +865,178 @@
             */
             public static print ($message: any) : void
             public constructor ()
+        }
+        /** Base class for all entities in Unity Scenes.
+        */
+        class GameObject extends UnityEngine.Object
+        {
+            protected [__keep_incompatibility]: never;
+            /** The Transform attached to this GameObject.
+            */
+            public get transform(): UnityEngine.Transform;
+            /** The layer the GameObject is in.
+            */
+            public get layer(): number;
+            public set layer(value: number);
+            /** The local active state of this GameObject. (Read Only)
+            */
+            public get activeSelf(): boolean;
+            /** Defines whether the GameObject is active in the Scene.
+            */
+            public get activeInHierarchy(): boolean;
+            /** Gets and sets the GameObject's StaticEditorFlags.
+            */
+            public get isStatic(): boolean;
+            public set isStatic(value: boolean);
+            /** The tag of this game object.
+            */
+            public get tag(): string;
+            public set tag(value: string);
+            /** Scene that the GameObject is part of.
+            */
+            public get scene(): UnityEngine.SceneManagement.Scene;
+            /** Scene culling mask Unity uses to determine which scene to render the GameObject in.
+            */
+            public get sceneCullingMask(): bigint;
+            public get gameObject(): UnityEngine.GameObject;
+            /** Creates a game object with a primitive mesh renderer and appropriate collider.
+            * @param type The type of primitive object to create.
+            */
+            public static CreatePrimitive ($type: UnityEngine.PrimitiveType) : UnityEngine.GameObject
+            /** Returns the component of Type type if the game object has one attached, null if it doesn't.
+            * @param type The type of Component to retrieve.
+            */
+            public GetComponent ($type: System.Type) : UnityEngine.Component
+            /** Returns the component with name type if the GameObject has one attached, null if it doesn't.
+            * @param type The type of Component to retrieve.
+            */
+            public GetComponent ($type: string) : UnityEngine.Component
+            /** Returns the component of Type type in the GameObject or any of its children using depth first search.
+            * @param type The type of Component to retrieve.
+            * @returns A component of the matching type, if found. 
+            */
+            public GetComponentInChildren ($type: System.Type, $includeInactive: boolean) : UnityEngine.Component
+            /** Returns the component of Type type in the GameObject or any of its children using depth first search.
+            * @param type The type of Component to retrieve.
+            * @returns A component of the matching type, if found. 
+            */
+            public GetComponentInChildren ($type: System.Type) : UnityEngine.Component
+            /** Retrieves the component of Type type in the GameObject or any of its parents.
+            * @param type Type of component to find.
+            * @returns Returns a component if a component matching the type is found. Returns null otherwise. 
+            */
+            public GetComponentInParent ($type: System.Type, $includeInactive: boolean) : UnityEngine.Component
+            /** Retrieves the component of Type type in the GameObject or any of its parents.
+            * @param type Type of component to find.
+            * @returns Returns a component if a component matching the type is found. Returns null otherwise. 
+            */
+            public GetComponentInParent ($type: System.Type) : UnityEngine.Component
+            /** Returns all components of Type type in the GameObject.
+            * @param type The type of component to retrieve.
+            */
+            public GetComponents ($type: System.Type) : System.Array$1<UnityEngine.Component>
+            public GetComponents ($type: System.Type, $results: System.Collections.Generic.List$1<UnityEngine.Component>) : void
+            /** Returns all components of Type type in the GameObject or any of its children children using depth first search. Works recursively.
+            * @param type The type of Component to retrieve.
+            * @param includeInactive Should Components on inactive GameObjects be included in the found set?
+            */
+            public GetComponentsInChildren ($type: System.Type) : System.Array$1<UnityEngine.Component>
+            /** Returns all components of Type type in the GameObject or any of its children children using depth first search. Works recursively.
+            * @param type The type of Component to retrieve.
+            * @param includeInactive Should Components on inactive GameObjects be included in the found set?
+            */
+            public GetComponentsInChildren ($type: System.Type, $includeInactive: boolean) : System.Array$1<UnityEngine.Component>
+            public GetComponentsInParent ($type: System.Type) : System.Array$1<UnityEngine.Component>
+            /** Returns all components of Type type in the GameObject or any of its parents.
+            * @param type The type of Component to retrieve.
+            * @param includeInactive Should inactive Components be included in the found set?
+            */
+            public GetComponentsInParent ($type: System.Type, $includeInactive: boolean) : System.Array$1<UnityEngine.Component>
+            /** Gets the component of the specified type, if it exists.
+            * @param type The type of component to retrieve.
+            * @param component The output argument that will contain the component or null.
+            * @returns Returns true if the component is found, false otherwise. 
+            */
+            public TryGetComponent ($type: System.Type, $component: $Ref<UnityEngine.Component>) : boolean
+            /** Returns one active GameObject tagged tag. Returns null if no GameObject was found.
+            * @param tag The tag to search for.
+            */
+            public static FindWithTag ($tag: string) : UnityEngine.GameObject
+            public SendMessageUpwards ($methodName: string, $options: UnityEngine.SendMessageOptions) : void
+            public SendMessage ($methodName: string, $options: UnityEngine.SendMessageOptions) : void
+            public BroadcastMessage ($methodName: string, $options: UnityEngine.SendMessageOptions) : void
+            /** Adds a component class of type componentType to the game object. C# Users can use a generic version.
+            */
+            public AddComponent ($componentType: System.Type) : UnityEngine.Component
+            /** ActivatesDeactivates the GameObject, depending on the given true or false/ value.
+            * @param value Activate or deactivate the object, where true activates the GameObject and false deactivates the GameObject.
+            */
+            public SetActive ($value: boolean) : void
+            /** Is this game object tagged with tag ?
+            * @param tag The tag to compare.
+            */
+            public CompareTag ($tag: string) : boolean
+            public static FindGameObjectWithTag ($tag: string) : UnityEngine.GameObject
+            /** Returns an array of active GameObjects tagged tag. Returns empty array if no GameObject was found.
+            * @param tag The name of the tag to search GameObjects for.
+            */
+            public static FindGameObjectsWithTag ($tag: string) : System.Array$1<UnityEngine.GameObject>
+            /** Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.
+            * @param methodName The name of the method to call.
+            * @param value An optional parameter value to pass to the called method.
+            * @param options Should an error be raised if the method doesn't exist on the target object?
+            */
+            public SendMessageUpwards ($methodName: string, $value: any, $options: UnityEngine.SendMessageOptions) : void
+            /** Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.
+            * @param methodName The name of the method to call.
+            * @param value An optional parameter value to pass to the called method.
+            * @param options Should an error be raised if the method doesn't exist on the target object?
+            */
+            public SendMessageUpwards ($methodName: string, $value: any) : void
+            /** Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.
+            * @param methodName The name of the method to call.
+            * @param value An optional parameter value to pass to the called method.
+            * @param options Should an error be raised if the method doesn't exist on the target object?
+            */
+            public SendMessageUpwards ($methodName: string) : void
+            /** Calls the method named methodName on every MonoBehaviour in this game object.
+            * @param methodName The name of the method to call.
+            * @param value An optional parameter value to pass to the called method.
+            * @param options Should an error be raised if the method doesn't exist on the target object?
+            */
+            public SendMessage ($methodName: string, $value: any, $options: UnityEngine.SendMessageOptions) : void
+            /** Calls the method named methodName on every MonoBehaviour in this game object.
+            * @param methodName The name of the method to call.
+            * @param value An optional parameter value to pass to the called method.
+            * @param options Should an error be raised if the method doesn't exist on the target object?
+            */
+            public SendMessage ($methodName: string, $value: any) : void
+            /** Calls the method named methodName on every MonoBehaviour in this game object.
+            * @param methodName The name of the method to call.
+            * @param value An optional parameter value to pass to the called method.
+            * @param options Should an error be raised if the method doesn't exist on the target object?
+            */
+            public SendMessage ($methodName: string) : void
+            /** Calls the method named methodName on every MonoBehaviour in this game object or any of its children.
+            */
+            public BroadcastMessage ($methodName: string, $parameter: any, $options: UnityEngine.SendMessageOptions) : void
+            /** Calls the method named methodName on every MonoBehaviour in this game object or any of its children.
+            */
+            public BroadcastMessage ($methodName: string, $parameter: any) : void
+            /** Calls the method named methodName on every MonoBehaviour in this game object or any of its children.
+            */
+            public BroadcastMessage ($methodName: string) : void
+            /** Finds a GameObject by name and returns it.
+            */
+            public static Find ($name: string) : UnityEngine.GameObject
+            public constructor ($name: string)
+            public constructor ()
+            public constructor ($name: string, ...components: System.Type[])
+        }
+        /** Base class for all entities in Unity Scenes.
+        */
+        interface GameObject {
+            rectTransform () : UnityEngine.RectTransform;
         }
         /** A base class of all colliders.
         */
@@ -1969,178 +2141,6 @@
         */
         enum HideFlags
         { None = 0, HideInHierarchy = 1, HideInInspector = 2, DontSaveInEditor = 4, NotEditable = 8, DontSaveInBuild = 16, DontUnloadUnusedAsset = 32, DontSave = 52, HideAndDontSave = 61 }
-        /** Base class for all entities in Unity Scenes.
-        */
-        class GameObject extends UnityEngine.Object
-        {
-            protected [__keep_incompatibility]: never;
-            /** The Transform attached to this GameObject.
-            */
-            public get transform(): UnityEngine.Transform;
-            /** The layer the GameObject is in.
-            */
-            public get layer(): number;
-            public set layer(value: number);
-            /** The local active state of this GameObject. (Read Only)
-            */
-            public get activeSelf(): boolean;
-            /** Defines whether the GameObject is active in the Scene.
-            */
-            public get activeInHierarchy(): boolean;
-            /** Gets and sets the GameObject's StaticEditorFlags.
-            */
-            public get isStatic(): boolean;
-            public set isStatic(value: boolean);
-            /** The tag of this game object.
-            */
-            public get tag(): string;
-            public set tag(value: string);
-            /** Scene that the GameObject is part of.
-            */
-            public get scene(): UnityEngine.SceneManagement.Scene;
-            /** Scene culling mask Unity uses to determine which scene to render the GameObject in.
-            */
-            public get sceneCullingMask(): bigint;
-            public get gameObject(): UnityEngine.GameObject;
-            /** Creates a game object with a primitive mesh renderer and appropriate collider.
-            * @param type The type of primitive object to create.
-            */
-            public static CreatePrimitive ($type: UnityEngine.PrimitiveType) : UnityEngine.GameObject
-            /** Returns the component of Type type if the game object has one attached, null if it doesn't.
-            * @param type The type of Component to retrieve.
-            */
-            public GetComponent ($type: System.Type) : UnityEngine.Component
-            /** Returns the component with name type if the GameObject has one attached, null if it doesn't.
-            * @param type The type of Component to retrieve.
-            */
-            public GetComponent ($type: string) : UnityEngine.Component
-            /** Returns the component of Type type in the GameObject or any of its children using depth first search.
-            * @param type The type of Component to retrieve.
-            * @returns A component of the matching type, if found. 
-            */
-            public GetComponentInChildren ($type: System.Type, $includeInactive: boolean) : UnityEngine.Component
-            /** Returns the component of Type type in the GameObject or any of its children using depth first search.
-            * @param type The type of Component to retrieve.
-            * @returns A component of the matching type, if found. 
-            */
-            public GetComponentInChildren ($type: System.Type) : UnityEngine.Component
-            /** Retrieves the component of Type type in the GameObject or any of its parents.
-            * @param type Type of component to find.
-            * @returns Returns a component if a component matching the type is found. Returns null otherwise. 
-            */
-            public GetComponentInParent ($type: System.Type, $includeInactive: boolean) : UnityEngine.Component
-            /** Retrieves the component of Type type in the GameObject or any of its parents.
-            * @param type Type of component to find.
-            * @returns Returns a component if a component matching the type is found. Returns null otherwise. 
-            */
-            public GetComponentInParent ($type: System.Type) : UnityEngine.Component
-            /** Returns all components of Type type in the GameObject.
-            * @param type The type of component to retrieve.
-            */
-            public GetComponents ($type: System.Type) : System.Array$1<UnityEngine.Component>
-            public GetComponents ($type: System.Type, $results: System.Collections.Generic.List$1<UnityEngine.Component>) : void
-            /** Returns all components of Type type in the GameObject or any of its children children using depth first search. Works recursively.
-            * @param type The type of Component to retrieve.
-            * @param includeInactive Should Components on inactive GameObjects be included in the found set?
-            */
-            public GetComponentsInChildren ($type: System.Type) : System.Array$1<UnityEngine.Component>
-            /** Returns all components of Type type in the GameObject or any of its children children using depth first search. Works recursively.
-            * @param type The type of Component to retrieve.
-            * @param includeInactive Should Components on inactive GameObjects be included in the found set?
-            */
-            public GetComponentsInChildren ($type: System.Type, $includeInactive: boolean) : System.Array$1<UnityEngine.Component>
-            public GetComponentsInParent ($type: System.Type) : System.Array$1<UnityEngine.Component>
-            /** Returns all components of Type type in the GameObject or any of its parents.
-            * @param type The type of Component to retrieve.
-            * @param includeInactive Should inactive Components be included in the found set?
-            */
-            public GetComponentsInParent ($type: System.Type, $includeInactive: boolean) : System.Array$1<UnityEngine.Component>
-            /** Gets the component of the specified type, if it exists.
-            * @param type The type of component to retrieve.
-            * @param component The output argument that will contain the component or null.
-            * @returns Returns true if the component is found, false otherwise. 
-            */
-            public TryGetComponent ($type: System.Type, $component: $Ref<UnityEngine.Component>) : boolean
-            /** Returns one active GameObject tagged tag. Returns null if no GameObject was found.
-            * @param tag The tag to search for.
-            */
-            public static FindWithTag ($tag: string) : UnityEngine.GameObject
-            public SendMessageUpwards ($methodName: string, $options: UnityEngine.SendMessageOptions) : void
-            public SendMessage ($methodName: string, $options: UnityEngine.SendMessageOptions) : void
-            public BroadcastMessage ($methodName: string, $options: UnityEngine.SendMessageOptions) : void
-            /** Adds a component class of type componentType to the game object. C# Users can use a generic version.
-            */
-            public AddComponent ($componentType: System.Type) : UnityEngine.Component
-            /** ActivatesDeactivates the GameObject, depending on the given true or false/ value.
-            * @param value Activate or deactivate the object, where true activates the GameObject and false deactivates the GameObject.
-            */
-            public SetActive ($value: boolean) : void
-            /** Is this game object tagged with tag ?
-            * @param tag The tag to compare.
-            */
-            public CompareTag ($tag: string) : boolean
-            public static FindGameObjectWithTag ($tag: string) : UnityEngine.GameObject
-            /** Returns an array of active GameObjects tagged tag. Returns empty array if no GameObject was found.
-            * @param tag The name of the tag to search GameObjects for.
-            */
-            public static FindGameObjectsWithTag ($tag: string) : System.Array$1<UnityEngine.GameObject>
-            /** Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.
-            * @param methodName The name of the method to call.
-            * @param value An optional parameter value to pass to the called method.
-            * @param options Should an error be raised if the method doesn't exist on the target object?
-            */
-            public SendMessageUpwards ($methodName: string, $value: any, $options: UnityEngine.SendMessageOptions) : void
-            /** Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.
-            * @param methodName The name of the method to call.
-            * @param value An optional parameter value to pass to the called method.
-            * @param options Should an error be raised if the method doesn't exist on the target object?
-            */
-            public SendMessageUpwards ($methodName: string, $value: any) : void
-            /** Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.
-            * @param methodName The name of the method to call.
-            * @param value An optional parameter value to pass to the called method.
-            * @param options Should an error be raised if the method doesn't exist on the target object?
-            */
-            public SendMessageUpwards ($methodName: string) : void
-            /** Calls the method named methodName on every MonoBehaviour in this game object.
-            * @param methodName The name of the method to call.
-            * @param value An optional parameter value to pass to the called method.
-            * @param options Should an error be raised if the method doesn't exist on the target object?
-            */
-            public SendMessage ($methodName: string, $value: any, $options: UnityEngine.SendMessageOptions) : void
-            /** Calls the method named methodName on every MonoBehaviour in this game object.
-            * @param methodName The name of the method to call.
-            * @param value An optional parameter value to pass to the called method.
-            * @param options Should an error be raised if the method doesn't exist on the target object?
-            */
-            public SendMessage ($methodName: string, $value: any) : void
-            /** Calls the method named methodName on every MonoBehaviour in this game object.
-            * @param methodName The name of the method to call.
-            * @param value An optional parameter value to pass to the called method.
-            * @param options Should an error be raised if the method doesn't exist on the target object?
-            */
-            public SendMessage ($methodName: string) : void
-            /** Calls the method named methodName on every MonoBehaviour in this game object or any of its children.
-            */
-            public BroadcastMessage ($methodName: string, $parameter: any, $options: UnityEngine.SendMessageOptions) : void
-            /** Calls the method named methodName on every MonoBehaviour in this game object or any of its children.
-            */
-            public BroadcastMessage ($methodName: string, $parameter: any) : void
-            /** Calls the method named methodName on every MonoBehaviour in this game object or any of its children.
-            */
-            public BroadcastMessage ($methodName: string) : void
-            /** Finds a GameObject by name and returns it.
-            */
-            public static Find ($name: string) : UnityEngine.GameObject
-            public constructor ($name: string)
-            public constructor ()
-            public constructor ($name: string, ...components: System.Type[])
-        }
-        /** Base class for all entities in Unity Scenes.
-        */
-        interface GameObject {
-            rectTransform () : UnityEngine.RectTransform;
-        }
         /** The various primitives that can be created using the GameObject.CreatePrimitive function.
         */
         enum PrimitiveType
@@ -7248,16 +7248,6 @@
         */
         enum ClusterInputType
         { Button = 0, Axis = 1, Tracker = 2, CustomProvidedInput = 3 }
-        class ClusterSerialization extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static SaveTimeManagerState ($buffer: Unity.Collections.NativeArray$1<number>) : number
-            public static RestoreTimeManagerState ($buffer: Unity.Collections.NativeArray$1<number>) : boolean
-            public static SaveInputManagerState ($buffer: Unity.Collections.NativeArray$1<number>) : number
-            public static RestoreInputManagerState ($buffer: Unity.Collections.NativeArray$1<number>) : boolean
-            public static SaveClusterInputState ($buffer: Unity.Collections.NativeArray$1<number>) : number
-            public static RestoreClusterInputState ($buffer: Unity.Collections.NativeArray$1<number>) : boolean
-        }
         /** The platform application is running. Returned by Application.platform.
         */
         enum RuntimePlatform
@@ -28817,6 +28807,11 @@
             public Start () : void
             public Init ($onUpdate: System.Action) : void
             public Update () : void
+            public static LoadAAAndAndInstant ($resPath: string, $ok: System.Action$1<UnityEngine.GameObject>) : void
+            public LoadAA2 ($resPath: string, $ok: System.Action$1<UnityEngine.Object>) : void
+            public static LoadAA ($resPath: string, $ok: System.Action$1<UnityEngine.Object>) : void
+            public static LoadAssetAsync ($resPath: string) : System.Threading.Tasks.Task$1<UnityEngine.Object>
+            public static LoadScene ($resPath: string, $ok: System.Action$1<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>) : void
             public PreloadJS ($jsLabel: string) : System.Threading.Tasks.Task$1<boolean>
             public constructor ()
         }
@@ -28902,6 +28897,12 @@
             public TryPlayFade ($clip: UnityEngine.AnimationClip) : void
             public constructor ()
         }
+        enum EffectApplyType
+        { AllEffects = 0, Effect1 = 1, Effect2 = 2, Effect3 = 3, Other = 100 }
+        enum CollisionShape
+        { Sphere = 0, Box = 1, Sector = 2, Custom = 3 }
+        enum CollisionMoveType
+        { SelectedPosition = 0, SelectedDirection = 1, TargetFly = 2, ForwardFly = 3, PathFly = 4, SelectedDirectionPathFly = 5 }
         class JsLoader extends System.Object implements Puerts.ILoader
         {
             protected [__keep_incompatibility]: never;
@@ -28917,6 +28918,7 @@
             public delayLoadNextScene : boolean
             public static GetJsEnv () : Puerts.JsEnv
             public LoadJs ($filename: string, $loadOk: System.Action) : void
+            public LoadJsFromAA ($fileName: string, $loadOk: System.Action) : void
             public LoadJs ($fileName: string, $url: string, $loadOk: System.Action) : void
             public constructor ()
         }
@@ -28936,12 +28938,6 @@
         Invoke?: (monoBehaviour: Main) => void;
         }
         var ModuleInit: { new (func: (monoBehaviour: Main) => void): ModuleInit; }
-        enum CollisionShape
-        { Sphere = 0, Box = 1, Sector = 2, Custom = 3 }
-        enum CollisionMoveType
-        { SelectedPosition = 0, SelectedDirection = 1, TargetFly = 2, ForwardFly = 3, PathFly = 4, SelectedDirectionPathFly = 5 }
-        enum EffectApplyType
-        { AllEffects = 0, Effect1 = 1, Effect2 = 2, Effect3 = 3, Other = 100 }
         enum ExecutionEventType
         { TriggerApplyEffect = 0, TriggerSpawnCollider = 1 }
         class ExecutionEventEmitter extends UnityEngine.Timeline.SignalEmitter implements UnityEngine.Timeline.IMarker, UnityEngine.Timeline.INotificationOptionProvider, UnityEngine.Playables.INotification
@@ -29453,6 +29449,12 @@
         }
         var SendOrPostCallback: { new (func: (state: any) => void): SendOrPostCallback; }
     }
+    namespace UnityEngine.ResourceManagement.ResourceProviders {
+        class SceneInstance extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+        }
+    }
     namespace Puerts {
         class JsEnv extends System.Object implements System.IDisposable
         {
@@ -29724,6 +29726,19 @@
         {
             Position : UnityEngine.Vector3
         }
+        class MasterEntity extends EGamePlay.Entity
+        {
+            protected [__keep_incompatibility]: never;
+            public get Entities(): System.Collections.Generic.Dictionary$2<System.Type, System.Collections.Generic.List$1<EGamePlay.Entity>>;
+            public get AllComponents(): System.Collections.Generic.List$1<EGamePlay.Component>;
+            public get UpdateComponents(): System.Collections.Generic.List$1<EGamePlay.UpdateComponent>;
+            public static get Instance(): EGamePlay.MasterEntity;
+            public static Create () : EGamePlay.MasterEntity
+            public static Destroy () : void
+            public static Create ($entityType: System.Type) : EGamePlay.Entity
+            public static Create ($entityType: System.Type, $initData: any) : EGamePlay.Entity
+            public static Destroy ($entity: EGamePlay.Entity) : void
+        }
         class Component extends System.Object
         {
             protected [__keep_incompatibility]: never;
@@ -29748,15 +29763,10 @@
             public static Destroy ($entity: EGamePlay.Component) : void
             public constructor ()
         }
-        class ItemData extends EGamePlay.Entity
+        class SubscribeSubject extends EGamePlay.Entity
         {
             protected [__keep_incompatibility]: never;
-            public get UniqueId(): bigint;
-            public set UniqueId(value: bigint);
-            public get ConfigId(): number;
-            public set ConfigId(value: number);
-            public get Amount(): number;
-            public set Amount(value: number);
+            public DisposeWith ($entity: EGamePlay.Entity) : EGamePlay.SubscribeSubject
             public constructor ()
         }
         enum BezierPointType
@@ -29995,25 +30005,6 @@
             public set LifeTimer(value: GameUtils.GameTimer);
             public constructor ()
         }
-        class MasterEntity extends EGamePlay.Entity
-        {
-            protected [__keep_incompatibility]: never;
-            public get Entities(): System.Collections.Generic.Dictionary$2<System.Type, System.Collections.Generic.List$1<EGamePlay.Entity>>;
-            public get AllComponents(): System.Collections.Generic.List$1<EGamePlay.Component>;
-            public get UpdateComponents(): System.Collections.Generic.List$1<EGamePlay.UpdateComponent>;
-            public static get Instance(): EGamePlay.MasterEntity;
-            public static Create () : EGamePlay.MasterEntity
-            public static Destroy () : void
-            public static Create ($entityType: System.Type) : EGamePlay.Entity
-            public static Create ($entityType: System.Type, $initData: any) : EGamePlay.Entity
-            public static Destroy ($entity: EGamePlay.Entity) : void
-        }
-        class SubscribeSubject extends EGamePlay.Entity
-        {
-            protected [__keep_incompatibility]: never;
-            public DisposeWith ($entity: EGamePlay.Entity) : EGamePlay.SubscribeSubject
-            public constructor ()
-        }
         class EventComponent extends EGamePlay.Component
         {
             protected [__keep_incompatibility]: never;
@@ -30091,6 +30082,17 @@
             protected [__keep_incompatibility]: never;
             public get Datas(): System.Collections.Generic.List$1<EGamePlay.AbilityData>;
             public set Datas(value: System.Collections.Generic.List$1<EGamePlay.AbilityData>);
+            public constructor ()
+        }
+        class ItemData extends EGamePlay.Entity
+        {
+            protected [__keep_incompatibility]: never;
+            public get UniqueId(): bigint;
+            public set UniqueId(value: bigint);
+            public get ConfigId(): number;
+            public set ConfigId(value: number);
+            public get Amount(): number;
+            public set Amount(value: number);
             public constructor ()
         }
         class ItemHelper extends System.Object
@@ -30492,6 +30494,21 @@
             Target : EGamePlay.Combat.CombatEntity
             FinishAction () : void
         }
+        class ExecutionObject extends UnityEngine.ScriptableObject
+        {
+            protected [__keep_incompatibility]: never;
+            public Id : string
+            public TotalTime : number
+            public ObjAsset : UnityEngine.GameObject
+            public TargetInputType : EGamePlay.ExecutionTargetInputType
+            public RangeIndicatorObjAsset : UnityEngine.GameObject
+            public PointIndicatorObjAsset : UnityEngine.GameObject
+            public DirectionIndicatorObjAsset : UnityEngine.GameObject
+            public ExecuteClips : System.Collections.Generic.List$1<EGamePlay.ExecuteClipData>
+            public get AutoRename(): boolean;
+            public set AutoRename(value: boolean);
+            public constructor ()
+        }
         class MotionComponent extends EGamePlay.Component
         {
             protected [__keep_incompatibility]: never;
@@ -30516,21 +30533,6 @@
         {
             protected [__keep_incompatibility]: never;
             public Value : number
-            public constructor ()
-        }
-        class ExecutionObject extends UnityEngine.ScriptableObject
-        {
-            protected [__keep_incompatibility]: never;
-            public Id : string
-            public TotalTime : number
-            public ObjAsset : UnityEngine.GameObject
-            public TargetInputType : EGamePlay.ExecutionTargetInputType
-            public RangeIndicatorObjAsset : UnityEngine.GameObject
-            public PointIndicatorObjAsset : UnityEngine.GameObject
-            public DirectionIndicatorObjAsset : UnityEngine.GameObject
-            public ExecuteClips : System.Collections.Generic.List$1<EGamePlay.ExecuteClipData>
-            public get AutoRename(): boolean;
-            public set AutoRename(value: boolean);
             public constructor ()
         }
         class AbilityItemProxyObj extends UnityEngine.MonoBehaviour
@@ -31677,6 +31679,12 @@
         interface IPointerClickHandler extends UnityEngine.EventSystems.IEventSystemHandler
         {
         }
+        interface IInitializePotentialDragHandler extends UnityEngine.EventSystems.IEventSystemHandler
+        {
+        }
+        interface IDragHandler extends UnityEngine.EventSystems.IEventSystemHandler
+        {
+        }
         class AbstractEventData extends System.Object
         {
             protected [__keep_incompatibility]: never;
@@ -31703,16 +31711,10 @@
         interface IBeginDragHandler extends UnityEngine.EventSystems.IEventSystemHandler
         {
         }
-        interface IDragHandler extends UnityEngine.EventSystems.IEventSystemHandler
-        {
-        }
         interface IEndDragHandler extends UnityEngine.EventSystems.IEventSystemHandler
         {
         }
         interface IUpdateSelectedHandler extends UnityEngine.EventSystems.IEventSystemHandler
-        {
-        }
-        interface IInitializePotentialDragHandler extends UnityEngine.EventSystems.IEventSystemHandler
         {
         }
         class AxisEventData extends UnityEngine.EventSystems.BaseEventData
@@ -31921,21 +31923,6 @@
             */
             public IsRaycastLocationValid ($sp: UnityEngine.Vector2, $eventCamera: UnityEngine.Camera) : boolean
         }
-        class AnimationTriggers extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public get normalTrigger(): string;
-            public set normalTrigger(value: string);
-            public get highlightedTrigger(): string;
-            public set highlightedTrigger(value: string);
-            public get pressedTrigger(): string;
-            public set pressedTrigger(value: string);
-            public get selectedTrigger(): string;
-            public set selectedTrigger(value: string);
-            public get disabledTrigger(): string;
-            public set disabledTrigger(value: string);
-            public constructor ()
-        }
         class Selectable extends UnityEngine.EventSystems.UIBehaviour implements UnityEngine.EventSystems.IEventSystemHandler, UnityEngine.EventSystems.IPointerEnterHandler, UnityEngine.EventSystems.ISelectHandler, UnityEngine.EventSystems.IPointerExitHandler, UnityEngine.EventSystems.IDeselectHandler, UnityEngine.EventSystems.IPointerDownHandler, UnityEngine.EventSystems.IPointerUpHandler, UnityEngine.EventSystems.IMoveHandler
         {
             protected [__keep_incompatibility]: never;
@@ -31981,6 +31968,69 @@
             public set onClick(value: UnityEngine.UI.Button.ButtonClickedEvent);
             public OnPointerClick ($eventData: UnityEngine.EventSystems.PointerEventData) : void
             public OnSubmit ($eventData: UnityEngine.EventSystems.BaseEventData) : void
+        }
+        class Toggle extends UnityEngine.UI.Selectable implements UnityEngine.UI.ICanvasElement, UnityEngine.EventSystems.IEventSystemHandler, UnityEngine.EventSystems.IPointerEnterHandler, UnityEngine.EventSystems.ISelectHandler, UnityEngine.EventSystems.IPointerExitHandler, UnityEngine.EventSystems.IDeselectHandler, UnityEngine.EventSystems.IPointerDownHandler, UnityEngine.EventSystems.IPointerUpHandler, UnityEngine.EventSystems.IMoveHandler, UnityEngine.EventSystems.ISubmitHandler, UnityEngine.EventSystems.IPointerClickHandler
+        {
+            protected [__keep_incompatibility]: never;
+            public toggleTransition : UnityEngine.UI.Toggle.ToggleTransition
+            public graphic : UnityEngine.UI.Graphic
+            public onValueChanged : UnityEngine.UI.Toggle.ToggleEvent
+            public get group(): UnityEngine.UI.ToggleGroup;
+            public set group(value: UnityEngine.UI.ToggleGroup);
+            public get isOn(): boolean;
+            public set isOn(value: boolean);
+            public Rebuild ($executing: UnityEngine.UI.CanvasUpdate) : void
+            public LayoutComplete () : void
+            public GraphicUpdateComplete () : void
+            public SetIsOnWithoutNotify ($value: boolean) : void
+            public OnPointerClick ($eventData: UnityEngine.EventSystems.PointerEventData) : void
+            public OnSubmit ($eventData: UnityEngine.EventSystems.BaseEventData) : void
+            public IsDestroyed () : boolean
+        }
+        class Slider extends UnityEngine.UI.Selectable implements UnityEngine.EventSystems.IInitializePotentialDragHandler, UnityEngine.EventSystems.IDragHandler, UnityEngine.UI.ICanvasElement, UnityEngine.EventSystems.IEventSystemHandler, UnityEngine.EventSystems.IPointerEnterHandler, UnityEngine.EventSystems.ISelectHandler, UnityEngine.EventSystems.IPointerExitHandler, UnityEngine.EventSystems.IDeselectHandler, UnityEngine.EventSystems.IPointerDownHandler, UnityEngine.EventSystems.IPointerUpHandler, UnityEngine.EventSystems.IMoveHandler
+        {
+            protected [__keep_incompatibility]: never;
+            public get fillRect(): UnityEngine.RectTransform;
+            public set fillRect(value: UnityEngine.RectTransform);
+            public get handleRect(): UnityEngine.RectTransform;
+            public set handleRect(value: UnityEngine.RectTransform);
+            public get direction(): UnityEngine.UI.Slider.Direction;
+            public set direction(value: UnityEngine.UI.Slider.Direction);
+            public get minValue(): number;
+            public set minValue(value: number);
+            public get maxValue(): number;
+            public set maxValue(value: number);
+            public get wholeNumbers(): boolean;
+            public set wholeNumbers(value: boolean);
+            public get value(): number;
+            public set value(value: number);
+            public get normalizedValue(): number;
+            public set normalizedValue(value: number);
+            public get onValueChanged(): UnityEngine.UI.Slider.SliderEvent;
+            public set onValueChanged(value: UnityEngine.UI.Slider.SliderEvent);
+            public SetValueWithoutNotify ($input: number) : void
+            public Rebuild ($executing: UnityEngine.UI.CanvasUpdate) : void
+            public LayoutComplete () : void
+            public GraphicUpdateComplete () : void
+            public OnDrag ($eventData: UnityEngine.EventSystems.PointerEventData) : void
+            public OnInitializePotentialDrag ($eventData: UnityEngine.EventSystems.PointerEventData) : void
+            public SetDirection ($direction: UnityEngine.UI.Slider.Direction, $includeRectLayouts: boolean) : void
+            public IsDestroyed () : boolean
+        }
+        class AnimationTriggers extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public get normalTrigger(): string;
+            public set normalTrigger(value: string);
+            public get highlightedTrigger(): string;
+            public set highlightedTrigger(value: string);
+            public get pressedTrigger(): string;
+            public set pressedTrigger(value: string);
+            public get selectedTrigger(): string;
+            public set selectedTrigger(value: string);
+            public get disabledTrigger(): string;
+            public set disabledTrigger(value: string);
+            public constructor ()
         }
         enum CanvasUpdate
         { Prelayout = 0, Layout = 1, PostLayout = 2, PreRender = 3, LatePreRender = 4, MaxUpdateValue = 5 }
@@ -32565,36 +32615,6 @@
             public set disabledSprite(value: UnityEngine.Sprite);
             public Equals ($other: UnityEngine.UI.SpriteState) : boolean
         }
-        class Slider extends UnityEngine.UI.Selectable implements UnityEngine.EventSystems.IInitializePotentialDragHandler, UnityEngine.EventSystems.IDragHandler, UnityEngine.UI.ICanvasElement, UnityEngine.EventSystems.IEventSystemHandler, UnityEngine.EventSystems.IPointerEnterHandler, UnityEngine.EventSystems.ISelectHandler, UnityEngine.EventSystems.IPointerExitHandler, UnityEngine.EventSystems.IDeselectHandler, UnityEngine.EventSystems.IPointerDownHandler, UnityEngine.EventSystems.IPointerUpHandler, UnityEngine.EventSystems.IMoveHandler
-        {
-            protected [__keep_incompatibility]: never;
-            public get fillRect(): UnityEngine.RectTransform;
-            public set fillRect(value: UnityEngine.RectTransform);
-            public get handleRect(): UnityEngine.RectTransform;
-            public set handleRect(value: UnityEngine.RectTransform);
-            public get direction(): UnityEngine.UI.Slider.Direction;
-            public set direction(value: UnityEngine.UI.Slider.Direction);
-            public get minValue(): number;
-            public set minValue(value: number);
-            public get maxValue(): number;
-            public set maxValue(value: number);
-            public get wholeNumbers(): boolean;
-            public set wholeNumbers(value: boolean);
-            public get value(): number;
-            public set value(value: number);
-            public get normalizedValue(): number;
-            public set normalizedValue(value: number);
-            public get onValueChanged(): UnityEngine.UI.Slider.SliderEvent;
-            public set onValueChanged(value: UnityEngine.UI.Slider.SliderEvent);
-            public SetValueWithoutNotify ($input: number) : void
-            public Rebuild ($executing: UnityEngine.UI.CanvasUpdate) : void
-            public LayoutComplete () : void
-            public GraphicUpdateComplete () : void
-            public OnDrag ($eventData: UnityEngine.EventSystems.PointerEventData) : void
-            public OnInitializePotentialDrag ($eventData: UnityEngine.EventSystems.PointerEventData) : void
-            public SetDirection ($direction: UnityEngine.UI.Slider.Direction, $includeRectLayouts: boolean) : void
-            public IsDestroyed () : boolean
-        }
         class StencilMaterial extends System.Object
         {
             protected [__keep_incompatibility]: never;
@@ -32602,24 +32622,6 @@
             public static Add ($baseMat: UnityEngine.Material, $stencilID: number, $operation: UnityEngine.Rendering.StencilOp, $compareFunction: UnityEngine.Rendering.CompareFunction, $colorWriteMask: UnityEngine.Rendering.ColorWriteMask, $readMask: number, $writeMask: number) : UnityEngine.Material
             public static Remove ($customMat: UnityEngine.Material) : void
             public static ClearAll () : void
-        }
-        class Toggle extends UnityEngine.UI.Selectable implements UnityEngine.UI.ICanvasElement, UnityEngine.EventSystems.IEventSystemHandler, UnityEngine.EventSystems.IPointerEnterHandler, UnityEngine.EventSystems.ISelectHandler, UnityEngine.EventSystems.IPointerExitHandler, UnityEngine.EventSystems.IDeselectHandler, UnityEngine.EventSystems.IPointerDownHandler, UnityEngine.EventSystems.IPointerUpHandler, UnityEngine.EventSystems.IMoveHandler, UnityEngine.EventSystems.ISubmitHandler, UnityEngine.EventSystems.IPointerClickHandler
-        {
-            protected [__keep_incompatibility]: never;
-            public toggleTransition : UnityEngine.UI.Toggle.ToggleTransition
-            public graphic : UnityEngine.UI.Graphic
-            public onValueChanged : UnityEngine.UI.Toggle.ToggleEvent
-            public get group(): UnityEngine.UI.ToggleGroup;
-            public set group(value: UnityEngine.UI.ToggleGroup);
-            public get isOn(): boolean;
-            public set isOn(value: boolean);
-            public Rebuild ($executing: UnityEngine.UI.CanvasUpdate) : void
-            public LayoutComplete () : void
-            public GraphicUpdateComplete () : void
-            public SetIsOnWithoutNotify ($value: boolean) : void
-            public OnPointerClick ($eventData: UnityEngine.EventSystems.PointerEventData) : void
-            public OnSubmit ($eventData: UnityEngine.EventSystems.BaseEventData) : void
-            public IsDestroyed () : boolean
         }
         class ToggleGroup extends UnityEngine.EventSystems.UIBehaviour
         {
@@ -32695,6 +32697,27 @@
             public Coroutine () : void
             public OnCompleted ($continuation: System.Action) : void
             public UnsafeOnCompleted ($continuation: System.Action) : void
+        }
+        class ETTask extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            public static get CompletedTask(): ET.ETTaskCompleted;
+            public GetAwaiter () : ET.ETTaskCompletionSource
+            public Coroutine () : void
+            public constructor ($awaiter: ET.ETTaskCompletionSource)
+        }
+        class ETTaskCompletionSource extends System.Object implements System.Runtime.CompilerServices.INotifyCompletion, System.Runtime.CompilerServices.ICriticalNotifyCompletion
+        {
+            protected [__keep_incompatibility]: never;
+            public get Task(): ET.ETTask;
+            public get Status(): ET.AwaiterStatus;
+            public get IsCompleted(): boolean;
+            public UnsafeOnCompleted ($action: System.Action) : void
+            public OnCompleted ($action: System.Action) : void
+            public GetResult () : void
+            public SetResult () : void
+            public SetException ($e: System.Exception) : void
+            public constructor ()
         }
         class ACategory extends System.Object implements System.ComponentModel.ISupportInitialize
         {
@@ -32888,27 +32911,6 @@
             public SetException ($exception: System.Exception) : void
             public SetResult () : void
             public SetStateMachine ($stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine) : void
-        }
-        class ETTaskCompletionSource extends System.Object implements System.Runtime.CompilerServices.INotifyCompletion, System.Runtime.CompilerServices.ICriticalNotifyCompletion
-        {
-            protected [__keep_incompatibility]: never;
-            public get Task(): ET.ETTask;
-            public get Status(): ET.AwaiterStatus;
-            public get IsCompleted(): boolean;
-            public UnsafeOnCompleted ($action: System.Action) : void
-            public OnCompleted ($action: System.Action) : void
-            public GetResult () : void
-            public SetResult () : void
-            public SetException ($e: System.Exception) : void
-            public constructor ()
-        }
-        class ETTask extends System.ValueType
-        {
-            protected [__keep_incompatibility]: never;
-            public static get CompletedTask(): ET.ETTaskCompleted;
-            public GetAwaiter () : ET.ETTaskCompletionSource
-            public Coroutine () : void
-            public constructor ($awaiter: ET.ETTaskCompletionSource)
         }
         class AsyncETVoidMethodBuilder extends System.ValueType
         {
@@ -34951,6 +34953,120 @@
             protected [__keep_incompatibility]: never;
         }
     }
+    namespace UnityEditor {
+        /** Derive from this base class to create a custom inspector or editor for your custom object.
+        */
+        class Editor extends UnityEngine.ScriptableObject implements UnityEditor.IToolModeOwner, UnityEditor.IPreviewable
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        interface IToolModeOwner
+        {
+        }
+        interface IPreviewable
+        {
+        }
+    }
+    namespace B83.ExpressionParser {
+        class ExpressionParser extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public AddFunc ($aName: string, $aMethod: System.Func$2<System.Array$1<number>, number>) : void
+            public AddConst ($aName: string, $aMethod: System.Func$1<number>) : void
+            public RemoveFunc ($aName: string) : void
+            public RemoveConst ($aName: string) : void
+            public EvaluateExpression ($aExpression: string) : B83.ExpressionParser.Expression
+            public Evaluate ($aExpression: string) : number
+            public static Eval ($aExpression: string) : number
+            public constructor ()
+        }
+        class Expression extends System.Object implements B83.ExpressionParser.IValue
+        {
+            protected [__keep_incompatibility]: never;
+            public Parameters : System.Collections.Generic.Dictionary$2<string, B83.ExpressionParser.Parameter>
+            public get ExpressionTree(): B83.ExpressionParser.IValue;
+            public set ExpressionTree(value: B83.ExpressionParser.IValue);
+            public get Value(): number;
+            public get MultiValue(): System.Array$1<number>;
+            public ToDelegate (...aParamOrder: string[]) : B83.ExpressionParser.ExpressionDelegate
+            public ToMultiResultDelegate (...aParamOrder: string[]) : B83.ExpressionParser.MultiResultDelegate
+            public static Parse ($aExpression: string) : B83.ExpressionParser.Expression
+            public constructor ()
+        }
+        interface IValue
+        {
+            Value : number
+        }
+        class Number extends System.Object implements B83.ExpressionParser.IValue
+        {
+            protected [__keep_incompatibility]: never;
+            public get Value(): number;
+            public set Value(value: number);
+            public constructor ($aValue: number)
+        }
+        class OperationSum extends System.Object implements B83.ExpressionParser.IValue
+        {
+            protected [__keep_incompatibility]: never;
+            public get Value(): number;
+            public constructor (...aValues: B83.ExpressionParser.IValue[])
+        }
+        class OperationProduct extends System.Object implements B83.ExpressionParser.IValue
+        {
+            protected [__keep_incompatibility]: never;
+            public get Value(): number;
+            public constructor (...aValues: B83.ExpressionParser.IValue[])
+        }
+        class OperationPower extends System.Object implements B83.ExpressionParser.IValue
+        {
+            protected [__keep_incompatibility]: never;
+            public get Value(): number;
+            public constructor ($aValue: B83.ExpressionParser.IValue, $aPower: B83.ExpressionParser.IValue)
+        }
+        class OperationNegate extends System.Object implements B83.ExpressionParser.IValue
+        {
+            protected [__keep_incompatibility]: never;
+            public get Value(): number;
+            public constructor ($aValue: B83.ExpressionParser.IValue)
+        }
+        class OperationReciprocal extends System.Object implements B83.ExpressionParser.IValue
+        {
+            protected [__keep_incompatibility]: never;
+            public get Value(): number;
+            public constructor ($aValue: B83.ExpressionParser.IValue)
+        }
+        class MultiParameterList extends System.Object implements B83.ExpressionParser.IValue
+        {
+            protected [__keep_incompatibility]: never;
+            public get Parameters(): System.Array$1<B83.ExpressionParser.IValue>;
+            public get Value(): number;
+            public constructor (...aValues: B83.ExpressionParser.IValue[])
+        }
+        class CustomFunction extends System.Object implements B83.ExpressionParser.IValue
+        {
+            protected [__keep_incompatibility]: never;
+            public get Value(): number;
+            public constructor ($aName: string, $aDelegate: System.Func$2<System.Array$1<number>, number>, ...aValues: B83.ExpressionParser.IValue[])
+        }
+        class Parameter extends B83.ExpressionParser.Number implements B83.ExpressionParser.IValue
+        {
+            protected [__keep_incompatibility]: never;
+            public get Name(): string;
+            public constructor ($aName: string)
+            public constructor ($aValue: number)
+        }
+        interface ExpressionDelegate
+        { 
+        (aParams: System.Array$1<number>) : number; 
+        Invoke?: (aParams: System.Array$1<number>) => number;
+        }
+        var ExpressionDelegate: { new (func: (aParams: System.Array$1<number>) => number): ExpressionDelegate; }
+        interface MultiResultDelegate
+        { 
+        (aParams: System.Array$1<number>) : System.Array$1<number>; 
+        Invoke?: (aParams: System.Array$1<number>) => System.Array$1<number>;
+        }
+        var MultiResultDelegate: { new (func: (aParams: System.Array$1<number>) => System.Array$1<number>): MultiResultDelegate; }
+    }
     namespace UnityEngine.UI.Button {
         class ButtonClickedEvent extends UnityEngine.Events.UnityEvent implements UnityEngine.ISerializationCallbackReceiver
         {
@@ -35181,20 +35297,6 @@
             public OnAfterDeserialize () : void
         }
         interface ITimelineClipAsset
-        {
-        }
-    }
-    namespace UnityEditor {
-        /** Derive from this base class to create a custom inspector or editor for your custom object.
-        */
-        class Editor extends UnityEngine.ScriptableObject implements UnityEditor.IToolModeOwner, UnityEditor.IPreviewable
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        interface IToolModeOwner
-        {
-        }
-        interface IPreviewable
         {
         }
     }
@@ -35932,106 +36034,6 @@
         class JsonIgnore extends System.Attribute implements System.Runtime.InteropServices._Attribute
         {
             protected [__keep_incompatibility]: never;
-            public constructor ()
-        }
-    }
-    namespace B83.ExpressionParser {
-        interface IValue
-        {
-            Value : number
-        }
-        class Number extends System.Object implements B83.ExpressionParser.IValue
-        {
-            protected [__keep_incompatibility]: never;
-            public get Value(): number;
-            public set Value(value: number);
-            public constructor ($aValue: number)
-        }
-        class OperationSum extends System.Object implements B83.ExpressionParser.IValue
-        {
-            protected [__keep_incompatibility]: never;
-            public get Value(): number;
-            public constructor (...aValues: B83.ExpressionParser.IValue[])
-        }
-        class OperationProduct extends System.Object implements B83.ExpressionParser.IValue
-        {
-            protected [__keep_incompatibility]: never;
-            public get Value(): number;
-            public constructor (...aValues: B83.ExpressionParser.IValue[])
-        }
-        class OperationPower extends System.Object implements B83.ExpressionParser.IValue
-        {
-            protected [__keep_incompatibility]: never;
-            public get Value(): number;
-            public constructor ($aValue: B83.ExpressionParser.IValue, $aPower: B83.ExpressionParser.IValue)
-        }
-        class OperationNegate extends System.Object implements B83.ExpressionParser.IValue
-        {
-            protected [__keep_incompatibility]: never;
-            public get Value(): number;
-            public constructor ($aValue: B83.ExpressionParser.IValue)
-        }
-        class OperationReciprocal extends System.Object implements B83.ExpressionParser.IValue
-        {
-            protected [__keep_incompatibility]: never;
-            public get Value(): number;
-            public constructor ($aValue: B83.ExpressionParser.IValue)
-        }
-        class MultiParameterList extends System.Object implements B83.ExpressionParser.IValue
-        {
-            protected [__keep_incompatibility]: never;
-            public get Parameters(): System.Array$1<B83.ExpressionParser.IValue>;
-            public get Value(): number;
-            public constructor (...aValues: B83.ExpressionParser.IValue[])
-        }
-        class CustomFunction extends System.Object implements B83.ExpressionParser.IValue
-        {
-            protected [__keep_incompatibility]: never;
-            public get Value(): number;
-            public constructor ($aName: string, $aDelegate: System.Func$2<System.Array$1<number>, number>, ...aValues: B83.ExpressionParser.IValue[])
-        }
-        class Parameter extends B83.ExpressionParser.Number implements B83.ExpressionParser.IValue
-        {
-            protected [__keep_incompatibility]: never;
-            public get Name(): string;
-            public constructor ($aName: string)
-            public constructor ($aValue: number)
-        }
-        class Expression extends System.Object implements B83.ExpressionParser.IValue
-        {
-            protected [__keep_incompatibility]: never;
-            public Parameters : System.Collections.Generic.Dictionary$2<string, B83.ExpressionParser.Parameter>
-            public get ExpressionTree(): B83.ExpressionParser.IValue;
-            public set ExpressionTree(value: B83.ExpressionParser.IValue);
-            public get Value(): number;
-            public get MultiValue(): System.Array$1<number>;
-            public ToDelegate (...aParamOrder: string[]) : B83.ExpressionParser.ExpressionDelegate
-            public ToMultiResultDelegate (...aParamOrder: string[]) : B83.ExpressionParser.MultiResultDelegate
-            public static Parse ($aExpression: string) : B83.ExpressionParser.Expression
-            public constructor ()
-        }
-        interface ExpressionDelegate
-        { 
-        (aParams: System.Array$1<number>) : number; 
-        Invoke?: (aParams: System.Array$1<number>) => number;
-        }
-        var ExpressionDelegate: { new (func: (aParams: System.Array$1<number>) => number): ExpressionDelegate; }
-        interface MultiResultDelegate
-        { 
-        (aParams: System.Array$1<number>) : System.Array$1<number>; 
-        Invoke?: (aParams: System.Array$1<number>) => System.Array$1<number>;
-        }
-        var MultiResultDelegate: { new (func: (aParams: System.Array$1<number>) => System.Array$1<number>): MultiResultDelegate; }
-        class ExpressionParser extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public AddFunc ($aName: string, $aMethod: System.Func$2<System.Array$1<number>, number>) : void
-            public AddConst ($aName: string, $aMethod: System.Func$1<number>) : void
-            public RemoveFunc ($aName: string) : void
-            public RemoveConst ($aName: string) : void
-            public EvaluateExpression ($aExpression: string) : B83.ExpressionParser.Expression
-            public Evaluate ($aExpression: string) : number
-            public static Eval ($aExpression: string) : number
             public constructor ()
         }
     }

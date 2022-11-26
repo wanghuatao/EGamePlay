@@ -441,6 +441,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc63a8c940dd43b7b2a654e2f864bfc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextScene: 
+  delayLoadNextScene: 1
 --- !u!4 &1740388325
 Transform:
   m_ObjectHideFlags: 0

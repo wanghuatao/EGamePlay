@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.ResourceProviders;
+using UnityEngine.SceneManagement;
+using Object = UnityEngine.Object;
 
 public class ResourcesManager : MonoBehaviour
 {
@@ -29,6 +32,40 @@ public class ResourcesManager : MonoBehaviour
 
 
     public Action LoadJSComplete;
+
+
+    public static void LoadAAAndAndInstant(string resPath, Action<GameObject> ok)
+    {
+        Addressables.InstantiateAsync(resPath).Completed += (res) => { ok(res.Result); };
+    }
+
+    public void LoadAA2(string resPath, Action<Object> ok)
+    {
+        Addressables.LoadAssetAsync<Object>(resPath).Completed += (res) =>
+        {
+            Debug.Log("Load" + res.Result);
+            ok(res.Result);
+        };
+    }
+
+
+    public static void LoadAA(string resPath, Action<Object> ok)
+    {
+        Addressables.LoadAssetAsync<Object>(resPath).Completed += (res) => { ok(res.Result); };
+    }
+
+
+    public static async Task<Object> LoadAssetAsync(string resPath)
+    {
+        var res = await Addressables.LoadAssetAsync<Object>(resPath).Task;
+        return res;
+    }
+
+
+    public static void LoadScene(string resPath, Action<SceneInstance> ok)
+    {
+        Addressables.LoadSceneAsync(resPath).Completed += (res) => { ok(res.Result); };
+    }
 
     public async Task<bool> PreloadJS(string jsLabel)
     {

@@ -17,16 +17,39 @@ public class JsManager : MonoBehaviour
 
     private void Start()
     {
+        this.gameObject.AddComponent<ResourcesManager>();
+        
         if (jsEnv == null)
         {
             // yield return loadJs("behaviours.mjs", scriptsDir + "/" + "behaviours.mjs");
 
-            LoadJs("behaviours.mjs", () =>
+            // LoadJs("behaviours.mjs", () =>
+            // {
+            //     loader = new JsLoader(scriptsDir);
+            //     Debug.Log("JsMonoBehaviour start");
+            //     // jsEnv = Puerts.WebGL.GetBrowserEnv();
+            //     jsEnv = Puerts.WebGL.GetBrowserEnv(loader, -1);
+            //
+            //
+            //     if (delayLoadNextScene)
+            //     {
+            //         StartCoroutine(loadScene());
+            //     }
+            //     else
+            //     {
+            //         // Application.LoadLevel(nextScene);
+            //
+            //         ResourcesManager.LoadScene("Assets/EGPsExamples/RpgExample/RpgExample Scene.unity",
+            //             (res) => { Debug.Log("场景加载成功"); });
+            //     }
+            // });
+
+            LoadJsFromAA("Assets/mjs/behaviours.bytes", () =>
             {
                 loader = new JsLoader(scriptsDir);
                 Debug.Log("JsMonoBehaviour start");
-                // jsEnv = Puerts.WebGL.GetBrowserEnv();
                 jsEnv = Puerts.WebGL.GetBrowserEnv(loader, -1);
+                
 
 
                 if (delayLoadNextScene)
@@ -35,7 +58,8 @@ public class JsManager : MonoBehaviour
                 }
                 else
                 {
-                    Application.LoadLevel(nextScene);
+                    ResourcesManager.LoadScene("Assets/EGPsExamples/RpgExample/RpgExample Scene.unity",
+                        (res) => { Debug.Log("场景加载成功"); });
                 }
             });
         }
@@ -45,8 +69,11 @@ public class JsManager : MonoBehaviour
 
     IEnumerator loadScene()
     {
-        yield return new WaitForSeconds(3);
-        Application.LoadLevel(nextScene);
+        var jsMonoBehaviour = this.gameObject.AddComponent<JsMonoBehaviour>();
+        jsMonoBehaviour.JSClassName = "TestJsBehavior";
+        yield return new WaitForSeconds(30);
+        ResourcesManager.LoadScene("Assets/EGPsExamples/RpgExample/RpgExample Scene.unity",
+            (res) => { Debug.Log("场景加载成功"); });
     }
 
     public static JsEnv GetJsEnv()
@@ -66,6 +93,18 @@ public class JsManager : MonoBehaviour
     public void LoadJs(string filename, Action loadOk)
     {
         LoadJs(filename, scriptsDir + "/" + filename, loadOk);
+    }
+
+    public void LoadJsFromAA(string fileName, Action loadOk)
+    {
+        // Assets/StreamingAssets/Scripts/behaviours.mjs
+        ResourcesManager.LoadAA(fileName, (res) =>
+        {
+            var txt = res as TextAsset;
+            Debug.Log(txt.text);
+            ResourcesManager.jscache["behaviours.mjs"] = txt.text;
+            loadOk?.Invoke();
+        });
     }
 
 

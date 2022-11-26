@@ -1,13 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using EGamePlay;
-using EGamePlay.Combat;
-using UnityEditor;
-using UnityEngine.UI;
 using GameUtils;
-using System.Drawing;
 
 namespace EGamePlay.Combat
 {

@@ -4,7 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Collections.Generic;
+using EGamePlay;
 using EGamePlay.Combat;
+using GameUtils;
 using PuertsTest;
 
 /// <summary>
@@ -40,7 +42,9 @@ public class PuertsConfig2
                 typeof(Hero),
                 typeof(TestHero),
                 typeof(CombatEntity),
-                typeof(AnimationComponent)
+                typeof(AnimationComponent),
+                typeof(AssetUtils),
+                typeof(Entity)
             };
         }
     }
@@ -65,6 +69,7 @@ public class PuertsConfig2
                //直接指定的类型
                 typeof(JsEnv),
                 typeof(ILoader),
+                typeof(Entity),
             };
         }
     }
@@ -78,6 +83,7 @@ public class PuertsConfig2
             {
                 "UnityEngine",
                 "UnityEngine.UI",
+                "EGamePlay",
             };
             var unityTypes = (from assembly in AppDomain.CurrentDomain.GetAssemblies()
                               where !(assembly.ManifestModule is System.Reflection.Emit.ModuleBuilder)
@@ -201,5 +207,6 @@ public class PuertsConfig2
         "System.IO.Stream",
         "System.Net.HttpListenerTimeoutManager",
         "System.Net.Sockets.SocketAsyncEventArgs",
+        "UnityEngine.ClusterSerialization"
     };
 }
