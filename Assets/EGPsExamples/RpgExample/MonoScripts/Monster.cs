@@ -35,7 +35,7 @@ public sealed class Monster : MonoBehaviour
         CombatEntity.ListenActionPoint(ActionPointType.PostReceiveCure, OnReceiveCure);
         CombatEntity.ListenActionPoint(ActionPointType.PostReceiveStatus, OnReceiveStatus);
         CombatEntity.Subscribe<RemoveStatusEvent>(OnRemoveStatus);
-
+   
 #if EGAMEPLAY_EXCEL
         var config = ET.StatusConfigCategory.Instance.GetByName("Tenacity");
 #else
@@ -153,6 +153,7 @@ public sealed class Monster : MonoBehaviour
 
     private void OnRemoveStatus(RemoveStatusEvent eventData)
     {
+        Debug.Log("OnRemoveStatus:"+eventData.Status.StatusConfig);
         if (name == "Monster")
         {
             if (StatusSlotsTrm != null)

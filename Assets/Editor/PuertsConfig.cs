@@ -44,7 +44,8 @@ public class PuertsConfig2
                 typeof(CombatEntity),
                 typeof(AnimationComponent),
                 typeof(AssetUtils),
-                typeof(Entity)
+                typeof(Entity),
+                typeof(TestClass)
             };
         }
     }

@@ -1788,6 +1788,7 @@ var Text = CS.UnityEngine.UI.Text;
 
 
 var ActionPointType = CS.EGamePlay.Combat.ActionPointType;
+var RemoveStatusEvent = CS.EGamePlay.Combat.RemoveStatusEvent;
 class MonsterLogic extends _base_base__WEBPACK_IMPORTED_MODULE_0__.JsBehaviour {
     CombatEntity;
     MotionComponent;
@@ -1801,6 +1802,10 @@ class MonsterLogic extends _base_base__WEBPACK_IMPORTED_MODULE_0__.JsBehaviour {
         this.AnimationComponent = (0,_base_CoreUtil__WEBPACK_IMPORTED_MODULE_1__.GetComponent)(this._mb.gameObject, CS.AnimationComponent);
         this.CombatEntity.ListenActionPoint(ActionPointType.PostReceiveStatus, this.OnReceiveStatus);
         CombatContext.Instance.Object2Entities.get_Item(this._mb.gameObject);
+        this.CombatEntity.Subscribe(this.OnRemoveStatus, puerts.$typeof(RemoveStatusEvent));
+    }
+    OnRemoveStatus(eventData) {
+        console.log('========================    OnRemoveStatus ts', eventData.Status.StatusConfig, eventData.Status.toString());
     }
     OnReceiveStatus(combatAction) {
         let action = combatAction;
@@ -1838,7 +1843,7 @@ class MonsterLogic extends _base_base__WEBPACK_IMPORTED_MODULE_0__.JsBehaviour {
             this._mb.transform.GetChild(0).localEulerAngles = new CS.UnityEngine.Vector3(0, this.CombatEntity.Rotation.eulerAngles.y + 90, 0);
         }
         else {
-            console.log("disable");
+            // console.log("disable")
             this.AnimationComponent.Speed = 1;
             this.AnimationComponent.TryPlayFade(this.AnimationComponent.IdleAnimation);
         }

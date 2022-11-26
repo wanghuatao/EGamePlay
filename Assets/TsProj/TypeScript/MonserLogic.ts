@@ -10,6 +10,7 @@ import Text = CS.UnityEngine.UI.Text;
 import {GetComponent, GetComponentInChildren} from "./base/CoreUtil";
 import ResPath from "./common/ResPath";
 import ActionPointType = CS.EGamePlay.Combat.ActionPointType;
+import RemoveStatusEvent = CS.EGamePlay.Combat.RemoveStatusEvent;
 
 
 export default class MonsterLogic extends JsBehaviour<JsMonoBehaviour> {
@@ -29,8 +30,13 @@ export default class MonsterLogic extends JsBehaviour<JsMonoBehaviour> {
         this.CombatEntity.ListenActionPoint(ActionPointType.PostReceiveStatus, this.OnReceiveStatus)
 
         CombatContext.Instance.Object2Entities.get_Item(this._mb.gameObject)
-        
-            
+
+        this.CombatEntity.Subscribe(this.OnRemoveStatus,puerts.$typeof(RemoveStatusEvent))
+
+    }
+
+    private OnRemoveStatus(eventData: RemoveStatusEvent) {
+        console.log('========================    OnRemoveStatus ts',eventData.Status.StatusConfig,eventData.Status.toString())
     }
 
     private OnReceiveStatus(combatAction: Entity) {
@@ -38,7 +44,7 @@ export default class MonsterLogic extends JsBehaviour<JsMonoBehaviour> {
         let addStatusEffect = action.AddStatusEffect
         let statusConfig = addStatusEffect.AddStatus
         console.log('statusConfig', statusConfig)
-        
+
 
         let resManager = GetComponent(GameObject.Find("JsManager"), CS.ResourcesManager)
 
@@ -78,7 +84,7 @@ export default class MonsterLogic extends JsBehaviour<JsMonoBehaviour> {
             this._mb.transform.position = this.CombatEntity.Position
             this._mb.transform.GetChild(0).localEulerAngles = new CS.UnityEngine.Vector3(0, this.CombatEntity.Rotation.eulerAngles.y + 90, 0)
         } else {
-            console.log("disable")
+            // console.log("disable")
             this.AnimationComponent.Speed = 1
             this.AnimationComponent.TryPlayFade(this.AnimationComponent.IdleAnimation)
         }

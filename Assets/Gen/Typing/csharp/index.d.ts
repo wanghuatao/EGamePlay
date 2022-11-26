@@ -29717,6 +29717,7 @@
             public GetIdChild ($id: bigint) : EGamePlay.Entity
             public GetChildren () : System.Array$1<EGamePlay.Entity>
             public Find ($name: string) : EGamePlay.Entity
+            public Subscribe ($action: System.Action$1<any>, $type: System.Type) : EGamePlay.SubscribeSubject
             public FireEvent ($eventType: string) : void
             public FireEvent ($eventType: string, $entity: EGamePlay.Entity) : void
             public OnEvent ($eventType: string, $action: System.Action$1<EGamePlay.Entity>) : void
@@ -30012,6 +30013,7 @@
             public set DefaultEnable(value: boolean);
             public static get DebugLog(): boolean;
             public static set DebugLog(value: boolean);
+            public Subscribe ($action: System.Action$1<any>, $type: System.Type) : EGamePlay.SubscribeSubject
             public FireEvent ($eventType: string, $entity: EGamePlay.Entity) : void
             public OnEvent ($eventType: string, $action: System.Action$1<EGamePlay.Entity>) : void
             public OffEvent ($eventType: string, $action: System.Action$1<EGamePlay.Entity>) : void
@@ -33173,6 +33175,30 @@
             public CanvasTrm : UnityEngine.Transform
             public constructor ()
         }
+        class TestClass extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public Action : System.Action$1<any>
+            public Test1 ($action: System.Action$1<any>, $o: any) : void
+            public AddEventCallback1 ($callback1: PuertsTest.Callback1) : void
+            public RemoveEventCallback1 ($callback1: PuertsTest.Callback1) : void
+            public AddEventCallback2 ($callback2: PuertsTest.Callback2) : void
+            public Trigger () : void
+            public Foo () : void
+            public constructor ()
+        }
+        interface Callback1
+        { 
+        (obj: PuertsTest.TestClass) : void; 
+        Invoke?: (obj: PuertsTest.TestClass) => void;
+        }
+        var Callback1: { new (func: (obj: PuertsTest.TestClass) => void): Callback1; }
+        interface Callback2
+        { 
+        (str: number) : void; 
+        Invoke?: (str: number) => void;
+        }
+        var Callback2: { new (func: (str: number) => void): Callback2; }
     }
     namespace Animancer {
         class AnimancerComponent extends UnityEngine.MonoBehaviour implements UnityEngine.IAnimationClipSource, Animancer.IAnimancerComponent, Animancer.IAnimationClipCollection, System.Collections.Generic.IEnumerable$1<Animancer.AnimancerState>, System.Collections.IEnumerable, System.Collections.IEnumerator

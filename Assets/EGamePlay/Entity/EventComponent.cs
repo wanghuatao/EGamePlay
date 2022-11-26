@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Object = System.Object;
 
 
 namespace EGamePlay
@@ -39,6 +40,21 @@ namespace EGamePlay
             return TEvent;
         }
 
+        //TS 使用
+        public new SubscribeSubject Subscribe(Action<object> action,Type type)
+        {
+            UnityEngine.Debug.Log("Subscribe:"+type+" ");
+            if (!TypeEvent2ActionLists.TryGetValue(type, out var actionList))
+            {
+                actionList = new List<object>();
+                TypeEvent2ActionLists.Add(type, actionList);
+            }
+            actionList.Add(action);
+            return Entity.AddChild<SubscribeSubject>(action);
+        }
+
+        
+        
         public new SubscribeSubject Subscribe<T>(Action<T> action) where T : class
         {
             var type = typeof(T);

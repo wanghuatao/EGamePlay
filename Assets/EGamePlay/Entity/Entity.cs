@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using EGamePlay.Combat;
 using GameUtils;
 
 namespace EGamePlay
@@ -415,6 +416,22 @@ namespace EGamePlay
         //    return evnt;
         //}
 
+        // ts 使用
+        public SubscribeSubject Subscribe(Action<object> action,Type type)
+        {
+            var eventComponent = GetComponent<EventComponent>();
+            if (eventComponent == null)
+            {
+                eventComponent = AddComponent<EventComponent>();
+            }
+            return eventComponent.Subscribe(action,type);
+        }
+        
+        // public SubscribeSubject Subscribe(Action<RemoveStatusEvent> action)
+        // {
+        //     return Subscribe<RemoveStatusEvent>(action);
+        // }
+        
         public SubscribeSubject Subscribe<T>(Action<T> action) where T : class
         {
             var eventComponent = GetComponent<EventComponent>();

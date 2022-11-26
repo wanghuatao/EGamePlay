@@ -41,7 +41,12 @@ public class JsMonoBehaviour : MonoBehaviour
             if (JsManager.GetJsEnv() != null)
             {
                 isStart = true;
-
+                JsManager.GetJsEnv().UsingAction<int>();
+                JsManager.GetJsEnv().UsingAction<string>();
+                JsManager.GetJsEnv().UsingFunc<int>();
+                JsManager.GetJsEnv().UsingFunc<string>();
+                JsManager.GetJsEnv().UsingAction<object>();
+                
                 Action<JsMonoBehaviour> init = JsManager.GetJsEnv().ExecuteModule<Action<JsMonoBehaviour>>("behaviours.mjs", JSClassName);
                 init(this);
                 if (JsStart != null) JsStart();
