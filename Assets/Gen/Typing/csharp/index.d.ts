@@ -326,6 +326,10 @@
         {
             protected [__keep_incompatibility]: never;
         }
+        class Nullable$1<T> extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+        }
         interface AsyncCallback
         { 
         (ar: System.IAsyncResult) : void; 
@@ -365,10 +369,6 @@
         }
         interface IAsyncDisposable
         {
-        }
-        class Nullable$1<T> extends System.ValueType
-        {
-            protected [__keep_incompatibility]: never;
         }
         interface Func$1<TResult>
         { 
@@ -3619,6 +3619,592 @@
         {
             GetAnimationClips ($results: System.Collections.Generic.List$1<UnityEngine.AnimationClip>) : void
         }
+        /** Interface to control the Mecanim animation system.
+        */
+        class Animator extends UnityEngine.Behaviour
+        {
+            protected [__keep_incompatibility]: never;
+            /** Returns true if the current rig is optimizable with AnimatorUtility.OptimizeTransformHierarchy.
+            */
+            public get isOptimizable(): boolean;
+            /** Returns true if the current rig is humanoid, false if it is generic.
+            */
+            public get isHuman(): boolean;
+            /** Returns true if the current rig has root motion.
+            */
+            public get hasRootMotion(): boolean;
+            /** Returns the scale of the current Avatar for a humanoid rig, (1 by default if the rig is generic).
+            */
+            public get humanScale(): number;
+            /** Returns whether the animator is initialized successfully.
+            */
+            public get isInitialized(): boolean;
+            /** Gets the avatar delta position for the last evaluated frame.
+            */
+            public get deltaPosition(): UnityEngine.Vector3;
+            /** Gets the avatar delta rotation for the last evaluated frame.
+            */
+            public get deltaRotation(): UnityEngine.Quaternion;
+            /** Gets the avatar velocity  for the last evaluated frame.
+            */
+            public get velocity(): UnityEngine.Vector3;
+            /** Gets the avatar angular velocity for the last evaluated frame.
+            */
+            public get angularVelocity(): UnityEngine.Vector3;
+            /** The root position, the position of the game object.
+            */
+            public get rootPosition(): UnityEngine.Vector3;
+            public set rootPosition(value: UnityEngine.Vector3);
+            /** The root rotation, the rotation of the game object.
+            */
+            public get rootRotation(): UnityEngine.Quaternion;
+            public set rootRotation(value: UnityEngine.Quaternion);
+            /** Should root motion be applied?
+            */
+            public get applyRootMotion(): boolean;
+            public set applyRootMotion(value: boolean);
+            /** Specifies the update mode of the Animator.
+            */
+            public get updateMode(): UnityEngine.AnimatorUpdateMode;
+            public set updateMode(value: UnityEngine.AnimatorUpdateMode);
+            /** Returns true if the object has a transform hierarchy.
+            */
+            public get hasTransformHierarchy(): boolean;
+            /** The current gravity weight based on current animations that are played.
+            */
+            public get gravityWeight(): number;
+            /** The position of the body center of mass.
+            */
+            public get bodyPosition(): UnityEngine.Vector3;
+            public set bodyPosition(value: UnityEngine.Vector3);
+            /** The rotation of the body center of mass.
+            */
+            public get bodyRotation(): UnityEngine.Quaternion;
+            public set bodyRotation(value: UnityEngine.Quaternion);
+            /** Automatic stabilization of feet during transition and blending.
+            */
+            public get stabilizeFeet(): boolean;
+            public set stabilizeFeet(value: boolean);
+            /** Returns the number of layers in the controller.
+            */
+            public get layerCount(): number;
+            /** The AnimatorControllerParameter list used by the animator. (Read Only)
+            */
+            public get parameters(): System.Array$1<UnityEngine.AnimatorControllerParameter>;
+            /** Returns the number of parameters in the controller.
+            */
+            public get parameterCount(): number;
+            /** Blends pivot point between body center of mass and feet pivot.
+            */
+            public get feetPivotActive(): number;
+            public set feetPivotActive(value: number);
+            /** Gets the pivot weight.
+            */
+            public get pivotWeight(): number;
+            /** Get the current position of the pivot.
+            */
+            public get pivotPosition(): UnityEngine.Vector3;
+            /** If automatic matching is active.
+            */
+            public get isMatchingTarget(): boolean;
+            /** The playback speed of the Animator. 1 is normal playback speed.
+            */
+            public get speed(): number;
+            public set speed(value: number);
+            /** Returns the position of the target specified by SetTarget.
+            */
+            public get targetPosition(): UnityEngine.Vector3;
+            /** Returns the rotation of the target specified by SetTarget.
+            */
+            public get targetRotation(): UnityEngine.Quaternion;
+            /** Controls culling of this Animator component.
+            */
+            public get cullingMode(): UnityEngine.AnimatorCullingMode;
+            public set cullingMode(value: UnityEngine.AnimatorCullingMode);
+            /** Sets the playback position in the recording buffer.
+            */
+            public get playbackTime(): number;
+            public set playbackTime(value: number);
+            /** Start time of the first frame of the buffer relative to the frame at which StartRecording was called.
+            */
+            public get recorderStartTime(): number;
+            public set recorderStartTime(value: number);
+            /** End time of the recorded clip relative to when StartRecording was called.
+            */
+            public get recorderStopTime(): number;
+            public set recorderStopTime(value: number);
+            /** Gets the mode of the Animator recorder.
+            */
+            public get recorderMode(): UnityEngine.AnimatorRecorderMode;
+            /** The runtime representation of AnimatorController that controls the Animator.
+            */
+            public get runtimeAnimatorController(): UnityEngine.RuntimeAnimatorController;
+            public set runtimeAnimatorController(value: UnityEngine.RuntimeAnimatorController);
+            /** Returns true if Animator has any playables assigned to it.
+            */
+            public get hasBoundPlayables(): boolean;
+            /** Gets/Sets the current Avatar.
+            */
+            public get avatar(): UnityEngine.Avatar;
+            public set avatar(value: UnityEngine.Avatar);
+            /** The PlayableGraph created by the Animator.
+            */
+            public get playableGraph(): UnityEngine.Playables.PlayableGraph;
+            /** Additional layers affects the center of mass.
+            */
+            public get layersAffectMassCenter(): boolean;
+            public set layersAffectMassCenter(value: boolean);
+            /** Get left foot bottom height.
+            */
+            public get leftFeetBottomHeight(): number;
+            /** Get right foot bottom height.
+            */
+            public get rightFeetBottomHeight(): number;
+            public get logWarnings(): boolean;
+            public set logWarnings(value: boolean);
+            /** Sets whether the Animator sends events of type AnimationEvent.
+            */
+            public get fireEvents(): boolean;
+            public set fireEvents(value: boolean);
+            /** Controls the behaviour of the Animator component when a GameObject is disabled.
+            */
+            public get keepAnimatorControllerStateOnDisable(): boolean;
+            public set keepAnimatorControllerStateOnDisable(value: boolean);
+            /** Returns the value of the given float parameter.
+            * @param name The parameter name.
+            * @param id The parameter ID.
+            * @returns The value of the parameter. 
+            */
+            public GetFloat ($name: string) : number
+            /** Returns the value of the given float parameter.
+            * @param name The parameter name.
+            * @param id The parameter ID.
+            * @returns The value of the parameter. 
+            */
+            public GetFloat ($id: number) : number
+            /** Send float values to the Animator to affect transitions.
+            * @param name The parameter name.
+            * @param id The parameter ID.
+            * @param value The new parameter value.
+            * @param dampTime The damper total time.
+            * @param deltaTime The delta time to give to the damper.
+            */
+            public SetFloat ($name: string, $value: number) : void
+            /** Send float values to the Animator to affect transitions.
+            * @param name The parameter name.
+            * @param id The parameter ID.
+            * @param value The new parameter value.
+            * @param dampTime The damper total time.
+            * @param deltaTime The delta time to give to the damper.
+            */
+            public SetFloat ($name: string, $value: number, $dampTime: number, $deltaTime: number) : void
+            /** Send float values to the Animator to affect transitions.
+            * @param name The parameter name.
+            * @param id The parameter ID.
+            * @param value The new parameter value.
+            * @param dampTime The damper total time.
+            * @param deltaTime The delta time to give to the damper.
+            */
+            public SetFloat ($id: number, $value: number) : void
+            /** Send float values to the Animator to affect transitions.
+            * @param name The parameter name.
+            * @param id The parameter ID.
+            * @param value The new parameter value.
+            * @param dampTime The damper total time.
+            * @param deltaTime The delta time to give to the damper.
+            */
+            public SetFloat ($id: number, $value: number, $dampTime: number, $deltaTime: number) : void
+            /** Returns the value of the given boolean parameter.
+            * @param name The parameter name.
+            * @param id The parameter ID.
+            * @returns The value of the parameter. 
+            */
+            public GetBool ($name: string) : boolean
+            /** Returns the value of the given boolean parameter.
+            * @param name The parameter name.
+            * @param id The parameter ID.
+            * @returns The value of the parameter. 
+            */
+            public GetBool ($id: number) : boolean
+            /** Sets the value of the given boolean parameter.
+            * @param name The parameter name.
+            * @param id The parameter ID.
+            * @param value The new parameter value.
+            */
+            public SetBool ($name: string, $value: boolean) : void
+            /** Sets the value of the given boolean parameter.
+            * @param name The parameter name.
+            * @param id The parameter ID.
+            * @param value The new parameter value.
+            */
+            public SetBool ($id: number, $value: boolean) : void
+            /** Returns the value of the given integer parameter.
+            * @param name The parameter name.
+            * @param id The parameter ID.
+            * @returns The value of the parameter. 
+            */
+            public GetInteger ($name: string) : number
+            /** Returns the value of the given integer parameter.
+            * @param name The parameter name.
+            * @param id The parameter ID.
+            * @returns The value of the parameter. 
+            */
+            public GetInteger ($id: number) : number
+            /** Sets the value of the given integer parameter.
+            * @param name The parameter name.
+            * @param id The parameter ID.
+            * @param value The new parameter value.
+            */
+            public SetInteger ($name: string, $value: number) : void
+            /** Sets the value of the given integer parameter.
+            * @param name The parameter name.
+            * @param id The parameter ID.
+            * @param value The new parameter value.
+            */
+            public SetInteger ($id: number, $value: number) : void
+            /** Sets the value of the given trigger parameter.
+            * @param name The parameter name.
+            * @param id The parameter ID.
+            */
+            public SetTrigger ($name: string) : void
+            /** Sets the value of the given trigger parameter.
+            * @param name The parameter name.
+            * @param id The parameter ID.
+            */
+            public SetTrigger ($id: number) : void
+            /** Resets the value of the given trigger parameter.
+            * @param name The parameter name.
+            * @param id The parameter ID.
+            */
+            public ResetTrigger ($name: string) : void
+            /** Resets the value of the given trigger parameter.
+            * @param name The parameter name.
+            * @param id The parameter ID.
+            */
+            public ResetTrigger ($id: number) : void
+            /** Returns true if the parameter is controlled by a curve, false otherwise.
+            * @param name The parameter name.
+            * @param id The parameter ID.
+            * @returns True if the parameter is controlled by a curve, false otherwise. 
+            */
+            public IsParameterControlledByCurve ($name: string) : boolean
+            /** Returns true if the parameter is controlled by a curve, false otherwise.
+            * @param name The parameter name.
+            * @param id The parameter ID.
+            * @returns True if the parameter is controlled by a curve, false otherwise. 
+            */
+            public IsParameterControlledByCurve ($id: number) : boolean
+            /** Gets the position of an IK goal.
+            * @param goal The AvatarIKGoal that is queried.
+            * @returns Return the current position of this IK goal in world space. 
+            */
+            public GetIKPosition ($goal: UnityEngine.AvatarIKGoal) : UnityEngine.Vector3
+            /** Sets the position of an IK goal.
+            * @param goal The AvatarIKGoal that is set.
+            * @param goalPosition The position in world space.
+            */
+            public SetIKPosition ($goal: UnityEngine.AvatarIKGoal, $goalPosition: UnityEngine.Vector3) : void
+            /** Gets the rotation of an IK goal.
+            * @param goal The AvatarIKGoal that is is queried.
+            */
+            public GetIKRotation ($goal: UnityEngine.AvatarIKGoal) : UnityEngine.Quaternion
+            /** Sets the rotation of an IK goal.
+            * @param goal The AvatarIKGoal that is set.
+            * @param goalRotation The rotation in world space.
+            */
+            public SetIKRotation ($goal: UnityEngine.AvatarIKGoal, $goalRotation: UnityEngine.Quaternion) : void
+            /** Gets the translative weight of an IK goal (0 = at the original animation before IK, 1 = at the goal).
+            * @param goal The AvatarIKGoal that is queried.
+            */
+            public GetIKPositionWeight ($goal: UnityEngine.AvatarIKGoal) : number
+            /** Sets the translative weight of an IK goal (0 = at the original animation before IK, 1 = at the goal).
+            * @param goal The AvatarIKGoal that is set.
+            * @param value The translative weight.
+            */
+            public SetIKPositionWeight ($goal: UnityEngine.AvatarIKGoal, $value: number) : void
+            /** Gets the rotational weight of an IK goal (0 = rotation before IK, 1 = rotation at the IK goal).
+            * @param goal The AvatarIKGoal that is queried.
+            */
+            public GetIKRotationWeight ($goal: UnityEngine.AvatarIKGoal) : number
+            /** Sets the rotational weight of an IK goal (0 = rotation before IK, 1 = rotation at the IK goal).
+            * @param goal The AvatarIKGoal that is set.
+            * @param value The rotational weight.
+            */
+            public SetIKRotationWeight ($goal: UnityEngine.AvatarIKGoal, $value: number) : void
+            /** Gets the position of an IK hint.
+            * @param hint The AvatarIKHint that is queried.
+            * @returns Return the current position of this IK hint in world space. 
+            */
+            public GetIKHintPosition ($hint: UnityEngine.AvatarIKHint) : UnityEngine.Vector3
+            /** Sets the position of an IK hint.
+            * @param hint The AvatarIKHint that is set.
+            * @param hintPosition The position in world space.
+            */
+            public SetIKHintPosition ($hint: UnityEngine.AvatarIKHint, $hintPosition: UnityEngine.Vector3) : void
+            /** Gets the translative weight of an IK Hint (0 = at the original animation before IK, 1 = at the hint).
+            * @param hint The AvatarIKHint that is queried.
+            * @returns Return translative weight. 
+            */
+            public GetIKHintPositionWeight ($hint: UnityEngine.AvatarIKHint) : number
+            /** Sets the translative weight of an IK hint (0 = at the original animation before IK, 1 = at the hint).
+            * @param hint The AvatarIKHint that is set.
+            * @param value The translative weight.
+            */
+            public SetIKHintPositionWeight ($hint: UnityEngine.AvatarIKHint, $value: number) : void
+            /** Sets the look at position.
+            * @param lookAtPosition The position to lookAt.
+            */
+            public SetLookAtPosition ($lookAtPosition: UnityEngine.Vector3) : void
+            /** Set look at weights.
+            * @param weight (0-1) the global weight of the LookAt, multiplier for other parameters.
+            * @param bodyWeight (0-1) determines how much the body is involved in the LookAt.
+            * @param headWeight (0-1) determines how much the head is involved in the LookAt.
+            * @param eyesWeight (0-1) determines how much the eyes are involved in the LookAt.
+            * @param clampWeight (0-1) 0.0 means the character is completely unrestrained in motion, 1.0 means he's completely clamped (look at becomes impossible), and 0.5 means he'll be able to move on half of the possible range (180 degrees).
+            */
+            public SetLookAtWeight ($weight: number) : void
+            /** Set look at weights.
+            * @param weight (0-1) the global weight of the LookAt, multiplier for other parameters.
+            * @param bodyWeight (0-1) determines how much the body is involved in the LookAt.
+            * @param headWeight (0-1) determines how much the head is involved in the LookAt.
+            * @param eyesWeight (0-1) determines how much the eyes are involved in the LookAt.
+            * @param clampWeight (0-1) 0.0 means the character is completely unrestrained in motion, 1.0 means he's completely clamped (look at becomes impossible), and 0.5 means he'll be able to move on half of the possible range (180 degrees).
+            */
+            public SetLookAtWeight ($weight: number, $bodyWeight: number) : void
+            /** Set look at weights.
+            * @param weight (0-1) the global weight of the LookAt, multiplier for other parameters.
+            * @param bodyWeight (0-1) determines how much the body is involved in the LookAt.
+            * @param headWeight (0-1) determines how much the head is involved in the LookAt.
+            * @param eyesWeight (0-1) determines how much the eyes are involved in the LookAt.
+            * @param clampWeight (0-1) 0.0 means the character is completely unrestrained in motion, 1.0 means he's completely clamped (look at becomes impossible), and 0.5 means he'll be able to move on half of the possible range (180 degrees).
+            */
+            public SetLookAtWeight ($weight: number, $bodyWeight: number, $headWeight: number) : void
+            /** Set look at weights.
+            * @param weight (0-1) the global weight of the LookAt, multiplier for other parameters.
+            * @param bodyWeight (0-1) determines how much the body is involved in the LookAt.
+            * @param headWeight (0-1) determines how much the head is involved in the LookAt.
+            * @param eyesWeight (0-1) determines how much the eyes are involved in the LookAt.
+            * @param clampWeight (0-1) 0.0 means the character is completely unrestrained in motion, 1.0 means he's completely clamped (look at becomes impossible), and 0.5 means he'll be able to move on half of the possible range (180 degrees).
+            */
+            public SetLookAtWeight ($weight: number, $bodyWeight: number, $headWeight: number, $eyesWeight: number) : void
+            /** Set look at weights.
+            * @param weight (0-1) the global weight of the LookAt, multiplier for other parameters.
+            * @param bodyWeight (0-1) determines how much the body is involved in the LookAt.
+            * @param headWeight (0-1) determines how much the head is involved in the LookAt.
+            * @param eyesWeight (0-1) determines how much the eyes are involved in the LookAt.
+            * @param clampWeight (0-1) 0.0 means the character is completely unrestrained in motion, 1.0 means he's completely clamped (look at becomes impossible), and 0.5 means he'll be able to move on half of the possible range (180 degrees).
+            */
+            public SetLookAtWeight ($weight: number, $bodyWeight: number, $headWeight: number, $eyesWeight: number, $clampWeight: number) : void
+            /** Sets local rotation of a human bone during a IK pass.
+            * @param humanBoneId The human bone Id.
+            * @param rotation The local rotation.
+            */
+            public SetBoneLocalRotation ($humanBoneId: UnityEngine.HumanBodyBones, $rotation: UnityEngine.Quaternion) : void
+            public GetBehaviours ($fullPathHash: number, $layerIndex: number) : System.Array$1<UnityEngine.StateMachineBehaviour>
+            /** Returns the layer name.
+            * @param layerIndex The layer index.
+            * @returns The layer name. 
+            */
+            public GetLayerName ($layerIndex: number) : string
+            /** Returns the index of the layer with the given name.
+            * @param layerName The layer name.
+            * @returns The layer index. 
+            */
+            public GetLayerIndex ($layerName: string) : number
+            /** Returns the weight of the layer at the specified index.
+            * @param layerIndex The layer index.
+            * @returns The layer weight. 
+            */
+            public GetLayerWeight ($layerIndex: number) : number
+            /** Sets the weight of the layer at the given index.
+            * @param layerIndex The layer index.
+            * @param weight The new layer weight.
+            */
+            public SetLayerWeight ($layerIndex: number, $weight: number) : void
+            /** Returns an AnimatorStateInfo with the information on the current state.
+            * @param layerIndex The layer index.
+            * @returns An AnimatorStateInfo with the information on the current state. 
+            */
+            public GetCurrentAnimatorStateInfo ($layerIndex: number) : UnityEngine.AnimatorStateInfo
+            /** Returns an AnimatorStateInfo with the information on the next state.
+            * @param layerIndex The layer index.
+            * @returns An AnimatorStateInfo with the information on the next state. 
+            */
+            public GetNextAnimatorStateInfo ($layerIndex: number) : UnityEngine.AnimatorStateInfo
+            /** Returns an AnimatorTransitionInfo with the informations on the current transition.
+            * @param layerIndex The layer's index.
+            * @returns An AnimatorTransitionInfo with the informations on the current transition. 
+            */
+            public GetAnimatorTransitionInfo ($layerIndex: number) : UnityEngine.AnimatorTransitionInfo
+            /** Returns the number of AnimatorClipInfo in the current state.
+            * @param layerIndex The layer index.
+            * @returns The number of AnimatorClipInfo in the current state. 
+            */
+            public GetCurrentAnimatorClipInfoCount ($layerIndex: number) : number
+            /** Returns the number of AnimatorClipInfo in the next state.
+            * @param layerIndex The layer index.
+            * @returns The number of AnimatorClipInfo in the next state. 
+            */
+            public GetNextAnimatorClipInfoCount ($layerIndex: number) : number
+            /** Returns an array of all the AnimatorClipInfo in the current state of the given layer.
+            * @param layerIndex The layer index.
+            * @returns An array of all the AnimatorClipInfo in the current state. 
+            */
+            public GetCurrentAnimatorClipInfo ($layerIndex: number) : System.Array$1<UnityEngine.AnimatorClipInfo>
+            /** Returns an array of all the AnimatorClipInfo in the next state of the given layer.
+            * @param layerIndex The layer index.
+            * @returns An array of all the AnimatorClipInfo in the next state. 
+            */
+            public GetNextAnimatorClipInfo ($layerIndex: number) : System.Array$1<UnityEngine.AnimatorClipInfo>
+            public GetCurrentAnimatorClipInfo ($layerIndex: number, $clips: System.Collections.Generic.List$1<UnityEngine.AnimatorClipInfo>) : void
+            public GetNextAnimatorClipInfo ($layerIndex: number, $clips: System.Collections.Generic.List$1<UnityEngine.AnimatorClipInfo>) : void
+            /** Returns true if there is a transition on the given layer, false otherwise.
+            * @param layerIndex The layer index.
+            * @returns True if there is a transition on the given layer, false otherwise. 
+            */
+            public IsInTransition ($layerIndex: number) : boolean
+            /** See AnimatorController.parameters.
+            */
+            public GetParameter ($index: number) : UnityEngine.AnimatorControllerParameter
+            public MatchTarget ($matchPosition: UnityEngine.Vector3, $matchRotation: UnityEngine.Quaternion, $targetBodyPart: UnityEngine.AvatarTarget, $weightMask: UnityEngine.MatchTargetWeightMask, $startNormalizedTime: number) : void
+            /** Automatically adjust the GameObject position and rotation.
+            * @param matchPosition The position we want the body part to reach.
+            * @param matchRotation The rotation in which we want the body part to be.
+            * @param targetBodyPart The body part that is involved in the match.
+            * @param weightMask Structure that contains weights for matching position and rotation.
+            * @param startNormalizedTime Start time within the animation clip (0 - beginning of clip, 1 - end of clip).
+            * @param targetNormalizedTime End time within the animation clip (0 - beginning of clip, 1 - end of clip), values greater than 1 can be set to trigger a match after a certain number of loops. Ex: 2.3 means at 30% of 2nd loop.
+            * @param completeMatch Allows you to specify what should happen if the MatchTarget function is interrupted. A value of true causes the GameObject to immediately move to the matchPosition if interrupted. A value of false causes the GameObject to stay at its current position if interrupted.
+            */
+            public MatchTarget ($matchPosition: UnityEngine.Vector3, $matchRotation: UnityEngine.Quaternion, $targetBodyPart: UnityEngine.AvatarTarget, $weightMask: UnityEngine.MatchTargetWeightMask, $startNormalizedTime: number, $targetNormalizedTime: number) : void
+            public MatchTarget ($matchPosition: UnityEngine.Vector3, $matchRotation: UnityEngine.Quaternion, $targetBodyPart: UnityEngine.AvatarTarget, $weightMask: UnityEngine.MatchTargetWeightMask, $startNormalizedTime: number, $targetNormalizedTime: number, $completeMatch: boolean) : void
+            public InterruptMatchTarget () : void
+            /** Interrupts the automatic target matching.
+            */
+            public InterruptMatchTarget ($completeMatch: boolean) : void
+            public CrossFadeInFixedTime ($stateName: string, $fixedTransitionDuration: number) : void
+            public CrossFadeInFixedTime ($stateName: string, $fixedTransitionDuration: number, $layer: number) : void
+            public CrossFadeInFixedTime ($stateName: string, $fixedTransitionDuration: number, $layer: number, $fixedTimeOffset: number) : void
+            /** Creates a crossfade from the current state to any other state using times in seconds.
+            * @param stateName The name of the state.
+            * @param stateHashName The hash name of the state.
+            * @param fixedTransitionDuration The duration of the transition (in seconds).
+            * @param layer The layer where the crossfade occurs.
+            * @param fixedTimeOffset The time of the state (in seconds).
+            * @param normalizedTransitionTime The time of the transition (normalized).
+            */
+            public CrossFadeInFixedTime ($stateName: string, $fixedTransitionDuration: number, $layer: number, $fixedTimeOffset: number, $normalizedTransitionTime: number) : void
+            public CrossFadeInFixedTime ($stateHashName: number, $fixedTransitionDuration: number, $layer: number, $fixedTimeOffset: number) : void
+            public CrossFadeInFixedTime ($stateHashName: number, $fixedTransitionDuration: number, $layer: number) : void
+            public CrossFadeInFixedTime ($stateHashName: number, $fixedTransitionDuration: number) : void
+            /** Creates a crossfade from the current state to any other state using times in seconds.
+            * @param stateName The name of the state.
+            * @param stateHashName The hash name of the state.
+            * @param fixedTransitionDuration The duration of the transition (in seconds).
+            * @param layer The layer where the crossfade occurs.
+            * @param fixedTimeOffset The time of the state (in seconds).
+            * @param normalizedTransitionTime The time of the transition (normalized).
+            */
+            public CrossFadeInFixedTime ($stateHashName: number, $fixedTransitionDuration: number, $layer: number, $fixedTimeOffset: number, $normalizedTransitionTime: number) : void
+            public WriteDefaultValues () : void
+            public CrossFade ($stateName: string, $normalizedTransitionDuration: number, $layer: number, $normalizedTimeOffset: number) : void
+            public CrossFade ($stateName: string, $normalizedTransitionDuration: number, $layer: number) : void
+            public CrossFade ($stateName: string, $normalizedTransitionDuration: number) : void
+            /** Creates a crossfade from the current state to any other state using normalized times.
+            * @param stateName The name of the state.
+            * @param stateHashName The hash name of the state.
+            * @param normalizedTransitionDuration The duration of the transition (normalized).
+            * @param layer The layer where the crossfade occurs.
+            * @param normalizedTimeOffset The time of the state (normalized).
+            * @param normalizedTransitionTime The time of the transition (normalized).
+            */
+            public CrossFade ($stateName: string, $normalizedTransitionDuration: number, $layer: number, $normalizedTimeOffset: number, $normalizedTransitionTime: number) : void
+            /** Creates a crossfade from the current state to any other state using normalized times.
+            * @param stateName The name of the state.
+            * @param stateHashName The hash name of the state.
+            * @param normalizedTransitionDuration The duration of the transition (normalized).
+            * @param layer The layer where the crossfade occurs.
+            * @param normalizedTimeOffset The time of the state (normalized).
+            * @param normalizedTransitionTime The time of the transition (normalized).
+            */
+            public CrossFade ($stateHashName: number, $normalizedTransitionDuration: number, $layer: number, $normalizedTimeOffset: number, $normalizedTransitionTime: number) : void
+            public CrossFade ($stateHashName: number, $normalizedTransitionDuration: number, $layer: number, $normalizedTimeOffset: number) : void
+            public CrossFade ($stateHashName: number, $normalizedTransitionDuration: number, $layer: number) : void
+            public CrossFade ($stateHashName: number, $normalizedTransitionDuration: number) : void
+            public PlayInFixedTime ($stateName: string, $layer: number) : void
+            public PlayInFixedTime ($stateName: string) : void
+            /** Plays a state.
+            * @param stateName The state name.
+            * @param stateNameHash The state hash name. If stateNameHash is 0, it changes the current state time.
+            * @param layer The layer index. If layer is -1, it plays the first state with the given state name or hash.
+            * @param fixedTime The time offset (in seconds).
+            */
+            public PlayInFixedTime ($stateName: string, $layer: number, $fixedTime: number) : void
+            /** Plays a state.
+            * @param stateName The state name.
+            * @param stateNameHash The state hash name. If stateNameHash is 0, it changes the current state time.
+            * @param layer The layer index. If layer is -1, it plays the first state with the given state name or hash.
+            * @param fixedTime The time offset (in seconds).
+            */
+            public PlayInFixedTime ($stateNameHash: number, $layer: number, $fixedTime: number) : void
+            public PlayInFixedTime ($stateNameHash: number, $layer: number) : void
+            public PlayInFixedTime ($stateNameHash: number) : void
+            public Play ($stateName: string, $layer: number) : void
+            public Play ($stateName: string) : void
+            /** Plays a state.
+            * @param stateName The state name.
+            * @param stateNameHash The state hash name. If stateNameHash is 0, it changes the current state time.
+            * @param layer The layer index. If layer is -1, it plays the first state with the given state name or hash.
+            * @param normalizedTime The time offset between zero and one.
+            */
+            public Play ($stateName: string, $layer: number, $normalizedTime: number) : void
+            /** Plays a state.
+            * @param stateName The state name.
+            * @param stateNameHash The state hash name. If stateNameHash is 0, it changes the current state time.
+            * @param layer The layer index. If layer is -1, it plays the first state with the given state name or hash.
+            * @param normalizedTime The time offset between zero and one.
+            */
+            public Play ($stateNameHash: number, $layer: number, $normalizedTime: number) : void
+            public Play ($stateNameHash: number, $layer: number) : void
+            public Play ($stateNameHash: number) : void
+            /** Sets an AvatarTarget and a targetNormalizedTime for the current state.
+            * @param targetIndex The avatar body part that is queried.
+            * @param targetNormalizedTime The current state Time that is queried.
+            */
+            public SetTarget ($targetIndex: UnityEngine.AvatarTarget, $targetNormalizedTime: number) : void
+            /** Returns Transform mapped to this human bone id. Returns null if the animator is disabled, if it does not have a human description, or if the bone id is invalid.
+            * @param humanBoneId The human bone that is queried, see enum HumanBodyBones for a list of possible values.
+            */
+            public GetBoneTransform ($humanBoneId: UnityEngine.HumanBodyBones) : UnityEngine.Transform
+            public StartPlayback () : void
+            public StopPlayback () : void
+            /** Sets the animator in recording mode, and allocates a circular buffer of size frameCount.
+            * @param frameCount The number of frames (updates) that will be recorded. If frameCount is 0, the recording will continue until the user calls StopRecording. The maximum value for frameCount is 10000.
+            */
+            public StartRecording ($frameCount: number) : void
+            public StopRecording () : void
+            /** Returns true if the state exists in this layer, false otherwise.
+            * @param layerIndex The layer index.
+            * @param stateID The state ID.
+            * @returns True if the state exists in this layer, false otherwise. 
+            */
+            public HasState ($layerIndex: number, $stateID: number) : boolean
+            /** Generates an parameter id from a string.
+            * @param name The string to convert to Id.
+            */
+            public static StringToHash ($name: string) : number
+            /** Evaluates the animator based on deltaTime.
+            * @param deltaTime The time delta.
+            */
+            public Update ($deltaTime: number) : void
+            public Rebind () : void
+            public ApplyBuiltinRootMotion () : void
+            public constructor ()
+        }
+        /** The update mode of the Animator.
+        */
+        enum AnimatorUpdateMode
+        { Normal = 0, AnimatePhysics = 1, UnscaledTime = 2 }
         /** AndroidJavaRunnable is the Unity representation of a java.lang.Runnable object.
         */
         interface AndroidJavaRunnable
@@ -4240,598 +4826,12 @@
             */
             public static SetObjectArrayElement ($array: System.IntPtr, $index: number, $obj: System.IntPtr) : void
         }
-        /** Interface to control the Mecanim animation system.
-        */
-        class Animator extends UnityEngine.Behaviour
-        {
-            protected [__keep_incompatibility]: never;
-            /** Returns true if the current rig is optimizable with AnimatorUtility.OptimizeTransformHierarchy.
-            */
-            public get isOptimizable(): boolean;
-            /** Returns true if the current rig is humanoid, false if it is generic.
-            */
-            public get isHuman(): boolean;
-            /** Returns true if the current rig has root motion.
-            */
-            public get hasRootMotion(): boolean;
-            /** Returns the scale of the current Avatar for a humanoid rig, (1 by default if the rig is generic).
-            */
-            public get humanScale(): number;
-            /** Returns whether the animator is initialized successfully.
-            */
-            public get isInitialized(): boolean;
-            /** Gets the avatar delta position for the last evaluated frame.
-            */
-            public get deltaPosition(): UnityEngine.Vector3;
-            /** Gets the avatar delta rotation for the last evaluated frame.
-            */
-            public get deltaRotation(): UnityEngine.Quaternion;
-            /** Gets the avatar velocity  for the last evaluated frame.
-            */
-            public get velocity(): UnityEngine.Vector3;
-            /** Gets the avatar angular velocity for the last evaluated frame.
-            */
-            public get angularVelocity(): UnityEngine.Vector3;
-            /** The root position, the position of the game object.
-            */
-            public get rootPosition(): UnityEngine.Vector3;
-            public set rootPosition(value: UnityEngine.Vector3);
-            /** The root rotation, the rotation of the game object.
-            */
-            public get rootRotation(): UnityEngine.Quaternion;
-            public set rootRotation(value: UnityEngine.Quaternion);
-            /** Should root motion be applied?
-            */
-            public get applyRootMotion(): boolean;
-            public set applyRootMotion(value: boolean);
-            /** Specifies the update mode of the Animator.
-            */
-            public get updateMode(): UnityEngine.AnimatorUpdateMode;
-            public set updateMode(value: UnityEngine.AnimatorUpdateMode);
-            /** Returns true if the object has a transform hierarchy.
-            */
-            public get hasTransformHierarchy(): boolean;
-            /** The current gravity weight based on current animations that are played.
-            */
-            public get gravityWeight(): number;
-            /** The position of the body center of mass.
-            */
-            public get bodyPosition(): UnityEngine.Vector3;
-            public set bodyPosition(value: UnityEngine.Vector3);
-            /** The rotation of the body center of mass.
-            */
-            public get bodyRotation(): UnityEngine.Quaternion;
-            public set bodyRotation(value: UnityEngine.Quaternion);
-            /** Automatic stabilization of feet during transition and blending.
-            */
-            public get stabilizeFeet(): boolean;
-            public set stabilizeFeet(value: boolean);
-            /** Returns the number of layers in the controller.
-            */
-            public get layerCount(): number;
-            /** The AnimatorControllerParameter list used by the animator. (Read Only)
-            */
-            public get parameters(): System.Array$1<UnityEngine.AnimatorControllerParameter>;
-            /** Returns the number of parameters in the controller.
-            */
-            public get parameterCount(): number;
-            /** Blends pivot point between body center of mass and feet pivot.
-            */
-            public get feetPivotActive(): number;
-            public set feetPivotActive(value: number);
-            /** Gets the pivot weight.
-            */
-            public get pivotWeight(): number;
-            /** Get the current position of the pivot.
-            */
-            public get pivotPosition(): UnityEngine.Vector3;
-            /** If automatic matching is active.
-            */
-            public get isMatchingTarget(): boolean;
-            /** The playback speed of the Animator. 1 is normal playback speed.
-            */
-            public get speed(): number;
-            public set speed(value: number);
-            /** Returns the position of the target specified by SetTarget.
-            */
-            public get targetPosition(): UnityEngine.Vector3;
-            /** Returns the rotation of the target specified by SetTarget.
-            */
-            public get targetRotation(): UnityEngine.Quaternion;
-            /** Controls culling of this Animator component.
-            */
-            public get cullingMode(): UnityEngine.AnimatorCullingMode;
-            public set cullingMode(value: UnityEngine.AnimatorCullingMode);
-            /** Sets the playback position in the recording buffer.
-            */
-            public get playbackTime(): number;
-            public set playbackTime(value: number);
-            /** Start time of the first frame of the buffer relative to the frame at which StartRecording was called.
-            */
-            public get recorderStartTime(): number;
-            public set recorderStartTime(value: number);
-            /** End time of the recorded clip relative to when StartRecording was called.
-            */
-            public get recorderStopTime(): number;
-            public set recorderStopTime(value: number);
-            /** Gets the mode of the Animator recorder.
-            */
-            public get recorderMode(): UnityEngine.AnimatorRecorderMode;
-            /** The runtime representation of AnimatorController that controls the Animator.
-            */
-            public get runtimeAnimatorController(): UnityEngine.RuntimeAnimatorController;
-            public set runtimeAnimatorController(value: UnityEngine.RuntimeAnimatorController);
-            /** Returns true if Animator has any playables assigned to it.
-            */
-            public get hasBoundPlayables(): boolean;
-            /** Gets/Sets the current Avatar.
-            */
-            public get avatar(): UnityEngine.Avatar;
-            public set avatar(value: UnityEngine.Avatar);
-            /** The PlayableGraph created by the Animator.
-            */
-            public get playableGraph(): UnityEngine.Playables.PlayableGraph;
-            /** Additional layers affects the center of mass.
-            */
-            public get layersAffectMassCenter(): boolean;
-            public set layersAffectMassCenter(value: boolean);
-            /** Get left foot bottom height.
-            */
-            public get leftFeetBottomHeight(): number;
-            /** Get right foot bottom height.
-            */
-            public get rightFeetBottomHeight(): number;
-            public get logWarnings(): boolean;
-            public set logWarnings(value: boolean);
-            /** Sets whether the Animator sends events of type AnimationEvent.
-            */
-            public get fireEvents(): boolean;
-            public set fireEvents(value: boolean);
-            /** Controls the behaviour of the Animator component when a GameObject is disabled.
-            */
-            public get keepAnimatorControllerStateOnDisable(): boolean;
-            public set keepAnimatorControllerStateOnDisable(value: boolean);
-            /** Returns the value of the given float parameter.
-            * @param name The parameter name.
-            * @param id The parameter ID.
-            * @returns The value of the parameter. 
-            */
-            public GetFloat ($name: string) : number
-            /** Returns the value of the given float parameter.
-            * @param name The parameter name.
-            * @param id The parameter ID.
-            * @returns The value of the parameter. 
-            */
-            public GetFloat ($id: number) : number
-            /** Send float values to the Animator to affect transitions.
-            * @param name The parameter name.
-            * @param id The parameter ID.
-            * @param value The new parameter value.
-            * @param dampTime The damper total time.
-            * @param deltaTime The delta time to give to the damper.
-            */
-            public SetFloat ($name: string, $value: number) : void
-            /** Send float values to the Animator to affect transitions.
-            * @param name The parameter name.
-            * @param id The parameter ID.
-            * @param value The new parameter value.
-            * @param dampTime The damper total time.
-            * @param deltaTime The delta time to give to the damper.
-            */
-            public SetFloat ($name: string, $value: number, $dampTime: number, $deltaTime: number) : void
-            /** Send float values to the Animator to affect transitions.
-            * @param name The parameter name.
-            * @param id The parameter ID.
-            * @param value The new parameter value.
-            * @param dampTime The damper total time.
-            * @param deltaTime The delta time to give to the damper.
-            */
-            public SetFloat ($id: number, $value: number) : void
-            /** Send float values to the Animator to affect transitions.
-            * @param name The parameter name.
-            * @param id The parameter ID.
-            * @param value The new parameter value.
-            * @param dampTime The damper total time.
-            * @param deltaTime The delta time to give to the damper.
-            */
-            public SetFloat ($id: number, $value: number, $dampTime: number, $deltaTime: number) : void
-            /** Returns the value of the given boolean parameter.
-            * @param name The parameter name.
-            * @param id The parameter ID.
-            * @returns The value of the parameter. 
-            */
-            public GetBool ($name: string) : boolean
-            /** Returns the value of the given boolean parameter.
-            * @param name The parameter name.
-            * @param id The parameter ID.
-            * @returns The value of the parameter. 
-            */
-            public GetBool ($id: number) : boolean
-            /** Sets the value of the given boolean parameter.
-            * @param name The parameter name.
-            * @param id The parameter ID.
-            * @param value The new parameter value.
-            */
-            public SetBool ($name: string, $value: boolean) : void
-            /** Sets the value of the given boolean parameter.
-            * @param name The parameter name.
-            * @param id The parameter ID.
-            * @param value The new parameter value.
-            */
-            public SetBool ($id: number, $value: boolean) : void
-            /** Returns the value of the given integer parameter.
-            * @param name The parameter name.
-            * @param id The parameter ID.
-            * @returns The value of the parameter. 
-            */
-            public GetInteger ($name: string) : number
-            /** Returns the value of the given integer parameter.
-            * @param name The parameter name.
-            * @param id The parameter ID.
-            * @returns The value of the parameter. 
-            */
-            public GetInteger ($id: number) : number
-            /** Sets the value of the given integer parameter.
-            * @param name The parameter name.
-            * @param id The parameter ID.
-            * @param value The new parameter value.
-            */
-            public SetInteger ($name: string, $value: number) : void
-            /** Sets the value of the given integer parameter.
-            * @param name The parameter name.
-            * @param id The parameter ID.
-            * @param value The new parameter value.
-            */
-            public SetInteger ($id: number, $value: number) : void
-            /** Sets the value of the given trigger parameter.
-            * @param name The parameter name.
-            * @param id The parameter ID.
-            */
-            public SetTrigger ($name: string) : void
-            /** Sets the value of the given trigger parameter.
-            * @param name The parameter name.
-            * @param id The parameter ID.
-            */
-            public SetTrigger ($id: number) : void
-            /** Resets the value of the given trigger parameter.
-            * @param name The parameter name.
-            * @param id The parameter ID.
-            */
-            public ResetTrigger ($name: string) : void
-            /** Resets the value of the given trigger parameter.
-            * @param name The parameter name.
-            * @param id The parameter ID.
-            */
-            public ResetTrigger ($id: number) : void
-            /** Returns true if the parameter is controlled by a curve, false otherwise.
-            * @param name The parameter name.
-            * @param id The parameter ID.
-            * @returns True if the parameter is controlled by a curve, false otherwise. 
-            */
-            public IsParameterControlledByCurve ($name: string) : boolean
-            /** Returns true if the parameter is controlled by a curve, false otherwise.
-            * @param name The parameter name.
-            * @param id The parameter ID.
-            * @returns True if the parameter is controlled by a curve, false otherwise. 
-            */
-            public IsParameterControlledByCurve ($id: number) : boolean
-            /** Gets the position of an IK goal.
-            * @param goal The AvatarIKGoal that is queried.
-            * @returns Return the current position of this IK goal in world space. 
-            */
-            public GetIKPosition ($goal: UnityEngine.AvatarIKGoal) : UnityEngine.Vector3
-            /** Sets the position of an IK goal.
-            * @param goal The AvatarIKGoal that is set.
-            * @param goalPosition The position in world space.
-            */
-            public SetIKPosition ($goal: UnityEngine.AvatarIKGoal, $goalPosition: UnityEngine.Vector3) : void
-            /** Gets the rotation of an IK goal.
-            * @param goal The AvatarIKGoal that is is queried.
-            */
-            public GetIKRotation ($goal: UnityEngine.AvatarIKGoal) : UnityEngine.Quaternion
-            /** Sets the rotation of an IK goal.
-            * @param goal The AvatarIKGoal that is set.
-            * @param goalRotation The rotation in world space.
-            */
-            public SetIKRotation ($goal: UnityEngine.AvatarIKGoal, $goalRotation: UnityEngine.Quaternion) : void
-            /** Gets the translative weight of an IK goal (0 = at the original animation before IK, 1 = at the goal).
-            * @param goal The AvatarIKGoal that is queried.
-            */
-            public GetIKPositionWeight ($goal: UnityEngine.AvatarIKGoal) : number
-            /** Sets the translative weight of an IK goal (0 = at the original animation before IK, 1 = at the goal).
-            * @param goal The AvatarIKGoal that is set.
-            * @param value The translative weight.
-            */
-            public SetIKPositionWeight ($goal: UnityEngine.AvatarIKGoal, $value: number) : void
-            /** Gets the rotational weight of an IK goal (0 = rotation before IK, 1 = rotation at the IK goal).
-            * @param goal The AvatarIKGoal that is queried.
-            */
-            public GetIKRotationWeight ($goal: UnityEngine.AvatarIKGoal) : number
-            /** Sets the rotational weight of an IK goal (0 = rotation before IK, 1 = rotation at the IK goal).
-            * @param goal The AvatarIKGoal that is set.
-            * @param value The rotational weight.
-            */
-            public SetIKRotationWeight ($goal: UnityEngine.AvatarIKGoal, $value: number) : void
-            /** Gets the position of an IK hint.
-            * @param hint The AvatarIKHint that is queried.
-            * @returns Return the current position of this IK hint in world space. 
-            */
-            public GetIKHintPosition ($hint: UnityEngine.AvatarIKHint) : UnityEngine.Vector3
-            /** Sets the position of an IK hint.
-            * @param hint The AvatarIKHint that is set.
-            * @param hintPosition The position in world space.
-            */
-            public SetIKHintPosition ($hint: UnityEngine.AvatarIKHint, $hintPosition: UnityEngine.Vector3) : void
-            /** Gets the translative weight of an IK Hint (0 = at the original animation before IK, 1 = at the hint).
-            * @param hint The AvatarIKHint that is queried.
-            * @returns Return translative weight. 
-            */
-            public GetIKHintPositionWeight ($hint: UnityEngine.AvatarIKHint) : number
-            /** Sets the translative weight of an IK hint (0 = at the original animation before IK, 1 = at the hint).
-            * @param hint The AvatarIKHint that is set.
-            * @param value The translative weight.
-            */
-            public SetIKHintPositionWeight ($hint: UnityEngine.AvatarIKHint, $value: number) : void
-            /** Sets the look at position.
-            * @param lookAtPosition The position to lookAt.
-            */
-            public SetLookAtPosition ($lookAtPosition: UnityEngine.Vector3) : void
-            /** Set look at weights.
-            * @param weight (0-1) the global weight of the LookAt, multiplier for other parameters.
-            * @param bodyWeight (0-1) determines how much the body is involved in the LookAt.
-            * @param headWeight (0-1) determines how much the head is involved in the LookAt.
-            * @param eyesWeight (0-1) determines how much the eyes are involved in the LookAt.
-            * @param clampWeight (0-1) 0.0 means the character is completely unrestrained in motion, 1.0 means he's completely clamped (look at becomes impossible), and 0.5 means he'll be able to move on half of the possible range (180 degrees).
-            */
-            public SetLookAtWeight ($weight: number) : void
-            /** Set look at weights.
-            * @param weight (0-1) the global weight of the LookAt, multiplier for other parameters.
-            * @param bodyWeight (0-1) determines how much the body is involved in the LookAt.
-            * @param headWeight (0-1) determines how much the head is involved in the LookAt.
-            * @param eyesWeight (0-1) determines how much the eyes are involved in the LookAt.
-            * @param clampWeight (0-1) 0.0 means the character is completely unrestrained in motion, 1.0 means he's completely clamped (look at becomes impossible), and 0.5 means he'll be able to move on half of the possible range (180 degrees).
-            */
-            public SetLookAtWeight ($weight: number, $bodyWeight: number) : void
-            /** Set look at weights.
-            * @param weight (0-1) the global weight of the LookAt, multiplier for other parameters.
-            * @param bodyWeight (0-1) determines how much the body is involved in the LookAt.
-            * @param headWeight (0-1) determines how much the head is involved in the LookAt.
-            * @param eyesWeight (0-1) determines how much the eyes are involved in the LookAt.
-            * @param clampWeight (0-1) 0.0 means the character is completely unrestrained in motion, 1.0 means he's completely clamped (look at becomes impossible), and 0.5 means he'll be able to move on half of the possible range (180 degrees).
-            */
-            public SetLookAtWeight ($weight: number, $bodyWeight: number, $headWeight: number) : void
-            /** Set look at weights.
-            * @param weight (0-1) the global weight of the LookAt, multiplier for other parameters.
-            * @param bodyWeight (0-1) determines how much the body is involved in the LookAt.
-            * @param headWeight (0-1) determines how much the head is involved in the LookAt.
-            * @param eyesWeight (0-1) determines how much the eyes are involved in the LookAt.
-            * @param clampWeight (0-1) 0.0 means the character is completely unrestrained in motion, 1.0 means he's completely clamped (look at becomes impossible), and 0.5 means he'll be able to move on half of the possible range (180 degrees).
-            */
-            public SetLookAtWeight ($weight: number, $bodyWeight: number, $headWeight: number, $eyesWeight: number) : void
-            /** Set look at weights.
-            * @param weight (0-1) the global weight of the LookAt, multiplier for other parameters.
-            * @param bodyWeight (0-1) determines how much the body is involved in the LookAt.
-            * @param headWeight (0-1) determines how much the head is involved in the LookAt.
-            * @param eyesWeight (0-1) determines how much the eyes are involved in the LookAt.
-            * @param clampWeight (0-1) 0.0 means the character is completely unrestrained in motion, 1.0 means he's completely clamped (look at becomes impossible), and 0.5 means he'll be able to move on half of the possible range (180 degrees).
-            */
-            public SetLookAtWeight ($weight: number, $bodyWeight: number, $headWeight: number, $eyesWeight: number, $clampWeight: number) : void
-            /** Sets local rotation of a human bone during a IK pass.
-            * @param humanBoneId The human bone Id.
-            * @param rotation The local rotation.
-            */
-            public SetBoneLocalRotation ($humanBoneId: UnityEngine.HumanBodyBones, $rotation: UnityEngine.Quaternion) : void
-            public GetBehaviours ($fullPathHash: number, $layerIndex: number) : System.Array$1<UnityEngine.StateMachineBehaviour>
-            /** Returns the layer name.
-            * @param layerIndex The layer index.
-            * @returns The layer name. 
-            */
-            public GetLayerName ($layerIndex: number) : string
-            /** Returns the index of the layer with the given name.
-            * @param layerName The layer name.
-            * @returns The layer index. 
-            */
-            public GetLayerIndex ($layerName: string) : number
-            /** Returns the weight of the layer at the specified index.
-            * @param layerIndex The layer index.
-            * @returns The layer weight. 
-            */
-            public GetLayerWeight ($layerIndex: number) : number
-            /** Sets the weight of the layer at the given index.
-            * @param layerIndex The layer index.
-            * @param weight The new layer weight.
-            */
-            public SetLayerWeight ($layerIndex: number, $weight: number) : void
-            /** Returns an AnimatorStateInfo with the information on the current state.
-            * @param layerIndex The layer index.
-            * @returns An AnimatorStateInfo with the information on the current state. 
-            */
-            public GetCurrentAnimatorStateInfo ($layerIndex: number) : UnityEngine.AnimatorStateInfo
-            /** Returns an AnimatorStateInfo with the information on the next state.
-            * @param layerIndex The layer index.
-            * @returns An AnimatorStateInfo with the information on the next state. 
-            */
-            public GetNextAnimatorStateInfo ($layerIndex: number) : UnityEngine.AnimatorStateInfo
-            /** Returns an AnimatorTransitionInfo with the informations on the current transition.
-            * @param layerIndex The layer's index.
-            * @returns An AnimatorTransitionInfo with the informations on the current transition. 
-            */
-            public GetAnimatorTransitionInfo ($layerIndex: number) : UnityEngine.AnimatorTransitionInfo
-            /** Returns the number of AnimatorClipInfo in the current state.
-            * @param layerIndex The layer index.
-            * @returns The number of AnimatorClipInfo in the current state. 
-            */
-            public GetCurrentAnimatorClipInfoCount ($layerIndex: number) : number
-            /** Returns the number of AnimatorClipInfo in the next state.
-            * @param layerIndex The layer index.
-            * @returns The number of AnimatorClipInfo in the next state. 
-            */
-            public GetNextAnimatorClipInfoCount ($layerIndex: number) : number
-            /** Returns an array of all the AnimatorClipInfo in the current state of the given layer.
-            * @param layerIndex The layer index.
-            * @returns An array of all the AnimatorClipInfo in the current state. 
-            */
-            public GetCurrentAnimatorClipInfo ($layerIndex: number) : System.Array$1<UnityEngine.AnimatorClipInfo>
-            /** Returns an array of all the AnimatorClipInfo in the next state of the given layer.
-            * @param layerIndex The layer index.
-            * @returns An array of all the AnimatorClipInfo in the next state. 
-            */
-            public GetNextAnimatorClipInfo ($layerIndex: number) : System.Array$1<UnityEngine.AnimatorClipInfo>
-            public GetCurrentAnimatorClipInfo ($layerIndex: number, $clips: System.Collections.Generic.List$1<UnityEngine.AnimatorClipInfo>) : void
-            public GetNextAnimatorClipInfo ($layerIndex: number, $clips: System.Collections.Generic.List$1<UnityEngine.AnimatorClipInfo>) : void
-            /** Returns true if there is a transition on the given layer, false otherwise.
-            * @param layerIndex The layer index.
-            * @returns True if there is a transition on the given layer, false otherwise. 
-            */
-            public IsInTransition ($layerIndex: number) : boolean
-            /** See AnimatorController.parameters.
-            */
-            public GetParameter ($index: number) : UnityEngine.AnimatorControllerParameter
-            public MatchTarget ($matchPosition: UnityEngine.Vector3, $matchRotation: UnityEngine.Quaternion, $targetBodyPart: UnityEngine.AvatarTarget, $weightMask: UnityEngine.MatchTargetWeightMask, $startNormalizedTime: number) : void
-            /** Automatically adjust the GameObject position and rotation.
-            * @param matchPosition The position we want the body part to reach.
-            * @param matchRotation The rotation in which we want the body part to be.
-            * @param targetBodyPart The body part that is involved in the match.
-            * @param weightMask Structure that contains weights for matching position and rotation.
-            * @param startNormalizedTime Start time within the animation clip (0 - beginning of clip, 1 - end of clip).
-            * @param targetNormalizedTime End time within the animation clip (0 - beginning of clip, 1 - end of clip), values greater than 1 can be set to trigger a match after a certain number of loops. Ex: 2.3 means at 30% of 2nd loop.
-            * @param completeMatch Allows you to specify what should happen if the MatchTarget function is interrupted. A value of true causes the GameObject to immediately move to the matchPosition if interrupted. A value of false causes the GameObject to stay at its current position if interrupted.
-            */
-            public MatchTarget ($matchPosition: UnityEngine.Vector3, $matchRotation: UnityEngine.Quaternion, $targetBodyPart: UnityEngine.AvatarTarget, $weightMask: UnityEngine.MatchTargetWeightMask, $startNormalizedTime: number, $targetNormalizedTime: number) : void
-            public MatchTarget ($matchPosition: UnityEngine.Vector3, $matchRotation: UnityEngine.Quaternion, $targetBodyPart: UnityEngine.AvatarTarget, $weightMask: UnityEngine.MatchTargetWeightMask, $startNormalizedTime: number, $targetNormalizedTime: number, $completeMatch: boolean) : void
-            public InterruptMatchTarget () : void
-            /** Interrupts the automatic target matching.
-            */
-            public InterruptMatchTarget ($completeMatch: boolean) : void
-            public CrossFadeInFixedTime ($stateName: string, $fixedTransitionDuration: number) : void
-            public CrossFadeInFixedTime ($stateName: string, $fixedTransitionDuration: number, $layer: number) : void
-            public CrossFadeInFixedTime ($stateName: string, $fixedTransitionDuration: number, $layer: number, $fixedTimeOffset: number) : void
-            /** Creates a crossfade from the current state to any other state using times in seconds.
-            * @param stateName The name of the state.
-            * @param stateHashName The hash name of the state.
-            * @param fixedTransitionDuration The duration of the transition (in seconds).
-            * @param layer The layer where the crossfade occurs.
-            * @param fixedTimeOffset The time of the state (in seconds).
-            * @param normalizedTransitionTime The time of the transition (normalized).
-            */
-            public CrossFadeInFixedTime ($stateName: string, $fixedTransitionDuration: number, $layer: number, $fixedTimeOffset: number, $normalizedTransitionTime: number) : void
-            public CrossFadeInFixedTime ($stateHashName: number, $fixedTransitionDuration: number, $layer: number, $fixedTimeOffset: number) : void
-            public CrossFadeInFixedTime ($stateHashName: number, $fixedTransitionDuration: number, $layer: number) : void
-            public CrossFadeInFixedTime ($stateHashName: number, $fixedTransitionDuration: number) : void
-            /** Creates a crossfade from the current state to any other state using times in seconds.
-            * @param stateName The name of the state.
-            * @param stateHashName The hash name of the state.
-            * @param fixedTransitionDuration The duration of the transition (in seconds).
-            * @param layer The layer where the crossfade occurs.
-            * @param fixedTimeOffset The time of the state (in seconds).
-            * @param normalizedTransitionTime The time of the transition (normalized).
-            */
-            public CrossFadeInFixedTime ($stateHashName: number, $fixedTransitionDuration: number, $layer: number, $fixedTimeOffset: number, $normalizedTransitionTime: number) : void
-            public WriteDefaultValues () : void
-            public CrossFade ($stateName: string, $normalizedTransitionDuration: number, $layer: number, $normalizedTimeOffset: number) : void
-            public CrossFade ($stateName: string, $normalizedTransitionDuration: number, $layer: number) : void
-            public CrossFade ($stateName: string, $normalizedTransitionDuration: number) : void
-            /** Creates a crossfade from the current state to any other state using normalized times.
-            * @param stateName The name of the state.
-            * @param stateHashName The hash name of the state.
-            * @param normalizedTransitionDuration The duration of the transition (normalized).
-            * @param layer The layer where the crossfade occurs.
-            * @param normalizedTimeOffset The time of the state (normalized).
-            * @param normalizedTransitionTime The time of the transition (normalized).
-            */
-            public CrossFade ($stateName: string, $normalizedTransitionDuration: number, $layer: number, $normalizedTimeOffset: number, $normalizedTransitionTime: number) : void
-            /** Creates a crossfade from the current state to any other state using normalized times.
-            * @param stateName The name of the state.
-            * @param stateHashName The hash name of the state.
-            * @param normalizedTransitionDuration The duration of the transition (normalized).
-            * @param layer The layer where the crossfade occurs.
-            * @param normalizedTimeOffset The time of the state (normalized).
-            * @param normalizedTransitionTime The time of the transition (normalized).
-            */
-            public CrossFade ($stateHashName: number, $normalizedTransitionDuration: number, $layer: number, $normalizedTimeOffset: number, $normalizedTransitionTime: number) : void
-            public CrossFade ($stateHashName: number, $normalizedTransitionDuration: number, $layer: number, $normalizedTimeOffset: number) : void
-            public CrossFade ($stateHashName: number, $normalizedTransitionDuration: number, $layer: number) : void
-            public CrossFade ($stateHashName: number, $normalizedTransitionDuration: number) : void
-            public PlayInFixedTime ($stateName: string, $layer: number) : void
-            public PlayInFixedTime ($stateName: string) : void
-            /** Plays a state.
-            * @param stateName The state name.
-            * @param stateNameHash The state hash name. If stateNameHash is 0, it changes the current state time.
-            * @param layer The layer index. If layer is -1, it plays the first state with the given state name or hash.
-            * @param fixedTime The time offset (in seconds).
-            */
-            public PlayInFixedTime ($stateName: string, $layer: number, $fixedTime: number) : void
-            /** Plays a state.
-            * @param stateName The state name.
-            * @param stateNameHash The state hash name. If stateNameHash is 0, it changes the current state time.
-            * @param layer The layer index. If layer is -1, it plays the first state with the given state name or hash.
-            * @param fixedTime The time offset (in seconds).
-            */
-            public PlayInFixedTime ($stateNameHash: number, $layer: number, $fixedTime: number) : void
-            public PlayInFixedTime ($stateNameHash: number, $layer: number) : void
-            public PlayInFixedTime ($stateNameHash: number) : void
-            public Play ($stateName: string, $layer: number) : void
-            public Play ($stateName: string) : void
-            /** Plays a state.
-            * @param stateName The state name.
-            * @param stateNameHash The state hash name. If stateNameHash is 0, it changes the current state time.
-            * @param layer The layer index. If layer is -1, it plays the first state with the given state name or hash.
-            * @param normalizedTime The time offset between zero and one.
-            */
-            public Play ($stateName: string, $layer: number, $normalizedTime: number) : void
-            /** Plays a state.
-            * @param stateName The state name.
-            * @param stateNameHash The state hash name. If stateNameHash is 0, it changes the current state time.
-            * @param layer The layer index. If layer is -1, it plays the first state with the given state name or hash.
-            * @param normalizedTime The time offset between zero and one.
-            */
-            public Play ($stateNameHash: number, $layer: number, $normalizedTime: number) : void
-            public Play ($stateNameHash: number, $layer: number) : void
-            public Play ($stateNameHash: number) : void
-            /** Sets an AvatarTarget and a targetNormalizedTime for the current state.
-            * @param targetIndex The avatar body part that is queried.
-            * @param targetNormalizedTime The current state Time that is queried.
-            */
-            public SetTarget ($targetIndex: UnityEngine.AvatarTarget, $targetNormalizedTime: number) : void
-            /** Returns Transform mapped to this human bone id. Returns null if the animator is disabled, if it does not have a human description, or if the bone id is invalid.
-            * @param humanBoneId The human bone that is queried, see enum HumanBodyBones for a list of possible values.
-            */
-            public GetBoneTransform ($humanBoneId: UnityEngine.HumanBodyBones) : UnityEngine.Transform
-            public StartPlayback () : void
-            public StopPlayback () : void
-            /** Sets the animator in recording mode, and allocates a circular buffer of size frameCount.
-            * @param frameCount The number of frames (updates) that will be recorded. If frameCount is 0, the recording will continue until the user calls StopRecording. The maximum value for frameCount is 10000.
-            */
-            public StartRecording ($frameCount: number) : void
-            public StopRecording () : void
-            /** Returns true if the state exists in this layer, false otherwise.
-            * @param layerIndex The layer index.
-            * @param stateID The state ID.
-            * @returns True if the state exists in this layer, false otherwise. 
-            */
-            public HasState ($layerIndex: number, $stateID: number) : boolean
-            /** Generates an parameter id from a string.
-            * @param name The string to convert to Id.
-            */
-            public static StringToHash ($name: string) : number
-            /** Evaluates the animator based on deltaTime.
-            * @param deltaTime The time delta.
-            */
-            public Update ($deltaTime: number) : void
-            public Rebind () : void
-            public ApplyBuiltinRootMotion () : void
-            public constructor ()
-        }
         /** Information about what animation clips is played and its weight.
         */
         class AnimationInfo extends System.ValueType
         {
             protected [__keep_incompatibility]: never;
         }
-        /** The update mode of the Animator.
-        */
-        enum AnimatorUpdateMode
-        { Normal = 0, AnimatePhysics = 1, UnscaledTime = 2 }
         /** IK Goal.
         */
         enum AvatarIKGoal
@@ -33204,7 +33204,45 @@
         class AnimancerComponent extends UnityEngine.MonoBehaviour implements UnityEngine.IAnimationClipSource, Animancer.IAnimancerComponent, Animancer.IAnimationClipCollection, System.Collections.Generic.IEnumerable$1<Animancer.AnimancerState>, System.Collections.IEnumerable, System.Collections.IEnumerator
         {
             protected [__keep_incompatibility]: never;
+            public get Animator(): UnityEngine.Animator;
+            public set Animator(value: UnityEngine.Animator);
+            public get Playable(): Animancer.AnimancerPlayable;
+            public get IsPlayableInitialised(): boolean;
+            public get States(): Animancer.AnimancerPlayable.StateDictionary;
+            public get Layers(): Animancer.AnimancerPlayable.LayerList;
+            public get ActionOnDisable(): $Ref<Animancer.AnimancerComponent.DisableAction>;
+            public get UpdateMode(): UnityEngine.AnimatorUpdateMode;
+            public set UpdateMode(value: UnityEngine.AnimatorUpdateMode);
+            public get InitialUpdateMode(): UnityEngine.AnimatorUpdateMode | null;
+            public static op_Implicit ($animancer: Animancer.AnimancerComponent) : Animancer.AnimancerPlayable
+            public static op_Implicit ($animancer: Animancer.AnimancerComponent) : Animancer.AnimancerLayer
+            public InitialisePlayable () : void
+            public GetKey ($clip: UnityEngine.AnimationClip) : any
+            public Play ($clip: UnityEngine.AnimationClip) : Animancer.AnimancerState
+            public Play ($state: Animancer.AnimancerState) : Animancer.AnimancerState
+            public Play ($clip: UnityEngine.AnimationClip, $fadeDuration: number, $mode?: Animancer.FadeMode) : Animancer.AnimancerState
+            public Play ($state: Animancer.AnimancerState, $fadeDuration: number, $mode?: Animancer.FadeMode) : Animancer.AnimancerState
+            public Play ($transition: Animancer.ITransition) : Animancer.AnimancerState
+            public Play ($transition: Animancer.ITransition, $fadeDuration: number, $mode?: Animancer.FadeMode) : Animancer.AnimancerState
+            public TryPlay ($key: any) : Animancer.AnimancerState
+            public TryPlay ($key: any, $fadeDuration: number, $mode?: Animancer.FadeMode) : Animancer.AnimancerState
+            public Stop ($clip: UnityEngine.AnimationClip) : Animancer.AnimancerState
+            public Stop ($hasKey: Animancer.IHasKey) : Animancer.AnimancerState
+            public Stop ($key: any) : Animancer.AnimancerState
+            public Stop () : void
+            public IsPlaying ($clip: UnityEngine.AnimationClip) : boolean
+            public IsPlaying ($hasKey: Animancer.IHasKey) : boolean
+            public IsPlaying ($key: any) : boolean
+            public IsPlaying () : boolean
+            public IsPlayingClip ($clip: UnityEngine.AnimationClip) : boolean
+            public Evaluate () : void
+            public Evaluate ($deltaTime: number) : void
+            public GetEnumerator () : System.Collections.Generic.IEnumerator$1<Animancer.AnimancerState>
+            public GetAnimationClips ($clips: System.Collections.Generic.List$1<UnityEngine.AnimationClip>) : void
+            public GatherAnimationClips ($clips: System.Collections.Generic.ICollection$1<UnityEngine.AnimationClip>) : void
+            public constructor ()
             public GetAnimationClips ($results: System.Collections.Generic.List$1<UnityEngine.AnimationClip>) : void
+            public static op_Implicit ($exists: UnityEngine.Object) : boolean
         }
         interface IAnimancerComponent
         {
@@ -33230,8 +33268,33 @@
         {
             protected [__keep_incompatibility]: never;
         }
+        class AnimancerPlayable extends UnityEngine.Playables.PlayableBehaviour implements System.ICloneable, Animancer.IAnimationClipCollection, System.Collections.Generic.IEnumerable$1<Animancer.AnimancerState>, System.Collections.IEnumerable, UnityEngine.Playables.IPlayableBehaviour, System.Collections.IEnumerator, Animancer.IPlayableWrapper
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class AnimancerLayer extends Animancer.AnimancerNode implements Animancer.IKeyedListItem, System.Collections.Generic.IEnumerable$1<Animancer.AnimancerState>, Animancer.IAnimationClipCollection, System.Collections.IEnumerable, System.Collections.IEnumerator, Animancer.IPlayableWrapper
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        enum FadeMode
+        { FixedSpeed = 0, FixedDuration = 1, FromStart = 2, NormalizedSpeed = 3, NormalizedDuration = 4, NormalizedFromStart = 5 }
+        interface ITransition extends Animancer.IHasKey
+        {
+        }
+        interface IHasKey
+        {
+        }
     }
     namespace UnityEngine.Playables {
+        /** PlayableBehaviour is the base class from which every custom playable script derives.
+        */
+        class PlayableBehaviour extends System.Object implements System.ICloneable, UnityEngine.Playables.IPlayableBehaviour
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        interface IPlayableBehaviour
+        {
+        }
         /** Use the PlayableGraph to manage Playable creations and destructions.
         */
         class PlayableGraph extends System.ValueType
@@ -33253,6 +33316,20 @@
         interface IPlayableAsset
         {
         }
+    }
+    namespace Animancer.AnimancerPlayable {
+        class StateDictionary extends System.Object implements Animancer.IAnimationClipCollection, System.Collections.Generic.IEnumerable$1<System.Collections.Generic.KeyValuePair$2<any, Animancer.AnimancerState>>, System.Collections.IEnumerable
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class LayerList extends System.Object implements Animancer.IAnimationClipCollection, System.Collections.Generic.IEnumerable$1<Animancer.AnimancerLayer>, System.Collections.IEnumerable
+        {
+            protected [__keep_incompatibility]: never;
+        }
+    }
+    namespace Animancer.AnimancerComponent {
+        enum DisableAction
+        { Stop = 0, Pause = 1, Continue = 2, Reset = 3, Destroy = 4 }
     }
     namespace UnityEngine.Animations {
         /** An implementation of IPlayable that controls an animation RuntimeAnimatorController.

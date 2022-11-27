@@ -18,6 +18,21 @@ export function GetComponent<T extends Component>(go: GameObject, t: { new(): T 
  * @param t MonoBehaviour
  * @constructor
  */
-export function GetComponentInChildren<T extends Component>(go: GameObject,t:{new (): T}){
+export function GetComponentInChildren<T extends Component>(go: GameObject, t: { new(): T }) {
     return go.GetComponentInChildren(puerts.$typeof(t)) as T
+}
+
+/**
+ * 实例化
+ * @param go
+ * @constructor
+ */
+export function Instantiate(go: GameObject|CS.UnityEngine.Object) {
+    return GameObject.Instantiate(go) as GameObject
+}
+
+
+
+export function Destroy(go: GameObject) {
+    GameObject.Destroy(go)
 }

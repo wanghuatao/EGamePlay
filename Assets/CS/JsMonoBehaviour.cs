@@ -17,13 +17,23 @@ public class JsMonoBehaviour : MonoBehaviour
 
     void Start()
     {
-        // Action<JsMonoBehaviour> init1 = JsManager.GetJsEnv().Eval<Action<JsMonoBehaviour>>(@"
-        //     global.CS = require('csharp');
-        // ");
-        //
-        // init1(this);
+        if (!isStart)
+        {
+            if (JsManager.GetJsEnv() != null)
+            {
+                isStart = true;
+                JsManager.GetJsEnv().UsingAction<int>();
+                JsManager.GetJsEnv().UsingAction<string>();
+                JsManager.GetJsEnv().UsingFunc<int>();
+                JsManager.GetJsEnv().UsingFunc<string>();
+                JsManager.GetJsEnv().UsingAction<object>();
 
-
+                Action<JsMonoBehaviour> init = JsManager.GetJsEnv()
+                    .ExecuteModule<Action<JsMonoBehaviour>>("behaviours.mjs", JSClassName);
+                init(this);
+                if (JsStart != null) JsStart();
+            }
+        }
     }
 
     private void OnEnable()
@@ -36,22 +46,6 @@ public class JsMonoBehaviour : MonoBehaviour
 
     void Update()
     {
-        if (!isStart)
-        {
-            if (JsManager.GetJsEnv() != null)
-            {
-                isStart = true;
-                JsManager.GetJsEnv().UsingAction<int>();
-                JsManager.GetJsEnv().UsingAction<string>();
-                JsManager.GetJsEnv().UsingFunc<int>();
-                JsManager.GetJsEnv().UsingFunc<string>();
-                JsManager.GetJsEnv().UsingAction<object>();
-                
-                Action<JsMonoBehaviour> init = JsManager.GetJsEnv().ExecuteModule<Action<JsMonoBehaviour>>("behaviours.mjs", JSClassName);
-                init(this);
-                if (JsStart != null) JsStart();
-            }
-        }
         if (JsUpdate != null) JsUpdate();
     }
 

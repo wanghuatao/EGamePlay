@@ -1779,6 +1779,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _base_base__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./base/base */ "./TypeScript/base/base.ts");
 /* harmony import */ var _base_CoreUtil__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./base/CoreUtil */ "./TypeScript/base/CoreUtil.ts");
 /* harmony import */ var _common_ResPath__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./common/ResPath */ "./TypeScript/common/ResPath.ts");
+/* harmony import */ var _common_BattleCommon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./common/BattleCommon */ "./TypeScript/common/BattleCommon.ts");
 
 var CombatEntity = CS.EGamePlay.Combat.CombatEntity;
 var CombatContext = CS.EGamePlay.Combat.CombatContext;
@@ -1789,40 +1790,70 @@ var Text = CS.UnityEngine.UI.Text;
 
 var ActionPointType = CS.EGamePlay.Combat.ActionPointType;
 var RemoveStatusEvent = CS.EGamePlay.Combat.RemoveStatusEvent;
+
+var Vector3 = CS.UnityEngine.Vector3;
 class MonsterLogic extends _base_base__WEBPACK_IMPORTED_MODULE_0__.JsBehaviour {
     CombatEntity;
     MotionComponent;
     AnimationComponent;
+    JsManagerObj;
     Start() {
+        this.JsManagerObj = GameObject.Find("JsManager");
         this.CombatEntity = CombatContext.Instance.AddChild(puerts.$typeof(CombatEntity));
         CombatContext.Instance.Object2Entities.Add(this._mb.gameObject, this.CombatEntity);
         this.CombatEntity.Position = this._mb.transform.position;
         this.MotionComponent = this.CombatEntity.Get(puerts.$typeof(MotionComponent));
         this.MotionComponent.RunAI();
         this.AnimationComponent = (0,_base_CoreUtil__WEBPACK_IMPORTED_MODULE_1__.GetComponent)(this._mb.gameObject, CS.AnimationComponent);
-        this.CombatEntity.ListenActionPoint(ActionPointType.PostReceiveStatus, this.OnReceiveStatus);
+        this.CombatEntity.ListenActionPoint(ActionPointType.PostReceiveStatus, this.OnReceiveStatus.bind(this));
         CombatContext.Instance.Object2Entities.get_Item(this._mb.gameObject);
-        this.CombatEntity.Subscribe(this.OnRemoveStatus, puerts.$typeof(RemoveStatusEvent));
+        this.CombatEntity.Subscribe(this.OnRemoveStatus.bind(this), puerts.$typeof(RemoveStatusEvent));
     }
     OnRemoveStatus(eventData) {
         console.log('========================    OnRemoveStatus ts', eventData.Status.StatusConfig, eventData.Status.toString());
+        let statusConfig = eventData.Status.StatusConfig;
+        if (statusConfig.ID == _common_BattleCommon__WEBPACK_IMPORTED_MODULE_3__.StatusId.Vertigo) {
+            this.AnimationComponent.Play(this.AnimationComponent.IdleAnimation);
+            if (this.vertigoParticle != null) {
+                (0,_base_CoreUtil__WEBPACK_IMPORTED_MODULE_1__.Destroy)(this.vertigoParticle);
+            }
+        }
+        if (statusConfig.ID == _common_BattleCommon__WEBPACK_IMPORTED_MODULE_3__.StatusId.Weak) {
+            if (this.weakParticle != null) {
+                (0,_base_CoreUtil__WEBPACK_IMPORTED_MODULE_1__.Destroy)(this.weakParticle);
+            }
+        }
     }
+    vertigoParticle;
+    weakParticle;
     OnReceiveStatus(combatAction) {
         let action = combatAction;
         let addStatusEffect = action.AddStatusEffect;
         let statusConfig = addStatusEffect.AddStatus;
         console.log('statusConfig', statusConfig);
-        let resManager = (0,_base_CoreUtil__WEBPACK_IMPORTED_MODULE_1__.GetComponent)(GameObject.Find("JsManager"), CS.ResourcesManager);
+        let resManager = (0,_base_CoreUtil__WEBPACK_IMPORTED_MODULE_1__.GetComponent)(this.JsManagerObj, CS.ResourcesManager);
         console.log('resManager', resManager);
         resManager.LoadAA2(_common_ResPath__WEBPACK_IMPORTED_MODULE_2__["default"].StatusIcon, (go) => {
-            let obj = GameObject.Instantiate(go);
+            let obj = (0,_base_CoreUtil__WEBPACK_IMPORTED_MODULE_1__.Instantiate)(go);
             let StatusSlotsTrm = GameObject.Find("UIRoot/MonsterStats/StatusSlots").transform;
             obj.transform.SetParent(StatusSlotsTrm);
             (0,_base_CoreUtil__WEBPACK_IMPORTED_MODULE_1__.GetComponentInChildren)(obj, Text).text = statusConfig.Name;
             obj.name = action.Status.Id.toString();
             console.log('obj.name', obj.name);
         });
-        // this.load().then(res => {})
+        if (statusConfig.ID == _common_BattleCommon__WEBPACK_IMPORTED_MODULE_3__.StatusId.Vertigo) {
+            this.AnimationComponent.Play(this.AnimationComponent.StunAnimation);
+            let particle = (0,_base_CoreUtil__WEBPACK_IMPORTED_MODULE_1__.Instantiate)(statusConfig.GetParticleEffect());
+            particle.transform.parent = this._mb.transform;
+            particle.transform.localPosition = new Vector3(0, 2, 0);
+            this.vertigoParticle = particle;
+        }
+        if (statusConfig.ID == _common_BattleCommon__WEBPACK_IMPORTED_MODULE_3__.StatusId.Weak) {
+            let weakParticle = (0,_base_CoreUtil__WEBPACK_IMPORTED_MODULE_1__.Instantiate)(statusConfig.GetParticleEffect());
+            weakParticle.transform.parent = this._mb.transform;
+            weakParticle.transform.localPosition = Vector3.zero;
+            this.weakParticle = weakParticle;
+        }
     }
     // async load() {
     //     let task = ResourcesManager.LoadAssetAsync("Assets/EGPsExamples/RpgExample/Prefabs/StatusIcon.prefab")
@@ -1909,9 +1940,12 @@ class TestJsBehavior extends _Base_base__WEBPACK_IMPORTED_MODULE_0__.JsBehaviour
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Destroy": () => (/* binding */ Destroy),
 /* harmony export */   "GetComponent": () => (/* binding */ GetComponent),
-/* harmony export */   "GetComponentInChildren": () => (/* binding */ GetComponentInChildren)
+/* harmony export */   "GetComponentInChildren": () => (/* binding */ GetComponentInChildren),
+/* harmony export */   "Instantiate": () => (/* binding */ Instantiate)
 /* harmony export */ });
+var GameObject = CS.UnityEngine.GameObject;
 /**
  * 获取cs对象身上的MonoBehaviour组件
  * @param go
@@ -1929,6 +1963,17 @@ function GetComponent(go, t) {
  */
 function GetComponentInChildren(go, t) {
     return go.GetComponentInChildren(puerts.$typeof(t));
+}
+/**
+ * 实例化
+ * @param go
+ * @constructor
+ */
+function Instantiate(go) {
+    return GameObject.Instantiate(go);
+}
+function Destroy(go) {
+    GameObject.Destroy(go);
 }
 
 
@@ -1965,6 +2010,29 @@ class JsBehaviour {
     }
 }
 
+
+
+/***/ }),
+
+/***/ "./TypeScript/common/BattleCommon.ts":
+/*!*******************************************!*\
+  !*** ./TypeScript/common/BattleCommon.ts ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "StatusId": () => (/* binding */ StatusId)
+/* harmony export */ });
+/**
+ * 状态id
+ */
+class StatusId {
+    //眩晕
+    static Vertigo = "Vertigo";
+    //虚弱
+    static Weak = "Weak";
+}
 
 
 /***/ }),

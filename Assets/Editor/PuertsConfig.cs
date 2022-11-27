@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Collections.Generic;
+using Animancer;
 using EGamePlay;
 using EGamePlay.Combat;
 using GameUtils;
@@ -23,7 +24,7 @@ public class PuertsConfig2
             return new List<Type>()
             {
                 //仅生成ts接口, 不生成C#静态代码
-                typeof(Dictionary<int,int>),
+                typeof(Dictionary<int, int>),
                 typeof(Dictionary<string, string>),
                 typeof(ResourcesManager),
                 typeof(Main),
@@ -45,10 +46,12 @@ public class PuertsConfig2
                 typeof(AnimationComponent),
                 typeof(AssetUtils),
                 typeof(Entity),
-                typeof(TestClass)
+                typeof(TestClass),
+                typeof(AnimancerComponent),
             };
         }
     }
+
     [BlittableCopy]
     static IEnumerable<Type> Blittables
     {
@@ -61,19 +64,21 @@ public class PuertsConfig2
             };
         }
     }
+
     static IEnumerable<Type> Bindings
     {
         get
         {
             return new List<Type>()
             {
-               //直接指定的类型
+                //直接指定的类型
                 typeof(JsEnv),
                 typeof(ILoader),
                 typeof(Entity),
             };
         }
     }
+
     [Binding]
     static IEnumerable<Type> DynamicBindings
     {
@@ -87,25 +92,27 @@ public class PuertsConfig2
                 "EGamePlay",
             };
             var unityTypes = (from assembly in AppDomain.CurrentDomain.GetAssemblies()
-                              where !(assembly.ManifestModule is System.Reflection.Emit.ModuleBuilder)
-                              from type in assembly.GetExportedTypes()
-                              where type.Namespace != null && namespaces.Contains(type.Namespace) && !IsExcluded(type)
-                              select type);
-            string[] customAssemblys = new string[] {
+                where !(assembly.ManifestModule is System.Reflection.Emit.ModuleBuilder)
+                from type in assembly.GetExportedTypes()
+                where type.Namespace != null && namespaces.Contains(type.Namespace) && !IsExcluded(type)
+                select type);
+            string[] customAssemblys = new string[]
+            {
                 "Assembly-CSharp",
             };
             var customTypes = (from assembly in customAssemblys.Select(s => Assembly.Load(s))
-                               where !(assembly.ManifestModule is System.Reflection.Emit.ModuleBuilder)
-                               from type in assembly.GetExportedTypes()
-                               where type.Namespace == null || !type.Namespace.StartsWith("Puerts")
-                                    && !IsExcluded(type)
-                               select type);
+                where !(assembly.ManifestModule is System.Reflection.Emit.ModuleBuilder)
+                from type in assembly.GetExportedTypes()
+                where type.Namespace == null || !type.Namespace.StartsWith("Puerts")
+                    && !IsExcluded(type)
+                select type);
             return unityTypes
                 .Concat(customTypes)
                 .Concat(Bindings)
                 .Distinct();
         }
     }
+
     static bool IsExcluded(Type type)
     {
         if (type == null)
@@ -120,11 +127,14 @@ public class PuertsConfig2
             return true;
         return IsExcluded(type.BaseType);
     }
+
     //需要排除的程序集
-    static List<string> excludeAssemblys = new List<string>{
+    static List<string> excludeAssemblys = new List<string>
+    {
         "UnityEditor.dll",
         "Assembly-CSharp-Editor.dll",
     };
+
     //需要排除的类型
     static List<string> excludeTypes = new List<string>
     {
